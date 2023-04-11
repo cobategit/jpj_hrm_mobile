@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/foundation.dart';
@@ -26,7 +27,7 @@ class AbsensiController extends GetxController {
   Timer? timer;
   GpsController? gpsController;
   AuthController? authController;
-  Rx<String>? hasilBarcode;
+  Rx<dynamic>? hasilBarcode;
   Rxn<XFile>? hasilCamera;
   RxBool? isLoading;
   RxMap? dataProfile;
@@ -37,10 +38,14 @@ class AbsensiController extends GetxController {
   Rx<String>? location;
   Rx<bool>? isMocked;
   Rx<String>? workingHrs;
+  Rx<double>? totalDistanceAbsen;
   StreamSubscription<Position>? positionStream;
   GlobalKey<RefreshIndicatorState>? refreshKey;
   RxList<dynamic>? listLogAtt;
   Rx<bool>? checkNetwork;
+  Rx<double>? maxDistance;
+  Rx<double>? locationWorkLong;
+  Rx<double>? locationWorkLat;
   final Connectivity networkConnectivity = Connectivity();
   late StreamSubscription<ConnectivityResult> networkConnectivitySubscription;
 
@@ -51,13 +56,17 @@ class AbsensiController extends GetxController {
     dataAbsen = {}.obs;
     timerString = Rx<String>('');
     dateString = Rx<String>('');
-    hasilBarcode = Rx<String>('');
+    hasilBarcode = Rx<dynamic>(null);
     thisDay = Rx<String>('');
     long = Rx<String>('');
     lat = Rx<String>('');
     workingHrs = Rx<String>('');
     location = Rx<String>('');
     isMocked = Rx<bool>(false);
+    maxDistance = Rx<double>(0);
+    totalDistanceAbsen = Rx<double>(0);
+    locationWorkLong = Rx<double>(0);
+    locationWorkLat = Rx<double>(0);
     filterTglLeave = TextEditingController();
     timerString!(handleFormatTime(DateTime.now()));
     dateString!(DateFormat.yMMMEd().format(DateTime.now()));
@@ -153,13 +162,52 @@ class AbsensiController extends GetxController {
     dateString!(DateFormat.yMMMEd().format(now));
   }
 
-  Future<String?> handleScanBarcode() async {
-    String? barcode = await FlutterBarcodeScanner.scanBarcode(
+  Future<dynamic> handleScanBarcode() async {
+    dynamic barcode = await FlutterBarcodeScanner.scanBarcode(
         "#004297", "Cancel", true, ScanMode.DEFAULT);
+    Map<String, dynamic> convertBarcode = jsonDecode(barcode);
     if (barcode != '-1') {
-      return barcode;
+      maxDistance!(double.parse(convertBarcode['max_distance'].toString()));
+      locationWorkLong!(double.parse(convertBarcode['longitude'].toString()));
+      locationWorkLat!(double.parse(convertBarcode['latitude'].toString()));
+      totalDistanceAbsen!(Geolocator.distanceBetween(
+          double.parse(lat!.value),
+          double.parse(long!.value),
+          double.parse(convertBarcode['latitude'].toString()),
+          double.parse(convertBarcode['longitude'].toString())));
+      return convertBarcode;
     }
     return null;
+  }
+
+  Future<double?> handleCheckDistance() async {
+    double hasil = 0.0;
+    positionStream = Geolocator.getPositionStream(
+        locationSettings: const LocationSettings(
+      accuracy: LocationAccuracy.high,
+    )).listen((Position position) {
+      hasil = Geolocator.distanceBetween(
+          position.latitude, position.longitude, -6.224571, 106.825503);
+      if (kDebugMode) {
+        print('hasil check distance $hasil');
+      }
+    });
+    return hasil;
+  }
+
+  Future<bool> handleBeforeCheckout() async {
+    DateTime now = DateTime.now();
+    String formattedDate = DateFormat('HH:mm:ss').format(now);
+    final format = DateFormat("HH:mm:ss");
+    final one = format.parse("${dataAbsen!['check_in']}");
+    final two = format.parse(formattedDate);
+    final hours = two.difference(one).toString().split(':')[0];
+
+    if (int.parse(hours) < 9) {
+      return false;
+    }
+
+    return true;
   }
 
   Future<XFile?> handleCamera() async {
@@ -376,6 +424,23 @@ class AbsensiController extends GetxController {
   handleCheckInStockfile(ctx, wp, hp) async {
     hasilBarcode!(await handleScanBarcode());
     if (hasilBarcode?.value != '') {
+      if (!((totalDistanceAbsen!.value - maxDistance!.value) <= 0)) {
+        return WidgetsBinding.instance.addPostFrameCallback((_) async {
+          await AlertDialogMsg.showCupertinoDialogSimple(
+              ctx,
+              'Peringatan!',
+              'Maximal Jarak Absensi ${maxDistance!.value.toStringAsFixed(0)} meter dari Lokasi absen...',
+              [
+                ElevatedButton(
+                  onPressed: () async {
+                    AllNavigation.popNav(ctx, false, null);
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+              hp);
+        });
+      }
       isLoading!(true);
       hasilCamera!(await handleCamera());
       if (hasilCamera?.value != null) {
@@ -754,7 +819,34 @@ class AbsensiController extends GetxController {
                           gpsController!.handleCheckGps(context, hp);
                         } else {
                           hasilBarcode!(await handleScanBarcode());
+                          // if (kDebugMode) {
+                          //   print('choose WFO');
+                          //   print(
+                          //       'hasil barcode: ${hasilBarcode!.value['id'].toString()}');
+                          //   print('hasil distance max: ${maxDistance!.value}');
+                          // }
                           if (hasilBarcode?.value != '') {
+                            if (!((totalDistanceAbsen!.value -
+                                    maxDistance!.value) <=
+                                0)) {
+                              return WidgetsBinding.instance
+                                  .addPostFrameCallback((_) async {
+                                await AlertDialogMsg.showCupertinoDialogSimple(
+                                    ctx,
+                                    'Peringatan!',
+                                    'Maximal Jarak Absensi ${maxDistance!.value.toStringAsFixed(0)} meter dari Lokasi absen...',
+                                    [
+                                      ElevatedButton(
+                                        onPressed: () async {
+                                          AllNavigation.popNav(
+                                              ctx, false, null);
+                                        },
+                                        child: const Text('OK'),
+                                      ),
+                                    ],
+                                    hp);
+                              });
+                            }
                             hasilCamera!(await handleCamera());
                             isLoading!(true);
                             if (hasilCamera?.value != null) {
@@ -795,7 +887,8 @@ class AbsensiController extends GetxController {
                                   'device': authController?.deviceData?.value,
                                   'picture': hasilCamera?.value?.path,
                                   'is_wfh': 'false',
-                                  'id_barcode': hasilBarcode?.value
+                                  'id_barcode':
+                                      hasilBarcode!.value['id'].toString()
                                 };
                                 final ApiModel apiModel = ApiModel(
                                     url: Api.apiUrl,
@@ -836,8 +929,10 @@ class AbsensiController extends GetxController {
                           }
                           // if (kDebugMode) {
                           //   print('choose WFO');
-                          //   print('hasil barcode: ${hasilBarcode?.value}');
+                          //   print(
+                          //       'hasil barcode: ${hasilBarcode!.value['id'].toString()}');
                           //   print('hasil camera: ${hasilCamera?.value?.path}');
+                          //   print('hasil distance absen: $totalDistanceAbsen');
                           // }
                         }
                       },
@@ -982,6 +1077,7 @@ class AbsensiController extends GetxController {
               ),
             ),
             onPressed: () async {
+              final checkHoursBeforeCheckOut = await handleBeforeCheckout();
               final serviceGps = await gpsController!
                   .handleCheckServiceGps(ctx, GlobalSize.blockSizeVertical);
               await handleFakeGps();
@@ -990,6 +1086,39 @@ class AbsensiController extends GetxController {
                 gpsController!
                     .handleCheckGps(ctx, GlobalSize.blockSizeVertical);
               } else {
+                if (!checkHoursBeforeCheckOut) {
+                  isLoading!(false);
+                  AllNavigation.popNav(ctx, false, null);
+                  return AlertDialogMsg.showCupertinoDialogSimple(
+                    ctx,
+                    'Infomasi!',
+                    'Maaf, anda tidak bisa checkout karena belum 9 jam kerja',
+                    [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          foregroundColor: GlobalColor.light,
+                          elevation: 2,
+                          backgroundColor: GlobalColor.grey,
+                          shadowColor: GlobalColor.light.withOpacity(0.8),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
+                              hp! * 1,
+                            ),
+                          ),
+                          minimumSize: Size(
+                            wp! * 10,
+                            hp! * 4,
+                          ),
+                        ),
+                        onPressed: () {
+                          AllNavigation.popNav(ctx, false, null);
+                        },
+                        child: const Text('OK'),
+                      ),
+                    ],
+                    hp,
+                  );
+                }
                 hasilBarcode!(await handleScanBarcode());
                 if (hasilBarcode?.value != '') {
                   if (dataProfile!['department'] == 'SP Operational') {
@@ -999,6 +1128,7 @@ class AbsensiController extends GetxController {
                   }
                 }
               }
+
               isLoading!(false);
               AllNavigation.popNav(ctx, false, null);
             },
