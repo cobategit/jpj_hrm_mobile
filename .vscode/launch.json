@@ -1,0 +1,98 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "dapurqflutter",
+      "request": "launch",
+      "type": "dart"
+      // "args": ["--no-sound-null-safety"],
+      // "args": ["--web-port", "5000"]
+      // "vmAdditionalArgs": ["--no-sound-null-safety"]
+    },
+    {
+      "name": "xiaomi redmi 2 prime",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "f7bc01797d72",
+      "args": [
+        "--no-sound-null-safety"
+      ],
+      "vmAdditionalArgs": [
+        "--no-sound-null-safety"
+      ]
+    },
+    {
+      "name": "flutter-1",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "emulator-5554",
+      "args": [
+        "--no-sound-null-safety"
+      ],
+      "vmAdditionalArgs": [
+        "--no-sound-null-safety"
+      ]
+    },
+    {
+      "name": "flutter-3",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "emulator-5558",
+      "args": [
+        "--no-sound-null-safety"
+      ],
+      "vmAdditionalArgs": [
+        "--no-sound-null-safety"
+      ]
+    },
+    {
+      "name": "flutter-2",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "emulator-5556",
+      "args": [
+        "--no-sound-null-safety"
+      ],
+      "vmAdditionalArgs": [
+        "--no-sound-null-safety"
+      ]
+    },
+    {
+      "name": "vivo 1714",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "KBQG75KJ6PD6KFNV",
+      "args": [
+        "--no-sound-null-safety"
+      ],
+      "vmAdditionalArgs": [
+        "--no-sound-null-safety"
+      ]
+    },
+    {
+      "name": "xiaomi redmi note 10 pro",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "46ced9f6",
+      "args": [
+        "--no-sound-null-safety"
+      ],
+      "vmAdditionalArgs": [
+        "--no-sound-null-safety"
+      ]
+    },
+    {
+      "name": "iphone 12 14.4",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "DED7DF98-56EE-4C60-BA97-8F6B41133487",
+      "args": [
+        "--no-sound-null-safety"
+      ]
+      // "vmAdditionalArgs": ["--no-sound-null-safety"]
+    }
+  ]
+}
