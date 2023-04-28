@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jpj_hrm_mobile/configs/colors.dart';
@@ -205,13 +207,15 @@ class Login extends StatelessWidget {
                                         authController
                                             .passText!.text.isNotEmpty) {
                                       authController.isLoading!(true);
-                                      if (authController
-                                          .checkConnection!.value) {
+                                      // if (authController
+                                      //     .checkConnection!.value) {
                                         authController.handleLogin(
                                             context,
                                             GlobalSize.blockSizeVertical!,
                                             GlobalSize.safeBlockHorizontal!);
-                                      }
+                                      // }else{
+                                      //   print('hallo guys');
+                                      // }
                                       // else {
                                       //   authController.handleLoginSqflite(
                                       //       context,

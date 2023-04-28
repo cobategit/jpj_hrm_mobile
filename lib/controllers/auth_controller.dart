@@ -11,6 +11,8 @@ import 'package:jpj_hrm_mobile/screens/index.dart';
 import 'package:jpj_hrm_mobile/services/index.dart';
 import 'package:jpj_hrm_mobile/utils/index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:http/http.dart' as http;
 
 class AuthController extends GetxController {
   TextEditingController? emailText;
@@ -89,13 +91,17 @@ class AuthController extends GetxController {
 
   handleGetDevice() async {
     try {
-      if (Platform.isAndroid) {
-        AndroidDeviceInfo androidInfo = await deviceInfoPlugin.androidInfo;
-        deviceData!(androidInfo.model);
-      }
-      if (Platform.isIOS) {
-        IosDeviceInfo iosInfo = await deviceInfoPlugin.iosInfo;
-        deviceData!(iosInfo.model);
+      if (kIsWeb) {
+        
+      }else{
+        if (Platform.isAndroid) {
+          AndroidDeviceInfo androidInfo = await deviceInfoPlugin.androidInfo;
+          deviceData!(androidInfo.model);
+        }
+        if (Platform.isIOS) {
+          IosDeviceInfo iosInfo = await deviceInfoPlugin.iosInfo;
+          deviceData!(iosInfo.model);
+        }
       }
     } on PlatformException {
       const error = "Error Failed to get platform version";
@@ -122,7 +128,8 @@ class AuthController extends GetxController {
     };
 
     final ApiModel apiModel = ApiModel(
-        url: Api.apiUrl, path: Path.login, body: bodyData, isToken: false);
+        url: Api.apiUrl, path: Path.login, body: bodyData, isToken: false
+      );
 
     final Map<String, dynamic> res = await PostData().postData(apiModel);
     isLoading!(false);

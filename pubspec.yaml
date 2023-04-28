@@ -42,7 +42,7 @@ dependencies:
   get: ^4.6.1
   google_fonts: ^2.2.0
   hexcolor: ^2.0.6
-  http: ^0.13.4
+  http: ^0.13.5
   image_picker: ^0.8.4+4
   month_picker_dialog: ^0.7.0
   percent_indicator: ^4.0.0
@@ -56,6 +56,8 @@ dependencies:
   syncfusion_flutter_datepicker: ^20.3.56
   search_choices: ^2.1.5
   connectivity_plus: ^3.0.3
+  swipeable_page_route: ^0.3.0
+  cupertino_back_gesture: ^0.1.0
 
 dev_dependencies:
   flutter_test:

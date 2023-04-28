@@ -930,7 +930,7 @@ class HistoryLeaveScreen extends StatelessWidget {
                           onPressed: () {
                             leaveController.handleClearHistory();
                           },
-                          tittle: 'CLEAR',
+                          tittle: 'Clear',
                           fontSize: GlobalSize.blockSizeVertical! * 1.8,
                           color: GlobalColor.light,
                           colorPrim: GlobalColor.red,

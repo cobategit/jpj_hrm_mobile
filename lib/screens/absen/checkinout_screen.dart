@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:jpj_hrm_mobile/configs/index.dart';
 import 'package:jpj_hrm_mobile/utils/index.dart';
@@ -78,11 +80,11 @@ class CheckInOutScreen extends StatelessWidget {
                         // CHECK IN
                         return InkWell(
                           onTap: () async {
+                            log(22222);
                             final serviceGps =
                                 await gpsController.handleCheckServiceGps(
                                     context, GlobalSize.blockSizeVertical);
                             await absensiController.handleFakeGps();
-
                             if (!serviceGps) {
                               gpsController.handleCheckGps(
                                   context, GlobalSize.blockSizeVertical);

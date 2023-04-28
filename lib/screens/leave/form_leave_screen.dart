@@ -240,36 +240,59 @@ class FormLeaveScreen extends StatelessWidget {
                             ),
                             Align(
                               alignment: Alignment.centerRight,
-                              child: GlobalButtonElevated(
-                                onPressed: () {
-                                  leaveController.handleReqLeave({
-                                    "id_leave_types":
-                                        leaveController.valTypeCuti?.value,
-                                    'id_user_shift':
-                                        leaveController.backUpEmpTxt?['id'],
-                                    "filling_date": DateFormat('yyyy-MM-dd')
-                                        .format(DateTime.now()),
-                                    "start_leave_date":
-                                        leaveController.dariTglTxt?.text,
-                                    "end_leave_date":
-                                        leaveController.sampaiTglTxt?.text,
-                                    "reasons":
-                                        leaveController.keteranganTxt?.text,
-                                    "id_dept": absensiController
-                                        .dataProfile!['id_department']
-                                  }, context, GlobalSize.blockSizeVertical!);
-                                },
-                                tittle: 'SUBMIT',
-                                fontSize: GlobalSize.blockSizeVertical! * 1.8,
-                                color: GlobalColor.light,
-                                colorPrim: GlobalColor.green,
-                                colorOnPrim: Colors.white.withOpacity(0.9),
-                                colorShadowPrim: Colors.white,
-                                borderRadius: GlobalSize.blockSizeVertical! * 1,
-                                sizeH: GlobalSize.safeBlockVertical! * 4.5,
-                                sizeW: GlobalSize.safeBlockHorizontal! * 8,
+                              child: 
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children : [
+                                  GlobalButtonElevated(
+                                    onPressed: () async {
+                                      AllNavigation.popNav(context, false, null);
+                                    },
+                                    tittle: 'Back',
+                                    fontSize: GlobalSize.blockSizeVertical! * 1.8,
+                                    color: GlobalColor.light,
+                                    colorPrim: GlobalColor.yellow,
+                                    colorOnPrim: Colors.white.withOpacity(0.9),
+                                    colorShadowPrim: Colors.white,
+                                    borderRadius: GlobalSize.blockSizeVertical! * 1,
+                                    sizeH: GlobalSize.safeBlockVertical! * 4.5,
+                                    sizeW: GlobalSize.safeBlockHorizontal! * 18,
+                                  ),
+                                  SizedBox(width: 10.2),
+                                  GlobalButtonElevated(
+                                    onPressed: () {
+                                      leaveController.handleReqLeave({
+                                        "id_leave_types":
+                                            leaveController.valTypeCuti?.value,
+                                        'id_user_shift':
+                                            leaveController.backUpEmpTxt?['id'],
+                                        "filling_date": DateFormat('yyyy-MM-dd')
+                                            .format(DateTime.now()),
+                                        "start_leave_date":
+                                            leaveController.dariTglTxt?.text,
+                                        "end_leave_date":
+                                            leaveController.sampaiTglTxt?.text,
+                                        "reasons":
+                                            leaveController.keteranganTxt?.text,
+                                        "id_dept": absensiController
+                                            .dataProfile!['id_department']
+                                      }, context, GlobalSize.blockSizeVertical!);
+                                    },
+                                    tittle: 'Submit',
+                                    fontSize: GlobalSize.blockSizeVertical! * 1.8,
+                                    color: GlobalColor.light,
+                                    colorPrim: GlobalColor.green,
+                                    colorOnPrim: Colors.white.withOpacity(0.9),
+                                    colorShadowPrim: Colors.white,
+                                    borderRadius: GlobalSize.blockSizeVertical! * 1,
+                                    sizeH: GlobalSize.safeBlockVertical! * 4.5,
+                                    sizeW: GlobalSize.safeBlockHorizontal! * 8,
+                                  ),
+                                  
+                                ],
                               ),
                             ),
+              
                           ],
                         ),
                       )),

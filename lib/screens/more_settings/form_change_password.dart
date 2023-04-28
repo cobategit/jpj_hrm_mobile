@@ -4,7 +4,7 @@ import 'package:jpj_hrm_mobile/configs/index.dart';
 import 'package:jpj_hrm_mobile/controllers/index.dart';
 import 'package:jpj_hrm_mobile/utils/index.dart';
 import 'package:jpj_hrm_mobile/widgets/index.dart';
-
+import 'package:cupertino_back_gesture/cupertino_back_gesture.dart';
 class FormChangePassword extends StatelessWidget {
   FormChangePassword({Key? key}) : super(key: key);
 
@@ -151,18 +151,38 @@ class FormChangePassword extends StatelessWidget {
                               SizedBox(
                                 height: GlobalSize.blockSizeVertical! * 2,
                               ),
-                              GlobalButtonElevated(
-                                onPressed: () {},
-                                tittle: 'CHANGE',
-                                fontSize: GlobalSize.blockSizeVertical! * 1.8,
-                                color: GlobalColor.light,
-                                colorPrim: GlobalColor.green,
-                                colorOnPrim: Colors.white.withOpacity(0.9),
-                                colorShadowPrim: Colors.white,
-                                borderRadius: GlobalSize.blockSizeVertical! * 1,
-                                sizeH: GlobalSize.safeBlockVertical! * 4.5,
-                                sizeW: GlobalSize.safeBlockHorizontal! * 18,
-                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                GlobalButtonElevated(
+                                   onPressed: () async {
+                                      AllNavigation.popNav(context, false, null);
+                                    },
+                                  tittle: 'Back',
+                                  fontSize: GlobalSize.blockSizeVertical! * 1.8,
+                                  color: GlobalColor.light,
+                                  colorPrim: GlobalColor.yellow,
+                                  colorOnPrim: Colors.white.withOpacity(0.9),
+                                  colorShadowPrim: Colors.white,
+                                  borderRadius: GlobalSize.blockSizeVertical! * 1,
+                                  sizeH: GlobalSize.safeBlockVertical! * 4.5,
+                                  sizeW: GlobalSize.safeBlockHorizontal! * 18,
+                                ),
+                                SizedBox(width: 10.2),
+                                GlobalButtonElevated(
+                                   onPressed: () {},
+                                  tittle: 'Change',
+                                  fontSize: GlobalSize.blockSizeVertical! * 1.8,
+                                  color: GlobalColor.light,
+                                  colorPrim: GlobalColor.green,
+                                  colorOnPrim: Colors.white.withOpacity(0.9),
+                                  colorShadowPrim: Colors.white,
+                                  borderRadius: GlobalSize.blockSizeVertical! * 1,
+                                  sizeH: GlobalSize.safeBlockVertical! * 4.5,
+                                  sizeW: GlobalSize.safeBlockHorizontal! * 18,
+                                ),
+                              ],)
+                              
                             ],
                           ),
                         )),

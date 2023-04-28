@@ -17,30 +17,30 @@ void main() async {
   runApp(const MyApp());
 }
 
-Future<void> initialBackgroundService() async {
-  final service = FlutterBackgroundService();
-  await service.configure(
-    iosConfiguration: IosConfiguration(
-      // auto start service
-      autoStart: true,
+// Future<void> initialBackgroundService() async {
+//   final service = FlutterBackgroundService();
+//   await service.configure(
+//     iosConfiguration: IosConfiguration(
+//       // auto start service
+//       autoStart: true,
 
-      // this will be executed when app is in foreground in separated isolate
-      onForeground: onStartBackgroundService,
+//       // this will be executed when app is in foreground in separated isolate
+//       onForeground: onStartBackgroundService,
 
-      // you have to enable background fetch capability on xcode project
-      onBackground: onIosBackground,
-    ),
-    androidConfiguration: AndroidConfiguration(
-      // this will be executed when app is in foreground or background in separated isolate
-      onStart: onStartBackgroundService,
+//       // you have to enable background fetch capability on xcode project
+//       onBackground: onIosBackground,
+//     ),
+//     androidConfiguration: AndroidConfiguration(
+//       // this will be executed when app is in foreground or background in separated isolate
+//       onStart: onStartBackgroundService,
 
-      // auto start service
-      autoStart: true,
-      isForegroundMode: true,
-    ),
-  );
-  service.startService();
-}
+//       // auto start service
+//       autoStart: true,
+//       isForegroundMode: true,
+//     ),
+//   );
+//   service.startService();
+// }
 
 bool onIosBackground(ServiceInstance service) {
   WidgetsFlutterBinding.ensureInitialized();
@@ -91,9 +91,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     AuthController authController = Get.put(AuthController());
 
-    if (authController.checkConnection!.value) {
-      FlutterBackgroundService().invoke("setAsBackground");
-    }
+    // if (authController.checkConnection!.value) {
+    //   FlutterBackgroundService().invoke("setAsBackground");
+    // }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',

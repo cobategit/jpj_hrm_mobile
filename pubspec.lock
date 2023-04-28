@@ -25,6 +25,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.10.0"
+  black_hole_flutter:
+    dependency: transitive
+    description:
+      name: black_hole_flutter
+      sha256: "08bc83e6fa553b26f6017260927b523dde52eade52a45869c4d35e979bb8207f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -153,6 +161,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.2"
+  cupertino_back_gesture:
+    dependency: "direct main"
+    description:
+      name: cupertino_back_gesture
+      sha256: "64f68f3aadb98e19d85c8c1dd9595a56b5b53b05f455e32df1c52edadad456d8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.0"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -533,6 +549,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.1"
+  list_diff:
+    dependency: transitive
+    description:
+      name: list_diff
+      sha256: ac2d99c4379d5175f1e4943850808e1bf4d5604fd46c1ec3060e7fb0c0fdab05
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   matcher:
     dependency: transitive
     description:
@@ -818,6 +842,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  swipeable_page_route:
+    dependency: "direct main"
+    description:
+      name: swipeable_page_route
+      sha256: "99dfe162cb486981297cef71660b811bfb274ab9b76ee3537010d9e82b4dfe42"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.0"
   syncfusion_flutter_calendar:
     dependency: "direct main"
     description:
@@ -932,4 +964,4 @@ packages:
     version: "3.1.1"
 sdks:
   dart: ">=2.19.2 <3.0.0"
-  flutter: ">=3.3.0"
+  flutter: ">=3.7.0"
