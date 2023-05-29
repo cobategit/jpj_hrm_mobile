@@ -91,23 +91,27 @@ class AbsensiController extends GetxController {
         checkNetwork!(false);
       }
     });
-    await gpsController?.handleLocationPermission();
+    if (!kIsWeb) {
+      await gpsController?.handleLocationPermission();
+    }
     super.onInit();
   }
 
   @override
-  void onReady() {
-    positionStream = Geolocator.getPositionStream(
-        locationSettings: const LocationSettings(
-      accuracy: LocationAccuracy.high,
-      distanceFilter: 100,
-    )).listen((Position position) async {
-      long!(position.longitude.toString());
-      lat!(position.latitude.toString());
-      final placemarks =
-          await placemarkFromCoordinates(position.latitude, position.longitude);
-      location!(placemarks[0].locality);
-    });
+  void onReady() async {
+    if (!kIsWeb) {
+      positionStream = Geolocator.getPositionStream(
+          locationSettings: const LocationSettings(
+        accuracy: LocationAccuracy.high,
+        distanceFilter: 100,
+      )).listen((Position position) async {
+        long!(position.longitude.toString());
+        lat!(position.latitude.toString());
+        final placemarks = await placemarkFromCoordinates(
+            position.latitude, position.longitude);
+        location!(placemarks[0].locality);
+      });
+    }
     super.onReady();
   }
 
@@ -693,6 +697,24 @@ class AbsensiController extends GetxController {
                     GestureDetector(
                       onTap: () async {
                         AllNavigation.popNav(ctx, false, null);
+                        if (location!.value == '' && !kIsWeb) {
+                          return WidgetsBinding.instance
+                              .addPostFrameCallback((_) async {
+                            await AlertDialogMsg.showCupertinoDialogSimple(
+                                ctx,
+                                'Peringatan!',
+                                'Clear Cache Apps',
+                                [
+                                  ElevatedButton(
+                                    onPressed: () async {
+                                      AllNavigation.popNav(ctx, false, null);
+                                    },
+                                    child: const Text('OK'),
+                                  ),
+                                ],
+                                hp);
+                          });
+                        }
                         final serviceGps = await gpsController!
                             .handleCheckServiceGps(context, hp);
                         if (!serviceGps) {
@@ -813,6 +835,24 @@ class AbsensiController extends GetxController {
                     GestureDetector(
                       onTap: () async {
                         AllNavigation.popNav(ctx, false, null);
+                        if (location!.value == '' && !kIsWeb) {
+                          return WidgetsBinding.instance
+                              .addPostFrameCallback((_) async {
+                            await AlertDialogMsg.showCupertinoDialogSimple(
+                                ctx,
+                                'Peringatan!',
+                                'Clear Cache Apps',
+                                [
+                                  ElevatedButton(
+                                    onPressed: () async {
+                                      AllNavigation.popNav(ctx, false, null);
+                                    },
+                                    child: const Text('OK'),
+                                  ),
+                                ],
+                                hp);
+                          });
+                        }
                         final serviceGps = await gpsController!
                             .handleCheckServiceGps(context, hp);
                         if (!serviceGps) {
@@ -934,6 +974,206 @@ class AbsensiController extends GetxController {
                           //   print('hasil camera: ${hasilCamera?.value?.path}');
                           //   print('hasil distance absen: $totalDistanceAbsen');
                           // }
+                        }
+                      },
+                      child: Container(
+                        width: wp * 30,
+                        height: hp * 15,
+                        decoration: BoxDecoration(
+                          color: GlobalColor.blue,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              IconGlobal.iconoffice,
+                              size: hp * 7,
+                              color: GlobalColor.light,
+                            ),
+                            SizedBox(
+                              height: hp * 1,
+                            ),
+                            Text(
+                              'WFO',
+                              style: TextStyle(
+                                fontSize: hp * 1.6,
+                                color: GlobalColor.light,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+        ),
+      );
+    });
+  }
+
+  handleWebCheckinOffice(ctx, wp, hp) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await showDialog<String>(
+        context: ctx,
+        builder: (BuildContext context) => Center(
+          child: Container(
+            padding: EdgeInsets.only(top: hp * 2),
+            width: wp * 80,
+            height: hp * 26,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(hp * 2),
+            ),
+            child: Column(
+              children: [
+                Center(
+                  child: Text(
+                    'Choose Work',
+                    style: TextStyle(
+                      fontSize: hp * 1.8,
+                      color: GlobalColor.blue,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'IconGlobal',
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: hp * 3,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    // WFH
+                    GestureDetector(
+                      onTap: () async {
+                        AllNavigation.popNav(ctx, false, null);
+                        SharedPreferences session =
+                            await SharedPreferences.getInstance();
+                        final Map<String, dynamic> bodyData = {
+                          'date':
+                              DateFormat('yyyy-MM-dd').format(DateTime.now()),
+                          'id_dept': dataProfile!['id_department'].toString(),
+                          'check_in':
+                              DateFormat('HH:mm:ss').format(DateTime.now()),
+                          'type': 'true',
+                          'is_wfh': 'true'
+                        };
+                        final ApiModel apiModel = ApiModel(
+                            url: Api.apiUrl,
+                            path: Path.checkinoffice,
+                            body: bodyData,
+                            token: session.getString('token'),
+                            isToken: true);
+
+                        final Map<String, dynamic> res =
+                            await PostData().postFormData(apiModel, 'POST');
+                        isLoading!(false);
+
+                        if (res['success']) {
+                          getDataScheduleEmpPerDay();
+                        } else {
+                          WidgetsBinding.instance
+                              .addPostFrameCallback((_) async {
+                            await AlertDialogMsg.showCupertinoDialogSimple(
+                                ctx,
+                                'Informasi!',
+                                '${res['message']}',
+                                [
+                                  ElevatedButton(
+                                    onPressed: () async {
+                                      AllNavigation.popNav(ctx, false, null);
+                                    },
+                                    child: const Text('OK'),
+                                  ),
+                                ],
+                                hp);
+                          });
+                        }
+                      },
+                      child: Container(
+                        width: wp * 30,
+                        height: hp * 15,
+                        decoration: BoxDecoration(
+                          color: GlobalColor.blue,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              FontAwesome5.home,
+                              size: hp * 7,
+                              color: GlobalColor.light,
+                            ),
+                            SizedBox(
+                              height: hp * 1,
+                            ),
+                            Text(
+                              'WFH',
+                              style: TextStyle(
+                                fontSize: hp * 1.6,
+                                color: GlobalColor.light,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    // WFO
+                    GestureDetector(
+                      onTap: () async {
+                        AllNavigation.popNav(ctx, false, null);
+                        SharedPreferences session =
+                            await SharedPreferences.getInstance();
+                        final Map<String, dynamic> bodyData = {
+                          'date':
+                              DateFormat('yyyy-MM-dd').format(DateTime.now()),
+                          'id_dept': dataProfile!['id_department'].toString(),
+                          'check_in':
+                              DateFormat('HH:mm:ss').format(DateTime.now()),
+                          'type': false,
+                          'is_wfh': false,
+                        };
+
+                        final ApiModel apiModel = ApiModel(
+                            url: Api.apiUrl,
+                            path: Path.checkinoffice,
+                            body: bodyData,
+                            token: session.getString('token'),
+                            isToken: true);
+
+                        final Map<String, dynamic> res =
+                            await PostData().postData(apiModel);
+                        isLoading!(false);
+                        if (kDebugMode) {
+                          print('res $res');
+                        }
+
+                        if (res['success']) {
+                          getDataScheduleEmpPerDay();
+                        } else {
+                          WidgetsBinding.instance
+                              .addPostFrameCallback((_) async {
+                            await AlertDialogMsg.showCupertinoDialogSimple(
+                                ctx,
+                                'Informasi!',
+                                '${res['message']}',
+                                [
+                                  ElevatedButton(
+                                    onPressed: () async {
+                                      AllNavigation.popNav(ctx, false, null);
+                                    },
+                                    child: const Text('OK'),
+                                  ),
+                                ],
+                                hp);
+                          });
                         }
                       },
                       child: Container(
@@ -1127,6 +1367,149 @@ class AbsensiController extends GetxController {
                     handleCheckoutOffice(ctx, wp, hp);
                   }
                 }
+              }
+
+              isLoading!(false);
+              AllNavigation.popNav(ctx, false, null);
+            },
+            child: const Text('OK'),
+          ),
+        ],
+        hp,
+      );
+    });
+  }
+
+  handleWebCheckoutOffice(ctx, hp, wp) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await AlertDialogMsg.showCupertinoDialogSimple(
+        ctx,
+        'Peringatan!',
+        'Anda Yakin Ingin Check Out ?.',
+        [
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              foregroundColor: GlobalColor.light,
+              elevation: 2,
+              backgroundColor: GlobalColor.grey,
+              shadowColor: GlobalColor.light.withOpacity(0.8),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(
+                  hp! * 1,
+                ),
+              ),
+              minimumSize: Size(
+                wp! * 10,
+                hp! * 4,
+              ),
+            ),
+            onPressed: () {
+              AllNavigation.popNav(ctx, false, null);
+            },
+            child: const Text('CANCEL'),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              foregroundColor: GlobalColor.light,
+              elevation: 2,
+              backgroundColor: GlobalColor.green,
+              shadowColor: GlobalColor.light.withOpacity(0.8),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(
+                  hp! * 1,
+                ),
+              ),
+              minimumSize: Size(
+                wp! * 10,
+                hp! * 4,
+              ),
+            ),
+            onPressed: () async {
+              final checkHoursBeforeCheckOut = await handleBeforeCheckout();
+              isLoading!(true);
+              if (!checkHoursBeforeCheckOut) {
+                isLoading!(false);
+                AllNavigation.popNav(ctx, false, null);
+                return AlertDialogMsg.showCupertinoDialogSimple(
+                  ctx,
+                  'Infomasi!',
+                  'Maaf, anda tidak bisa checkout karena belum 9 jam kerja',
+                  [
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: GlobalColor.light,
+                        elevation: 2,
+                        backgroundColor: GlobalColor.grey,
+                        shadowColor: GlobalColor.light.withOpacity(0.8),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                            hp! * 1,
+                          ),
+                        ),
+                        minimumSize: Size(
+                          wp! * 10,
+                          hp! * 4,
+                        ),
+                      ),
+                      onPressed: () {
+                        AllNavigation.popNav(ctx, false, null);
+                      },
+                      child: const Text('OK'),
+                    ),
+                  ],
+                  hp,
+                );
+              }
+
+              SharedPreferences session = await SharedPreferences.getInstance();
+              final Map<String, dynamic> bodyData = {
+                'date': DateFormat('yyyy-MM-dd').format(DateTime.now()),
+                'check_out': DateFormat('HH:mm:ss').format(DateTime.now()),
+              };
+
+              final ApiModel apiModel = ApiModel(
+                url: Api.apiUrl,
+                path: Path.checkoutoffice,
+                body: bodyData,
+                token: session.getString('token'),
+                isToken: true,
+              );
+
+              final Map<String, dynamic> res =
+                  await PostData().putData(apiModel);
+
+              if (res['success']) {
+                getDataScheduleEmpPerDay();
+              } else {
+                AlertDialogMsg.showCupertinoDialogSimple(
+                  ctx,
+                  'Infomasi!',
+                  '${res['message']}',
+                  [
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: GlobalColor.light,
+                        elevation: 2,
+                        backgroundColor: GlobalColor.grey,
+                        shadowColor: GlobalColor.light.withOpacity(0.8),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                            hp! * 1,
+                          ),
+                        ),
+                        minimumSize: Size(
+                          wp! * 10,
+                          hp! * 4,
+                        ),
+                      ),
+                      onPressed: () {
+                        AllNavigation.popNav(ctx, false, null);
+                      },
+                      child: const Text('OK'),
+                    ),
+                  ],
+                  hp,
+                );
               }
 
               isLoading!(false);

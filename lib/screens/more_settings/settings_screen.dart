@@ -141,9 +141,9 @@ class SettingsScreen extends StatelessWidget {
                           SharedPreferences session =
                               await SharedPreferences.getInstance();
                           await session.remove('token');
-                          Get.delete<AbsensiController>(force: true);
-                          Get.delete<GpsController>(force: true);
-                          Get.delete<LeaveController>(force: true);
+                          Get.delete<AbsensiController>(force: false);
+                          Get.delete<GpsController>(force: false);
+                          Get.delete<LeaveController>(force: false);
                           // await Get.deleteAll(force: true);
                           AllNavigation.pushRemoveUntilNav(
                               context, Login(), (_) => null);

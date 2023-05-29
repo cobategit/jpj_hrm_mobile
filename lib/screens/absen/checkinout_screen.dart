@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:jpj_hrm_mobile/configs/index.dart';
 import 'package:jpj_hrm_mobile/utils/index.dart';
@@ -78,30 +79,38 @@ class CheckInOutScreen extends StatelessWidget {
                         // CHECK IN
                         return InkWell(
                           onTap: () async {
-                            final serviceGps =
-                                await gpsController.handleCheckServiceGps(
-                                    context, GlobalSize.blockSizeVertical);
-                            await absensiController.handleFakeGps();
+                            if (!kIsWeb) {
+                              final serviceGps =
+                                  await gpsController.handleCheckServiceGps(
+                                      context, GlobalSize.blockSizeVertical);
+                              await absensiController.handleFakeGps();
 
-                            if (!serviceGps) {
-                              gpsController.handleCheckGps(
-                                  context, GlobalSize.blockSizeVertical);
-                            } else {
-                              if (absensiController
-                                      .dataProfile!['department'] ==
-                                  'SP Operational') {
-                                absensiController.handleCheckInStockfile(
-                                  context,
-                                  GlobalSize.safeBlockHorizontal,
-                                  GlobalSize.safeBlockVertical,
-                                );
+                              if (!serviceGps) {
+                                gpsController.handleCheckGps(
+                                    context, GlobalSize.blockSizeVertical);
                               } else {
-                                absensiController.handleCheckInOffice(
-                                  context,
-                                  GlobalSize.safeBlockHorizontal,
-                                  GlobalSize.safeBlockVertical,
-                                );
+                                if (absensiController
+                                        .dataProfile!['department'] ==
+                                    'SP Operational') {
+                                  absensiController.handleCheckInStockfile(
+                                    context,
+                                    GlobalSize.safeBlockHorizontal,
+                                    GlobalSize.safeBlockVertical,
+                                  );
+                                } else {
+                                  absensiController.handleCheckInOffice(
+                                    context,
+                                    GlobalSize.safeBlockHorizontal,
+                                    GlobalSize.safeBlockVertical,
+                                  );
+                                }
                               }
+                            } else {
+                              absensiController.handleWebCheckinOffice(
+                                context,
+                                GlobalSize.safeBlockHorizontal,
+                                GlobalSize.safeBlockVertical,
+                              );
                             }
                           },
                           child: Container(
@@ -152,10 +161,17 @@ class CheckInOutScreen extends StatelessWidget {
                         // CHECK OUT
                         return InkWell(
                           onTap: () {
-                            absensiController.handleCheckOut(
-                                context,
-                                GlobalSize.safeBlockVertical!,
-                                GlobalSize.safeBlockHorizontal!);
+                            if (!kIsWeb) {
+                              absensiController.handleCheckOut(
+                                  context,
+                                  GlobalSize.safeBlockVertical!,
+                                  GlobalSize.safeBlockHorizontal!);
+                            } else {
+                              absensiController.handleWebCheckoutOffice(
+                                  context,
+                                  GlobalSize.safeBlockVertical!,
+                                  GlobalSize.safeBlockHorizontal!);
+                            }
                           },
                           child: Container(
                             margin: EdgeInsets.only(

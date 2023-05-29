@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ class GpsController extends GetxController {
   Rx<String>? latitude;
   Rx<String>? longitude;
   Rx<String>? location;
+  StreamSubscription<Position>? positionStream;
 
   @override
   void onInit() {
@@ -26,13 +28,19 @@ class GpsController extends GetxController {
     longitude = Rx<String>('');
     location = Rx<String>('');
     servGpsEnable = false.obs;
-    handleGetLoc();
+    if (!kIsWeb) {
+      handleGetLoc();
+    }
     super.onInit();
   }
 
   @override
   void onClose() {
     servGpsEnable = false.obs;
+    if (positionStream != null) {
+      positionStream?.cancel();
+      positionStream = null;
+    }
     super.onClose();
   }
 
@@ -52,20 +60,18 @@ class GpsController extends GetxController {
 
   handleGetLoc() async {
     await handleLocationPermission();
-    Geolocator.getCurrentPosition(
-            desiredAccuracy: LocationAccuracy.best,
-            forceAndroidLocationManager: true)
-        .then((Position position) async {
+    Geolocator.getPositionStream(
+        locationSettings: const LocationSettings(
+      accuracy: LocationAccuracy.high,
+      distanceFilter: 100,
+    )).listen((Position position) async {
+      longitude!(position.longitude.toString());
+      latitude!(position.latitude.toString());
       final placemarks =
           await placemarkFromCoordinates(position.latitude, position.longitude);
       location!(placemarks[0].locality);
-      latitude!(position.latitude.toString());
-      longitude!(position.longitude.toString());
-      isMocked!(position.isMocked);
-    }).catchError((e) {
-      if (kDebugMode) {
-        print('error catch getlonglat $e');
-      }
+    }).onError((e) {
+      return Future.error('Get Location Stream Error $e.');
     });
   }
 
