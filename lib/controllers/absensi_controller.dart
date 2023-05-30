@@ -19,6 +19,7 @@ import 'package:jpj_hrm_mobile/utils/index.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:month_picker_dialog/month_picker_dialog.dart';
+import 'dart:html' as html;
 
 class AbsensiController extends GetxController {
   TextEditingController? filterTglLeave;
@@ -46,6 +47,7 @@ class AbsensiController extends GetxController {
   Rx<double>? maxDistance;
   Rx<double>? locationWorkLong;
   Rx<double>? locationWorkLat;
+  Rx<String>? hostnameWeb;
   final Connectivity networkConnectivity = Connectivity();
   late StreamSubscription<ConnectivityResult> networkConnectivitySubscription;
 
@@ -94,6 +96,7 @@ class AbsensiController extends GetxController {
     if (!kIsWeb) {
       await gpsController?.handleLocationPermission();
     }
+    hostnameWeb = Rx<String>('');
     super.onInit();
   }
 
@@ -112,6 +115,7 @@ class AbsensiController extends GetxController {
         location!(placemarks[0].locality);
       });
     }
+    hostnameWeb!(html.window.location.hostname);
     super.onReady();
   }
 

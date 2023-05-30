@@ -13,7 +13,6 @@ import 'package:jpj_hrm_mobile/services/index.dart';
 import 'package:jpj_hrm_mobile/utils/index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'dart:html' as html;
 
 class AuthController extends GetxController {
   TextEditingController? emailText;
@@ -52,10 +51,6 @@ class AuthController extends GetxController {
     hideNewPass = true.obs;
     autoValidate = false.obs;
     checkConnection = false.obs;
-    final hostname = html.window.location.hostname;
-    if (kDebugMode) {
-      print('hostname web $hostname');
-    }
     // dbController = Get.put(DbController());
     super.onInit();
   }

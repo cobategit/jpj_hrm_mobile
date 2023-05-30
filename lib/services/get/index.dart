@@ -23,12 +23,12 @@ class GetData {
         resMap = json.decode(resData.body);
       }
 
-      if (kDebugMode) {
+      if (kDebugMode || kReleaseMode) {
         print('response get ${apiModel.path} => $resMap');
       }
       return resMap;
     } catch (e) {
-      if (kDebugMode) {
+      if (kDebugMode || kReleaseMode) {
         print('error catch get => $e');
       }
       resMap = {'message': e};
