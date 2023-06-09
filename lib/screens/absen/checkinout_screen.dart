@@ -106,11 +106,33 @@ class CheckInOutScreen extends StatelessWidget {
                                 }
                               }
                             } else {
-                              absensiController.handleWebCheckinOffice(
-                                context,
-                                GlobalSize.safeBlockHorizontal,
-                                GlobalSize.safeBlockVertical,
-                              );
+                              if (absensiController.hostnameWeb?.value ==
+                                  '210.210.175.1') {
+                                absensiController.handleWebCheckinOffice(
+                                  context,
+                                  GlobalSize.safeBlockHorizontal,
+                                  GlobalSize.safeBlockVertical,
+                                );
+                              } else {
+                                WidgetsBinding.instance
+                                    .addPostFrameCallback((_) async {
+                                  await AlertDialogMsg
+                                      .showCupertinoDialogSimple(
+                                          context,
+                                          'Informasi!',
+                                          'Maaf anda tidak bisa absen',
+                                          [
+                                            ElevatedButton(
+                                              onPressed: () async {
+                                                AllNavigation.popNav(
+                                                    context, false, null);
+                                              },
+                                              child: const Text('OK'),
+                                            ),
+                                          ],
+                                          GlobalSize.safeBlockHorizontal);
+                                });
+                              }
                             }
                           },
                           child: Container(
@@ -167,10 +189,32 @@ class CheckInOutScreen extends StatelessWidget {
                                   GlobalSize.safeBlockVertical!,
                                   GlobalSize.safeBlockHorizontal!);
                             } else {
-                              absensiController.handleWebCheckoutOffice(
-                                  context,
-                                  GlobalSize.safeBlockVertical!,
-                                  GlobalSize.safeBlockHorizontal!);
+                              if (absensiController.hostnameWeb?.value ==
+                                  '210.210.175.1') {
+                                absensiController.handleWebCheckoutOffice(
+                                    context,
+                                    GlobalSize.safeBlockVertical!,
+                                    GlobalSize.safeBlockHorizontal!);
+                              } else {
+                                WidgetsBinding.instance
+                                    .addPostFrameCallback((_) async {
+                                  await AlertDialogMsg
+                                      .showCupertinoDialogSimple(
+                                          context,
+                                          'Informasi!',
+                                          'Maaf anda tidak bisa absen',
+                                          [
+                                            ElevatedButton(
+                                              onPressed: () async {
+                                                AllNavigation.popNav(
+                                                    context, false, null);
+                                              },
+                                              child: const Text('OK'),
+                                            ),
+                                          ],
+                                          GlobalSize.safeBlockHorizontal);
+                                });
+                              }
                             }
                           },
                           child: Container(

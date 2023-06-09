@@ -1,0 +1,37 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.wongpiwat.trust_location" >
+4
+5    <uses-sdk
+6        android:minSdkVersion="21"
+6-->C:\Users\alani\AppData\Local\Pub\Cache\hosted\pub.dev\trust_location-2.0.13\android\src\main\AndroidManifest.xml
+7        android:targetSdkVersion="21" />
+7-->C:\Users\alani\AppData\Local\Pub\Cache\hosted\pub.dev\trust_location-2.0.13\android\src\main\AndroidManifest.xml
+8
+9    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+9-->C:\Users\alani\AppData\Local\Pub\Cache\hosted\pub.dev\trust_location-2.0.13\android\src\main\AndroidManifest.xml:3:5-79
+9-->C:\Users\alani\AppData\Local\Pub\Cache\hosted\pub.dev\trust_location-2.0.13\android\src\main\AndroidManifest.xml:3:22-76
+10    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+10-->C:\Users\alani\AppData\Local\Pub\Cache\hosted\pub.dev\trust_location-2.0.13\android\src\main\AndroidManifest.xml:4:5-81
+10-->C:\Users\alani\AppData\Local\Pub\Cache\hosted\pub.dev\trust_location-2.0.13\android\src\main\AndroidManifest.xml:4:22-78
+11
+12    <application>
+12-->C:\Users\alani\AppData\Local\Pub\Cache\hosted\pub.dev\trust_location-2.0.13\android\src\main\AndroidManifest.xml:5:5-13:19
+13        <activity
+13-->C:\Users\alani\AppData\Local\Pub\Cache\hosted\pub.dev\trust_location-2.0.13\android\src\main\AndroidManifest.xml:6:9-12:20
+14            android:name="com.wongpiwat.trust_location.TrustLocationPlugin"
+14-->C:\Users\alani\AppData\Local\Pub\Cache\hosted\pub.dev\trust_location-2.0.13\android\src\main\AndroidManifest.xml:6:19-54
+15            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+15-->C:\Users\alani\AppData\Local\Pub\Cache\hosted\pub.dev\trust_location-2.0.13\android\src\main\AndroidManifest.xml:9:13-144
+16            android:hardwareAccelerated="true"
+16-->C:\Users\alani\AppData\Local\Pub\Cache\hosted\pub.dev\trust_location-2.0.13\android\src\main\AndroidManifest.xml:10:13-47
+17            android:launchMode="singleTop"
+17-->C:\Users\alani\AppData\Local\Pub\Cache\hosted\pub.dev\trust_location-2.0.13\android\src\main\AndroidManifest.xml:7:13-43
+18            android:theme="@android:style/Theme.Black.NoTitleBar"
+18-->C:\Users\alani\AppData\Local\Pub\Cache\hosted\pub.dev\trust_location-2.0.13\android\src\main\AndroidManifest.xml:8:13-66
+19            android:windowSoftInputMode="adjustResize" >
+19-->C:\Users\alani\AppData\Local\Pub\Cache\hosted\pub.dev\trust_location-2.0.13\android\src\main\AndroidManifest.xml:11:13-55
+20        </activity>
+21    </application>
+22
+23</manifest>
