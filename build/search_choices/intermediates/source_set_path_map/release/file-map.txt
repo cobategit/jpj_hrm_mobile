@@ -1,0 +1,12 @@
+li.jod.search_choices-jetified-window-java-1.0.0-beta04-0 C:\Users\alani\.gradle\caches\transforms-3\006d93cd422dbc43e89591147c2de572\transformed\jetified-window-java-1.0.0-beta04\res
+li.jod.search_choices-core-1.6.0-1 C:\Users\alani\.gradle\caches\transforms-3\4ca28c4a71705f8a687c69dda140a277\transformed\core-1.6.0\res
+li.jod.search_choices-jetified-annotation-experimental-1.1.0-2 C:\Users\alani\.gradle\caches\transforms-3\8965c941cf4bee4d72541b965c7c9d39\transformed\jetified-annotation-experimental-1.1.0\res
+li.jod.search_choices-jetified-window-1.0.0-beta04-3 C:\Users\alani\.gradle\caches\transforms-3\dee59bb480020f42d53c2ea15e4501f7\transformed\jetified-window-1.0.0-beta04\res
+li.jod.search_choices-main-4 C:\Users\alani\AppData\Local\Pub\Cache\hosted\pub.dev\search_choices-2.2.5\android\src\main\res
+li.jod.search_choices-release-5 C:\Users\alani\AppData\Local\Pub\Cache\hosted\pub.dev\search_choices-2.2.5\android\src\release\res
+li.jod.search_choices-pngs-6 C:\laragon\www\jpj_hrm_mobile\build\search_choices\generated\res\pngs\release
+li.jod.search_choices-resValues-7 C:\laragon\www\jpj_hrm_mobile\build\search_choices\generated\res\resValues\release
+li.jod.search_choices-rs-8 C:\laragon\www\jpj_hrm_mobile\build\search_choices\generated\res\rs\release
+li.jod.search_choices-mergeReleaseResources-9 C:\laragon\www\jpj_hrm_mobile\build\search_choices\intermediates\incremental\release\mergeReleaseResources\merged.dir
+li.jod.search_choices-mergeReleaseResources-10 C:\laragon\www\jpj_hrm_mobile\build\search_choices\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+li.jod.search_choices-merged_res-11 C:\laragon\www\jpj_hrm_mobile\build\search_choices\intermediates\merged_res\release

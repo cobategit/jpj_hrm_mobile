@@ -8,12 +8,14 @@ import 'dart:ui';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_background_service_android/flutter_background_service_android.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   AuthController authController = Get.put(AuthController());
   await authController.handleCheckConnection();
   // await initialBackgroundService();
+  setPathUrlStrategy();
   runApp(const MyApp());
 }
 
@@ -96,7 +98,7 @@ class MyApp extends StatelessWidget {
     }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'JPJ HRM',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
@@ -11,6 +12,7 @@ import 'package:jpj_hrm_mobile/screens/index.dart';
 import 'package:jpj_hrm_mobile/services/index.dart';
 import 'package:jpj_hrm_mobile/utils/index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
 class AuthController extends GetxController {
   TextEditingController? emailText;
@@ -29,6 +31,8 @@ class AuthController extends GetxController {
   RxBool? checkConnection;
   RxMap? readDataDeviceAndro;
   DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
+  late StreamSubscription<ConnectivityResult> networkConnectivitySubscription;
+  final Connectivity networkConnectivity = Connectivity();
   // DbController? dbController;
 
   @override
@@ -53,8 +57,14 @@ class AuthController extends GetxController {
 
   @override
   void onReady() async {
-    await handleGetDevice();
-    await handleCheckConnection();
+    if (!kIsWeb) {
+      await handleGetDevice();
+    }
+    if (!kIsWeb) {
+      await handleCheckConnection();
+    } else {
+      checkConnection!(true);
+    }
     super.onReady();
   }
 
@@ -68,6 +78,7 @@ class AuthController extends GetxController {
     hideNewPass = true.obs;
     emailText?.clear();
     passText?.clear();
+    networkConnectivitySubscription.cancel();
     super.onClose();
   }
 
@@ -105,10 +116,19 @@ class AuthController extends GetxController {
 
   handleCheckConnection() async {
     try {
-      final rs = await InternetAddress.lookup('www.google.com');
-      if (rs.isNotEmpty && rs[0].rawAddress.isNotEmpty) {
-        checkConnection!(true);
-      }
+      // final rs = await InternetAddress.lookup('www.google.com');
+      // if (rs.isNotEmpty && rs[0].rawAddress.isNotEmpty) {
+      //   checkConnection!(true);
+      // }
+      networkConnectivitySubscription =
+          networkConnectivity.onConnectivityChanged.listen((event) {
+        if (event == ConnectivityResult.mobile ||
+            event == ConnectivityResult.wifi) {
+          checkConnection!(true);
+        } else {
+          checkConnection!(false);
+        }
+      });
     } on SocketException catch (_) {
       checkConnection!(false);
     }

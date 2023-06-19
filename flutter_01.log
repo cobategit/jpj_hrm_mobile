@@ -1,0 +1,80 @@
+Flutter crash report.
+Please report a bug at https://github.com/flutter/flutter/issues.
+
+## command
+
+flutter run -d chrome --web-hostname 10.15.14.74 --web-port 75757
+
+## exception
+
+ArgumentError: Invalid argument(s): Invalid port 75757
+
+```
+#0      _throwOnBadPort (dart:io-patch/socket_patch.dart:125:5)
+#1      _RawServerSocket.bind (dart:io-patch/socket_patch.dart:1750:5)
+#2      _ServerSocket.bind (dart:io-patch/socket_patch.dart:2036:29)
+#3      ServerSocket._bind (dart:io-patch/socket_patch.dart:2027:26)
+#4      ServerSocket.bind (dart:io/socket.dart:307:27)
+#5      _HttpServer.bind (dart:_http/http_impl.dart:3163:25)
+#6      HttpServer.bind (dart:_http:191:19)
+#7      WebAssetServer.start (package:flutter_tools/src/isolated/devfs_web.dart:209:39)
+<asynchronous suspension>
+#8      WebDevFS.create (package:flutter_tools/src/isolated/devfs_web.dart:760:22)
+<asynchronous suspension>
+#9      ResidentWebRunner.run.<anonymous closure> (package:flutter_tools/src/isolated/resident_web_runner.dart:281:25)
+<asynchronous suspension>
+#10     asyncGuard.<anonymous closure> (package:flutter_tools/src/base/async_guard.dart:111:24)
+<asynchronous suspension>
+```
+
+## flutter doctor
+
+```
+[32m[✓][39m Flutter (Channel stable, 3.7.6, on Microsoft Windows [Version 10.0.22621.1555], locale en-ID)
+    [32m•[39m Flutter version 3.7.6 on channel stable at C:\flutter
+    [32m•[39m Upstream repository https://github.com/flutter/flutter.git
+    [32m•[39m Framework revision 12cb4eb7a0 (9 weeks ago), 2023-03-01 10:29:26 -0800
+    [32m•[39m Engine revision ada363ee93
+    [32m•[39m Dart version 2.19.3
+    [32m•[39m DevTools version 2.20.1
+
+[32m[✓][39m Windows Version (Installed version of Windows is version 10 or higher)
+
+[32m[✓][39m Android toolchain - develop for Android devices (Android SDK version 33.0.2)
+    [32m•[39m Android SDK at C:\Users\alani\AppData\Local\Android\Sdk
+    [32m•[39m Platform android-33-ext4, build-tools 33.0.2
+    [32m•[39m ANDROID_HOME = C:\Users\alani\AppData\Local\Android\Sdk
+    [32m•[39m Java binary at: C:\Program Files\Android\Android Studio\jbr\bin\java
+    [32m•[39m Java version OpenJDK Runtime Environment (build 11.0.15+0-b2043.56-9505619)
+    [32m•[39m All Android licenses accepted.
+
+[32m[✓][39m Chrome - develop for the web
+    [32m•[39m Chrome at C:\Program Files\Google\Chrome\Application\chrome.exe
+
+[32m[✓][39m Visual Studio - develop for Windows (Visual Studio Build Tools 2019 16.11.24)
+    [32m•[39m Visual Studio at C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools
+    [32m•[39m Visual Studio Build Tools 2019 version 16.11.33328.57
+    [32m•[39m Windows 10 SDK version 10.0.19041.0
+
+[32m[✓][39m Android Studio (version 2022.1)
+    [32m•[39m Android Studio at C:\Program Files\Android\Android Studio
+    [32m•[39m Flutter plugin can be installed from:
+      🔨 https://plugins.jetbrains.com/plugin/9212-flutter
+    [32m•[39m Dart plugin can be installed from:
+      🔨 https://plugins.jetbrains.com/plugin/6351-dart
+    [32m•[39m Java version OpenJDK Runtime Environment (build 11.0.15+0-b2043.56-9505619)
+
+[32m[✓][39m VS Code (version 1.77.3)
+    [32m•[39m VS Code at C:\Users\alani\AppData\Local\Programs\Microsoft VS Code
+    [32m•[39m Flutter extension version 3.62.0
+
+[32m[✓][39m Connected device (3 available)
+    [32m•[39m Windows (desktop) • windows • windows-x64    • Microsoft Windows [Version 10.0.22621.1555]
+    [32m•[39m Chrome (web)      • chrome  • web-javascript • Google Chrome 112.0.5615.138
+    [32m•[39m Edge (web)        • edge    • web-javascript • Microsoft Edge 112.0.1722.58
+
+[32m[✓][39m HTTP Host Availability
+    [32m•[39m All required HTTP hosts are available
+
+[32m•[39m No issues found!
+```

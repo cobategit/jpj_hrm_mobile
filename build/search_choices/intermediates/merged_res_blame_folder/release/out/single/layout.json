@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "li.jod.search_choices-merged_res-10:/layout/notification_template_part_time.xml",
+        "source": "li.jod.search_choices-core-1.6.0-1:/layout/notification_template_part_time.xml"
+    },
+    {
+        "merged": "li.jod.search_choices-merged_res-10:/layout/custom_dialog.xml",
+        "source": "li.jod.search_choices-core-1.6.0-1:/layout/custom_dialog.xml"
+    },
+    {
+        "merged": "li.jod.search_choices-merged_res-10:/layout/notification_action.xml",
+        "source": "li.jod.search_choices-core-1.6.0-1:/layout/notification_action.xml"
+    },
+    {
+        "merged": "li.jod.search_choices-merged_res-10:/layout/notification_template_icon_group.xml",
+        "source": "li.jod.search_choices-core-1.6.0-1:/layout/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "li.jod.search_choices-merged_res-10:/layout/notification_action_tombstone.xml",
+        "source": "li.jod.search_choices-core-1.6.0-1:/layout/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "li.jod.search_choices-merged_res-10:/layout/notification_template_part_chronometer.xml",
+        "source": "li.jod.search_choices-core-1.6.0-1:/layout/notification_template_part_chronometer.xml"
+    }
+]

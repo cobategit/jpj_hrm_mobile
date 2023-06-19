@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "com.ggichure.github.hexcolor-merged_res-10:/layout-v21/notification_template_custom_big.xml",
+        "source": "com.ggichure.github.hexcolor-core-1.6.0-1:/layout-v21/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "com.ggichure.github.hexcolor-merged_res-10:/layout-v21/notification_action.xml",
+        "source": "com.ggichure.github.hexcolor-core-1.6.0-1:/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "com.ggichure.github.hexcolor-merged_res-10:/layout-v21/notification_action_tombstone.xml",
+        "source": "com.ggichure.github.hexcolor-core-1.6.0-1:/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "com.ggichure.github.hexcolor-merged_res-10:/layout-v21/notification_template_icon_group.xml",
+        "source": "com.ggichure.github.hexcolor-core-1.6.0-1:/layout-v21/notification_template_icon_group.xml"
+    }
+]

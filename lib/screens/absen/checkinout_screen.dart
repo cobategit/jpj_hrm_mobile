@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:jpj_hrm_mobile/configs/index.dart';
 import 'package:jpj_hrm_mobile/utils/index.dart';
@@ -78,29 +79,59 @@ class CheckInOutScreen extends StatelessWidget {
                         // CHECK IN
                         return InkWell(
                           onTap: () async {
-                            final serviceGps =
-                                await gpsController.handleCheckServiceGps(
-                                    context, GlobalSize.blockSizeVertical);
-                            await absensiController.handleFakeGps();
+                            if (!kIsWeb) {
+                              final serviceGps =
+                                  await gpsController.handleCheckServiceGps(
+                                      context, GlobalSize.blockSizeVertical);
+                              await absensiController.handleFakeGps();
 
-                            if (!serviceGps) {
-                              gpsController.handleCheckGps(
-                                  context, GlobalSize.blockSizeVertical);
+                              if (!serviceGps) {
+                                gpsController.handleCheckGps(
+                                    context, GlobalSize.blockSizeVertical);
+                              } else {
+                                if (absensiController
+                                        .dataProfile!['department'] ==
+                                    'SP Operational') {
+                                  absensiController.handleCheckInStockfile(
+                                    context,
+                                    GlobalSize.safeBlockHorizontal,
+                                    GlobalSize.safeBlockVertical,
+                                  );
+                                } else {
+                                  absensiController.handleCheckInOffice(
+                                    context,
+                                    GlobalSize.safeBlockHorizontal,
+                                    GlobalSize.safeBlockVertical,
+                                  );
+                                }
+                              }
                             } else {
-                              if (absensiController
-                                      .dataProfile!['department'] ==
-                                  'SP Operational') {
-                                absensiController.handleCheckInStockfile(
+                              if (absensiController.hostnameWeb?.value ==
+                                  '210.210.175.1') {
+                                absensiController.handleWebCheckinOffice(
                                   context,
                                   GlobalSize.safeBlockHorizontal,
                                   GlobalSize.safeBlockVertical,
                                 );
                               } else {
-                                absensiController.handleCheckInOffice(
-                                  context,
-                                  GlobalSize.safeBlockHorizontal,
-                                  GlobalSize.safeBlockVertical,
-                                );
+                                WidgetsBinding.instance
+                                    .addPostFrameCallback((_) async {
+                                  await AlertDialogMsg
+                                      .showCupertinoDialogSimple(
+                                          context,
+                                          'Informasi!',
+                                          'Maaf anda tidak bisa absen',
+                                          [
+                                            ElevatedButton(
+                                              onPressed: () async {
+                                                AllNavigation.popNav(
+                                                    context, false, null);
+                                              },
+                                              child: const Text('OK'),
+                                            ),
+                                          ],
+                                          GlobalSize.safeBlockHorizontal);
+                                });
                               }
                             }
                           },
@@ -152,10 +183,39 @@ class CheckInOutScreen extends StatelessWidget {
                         // CHECK OUT
                         return InkWell(
                           onTap: () {
-                            absensiController.handleCheckOut(
-                                context,
-                                GlobalSize.safeBlockVertical!,
-                                GlobalSize.safeBlockHorizontal!);
+                            if (!kIsWeb) {
+                              absensiController.handleCheckOut(
+                                  context,
+                                  GlobalSize.safeBlockVertical!,
+                                  GlobalSize.safeBlockHorizontal!);
+                            } else {
+                              if (absensiController.hostnameWeb?.value ==
+                                  '210.210.175.1') {
+                                absensiController.handleWebCheckoutOffice(
+                                    context,
+                                    GlobalSize.safeBlockVertical!,
+                                    GlobalSize.safeBlockHorizontal!);
+                              } else {
+                                WidgetsBinding.instance
+                                    .addPostFrameCallback((_) async {
+                                  await AlertDialogMsg
+                                      .showCupertinoDialogSimple(
+                                          context,
+                                          'Informasi!',
+                                          'Maaf anda tidak bisa absen',
+                                          [
+                                            ElevatedButton(
+                                              onPressed: () async {
+                                                AllNavigation.popNav(
+                                                    context, false, null);
+                                              },
+                                              child: const Text('OK'),
+                                            ),
+                                          ],
+                                          GlobalSize.safeBlockHorizontal);
+                                });
+                              }
+                            }
                           },
                           child: Container(
                             margin: EdgeInsets.only(

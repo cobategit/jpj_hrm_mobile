@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "com.wongpiwat.trust_location-merged_res-20:/layout-v21/notification_template_icon_group.xml",
+        "source": "com.wongpiwat.trust_location-core-1.6.0-5:/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "com.wongpiwat.trust_location-merged_res-20:/layout-v21/notification_action.xml",
+        "source": "com.wongpiwat.trust_location-core-1.6.0-5:/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "com.wongpiwat.trust_location-merged_res-20:/layout-v21/notification_template_custom_big.xml",
+        "source": "com.wongpiwat.trust_location-core-1.6.0-5:/layout-v21/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "com.wongpiwat.trust_location-merged_res-20:/layout-v21/notification_action_tombstone.xml",
+        "source": "com.wongpiwat.trust_location-core-1.6.0-5:/layout-v21/notification_action_tombstone.xml"
+    }
+]

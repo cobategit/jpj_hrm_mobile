@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "id.flutter.flutter_background_service.flutter_background_service_android-merged_res-10:/layout/notification_action_tombstone.xml",
+        "source": "id.flutter.flutter_background_service.flutter_background_service_android-core-1.6.0-1:/layout/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "id.flutter.flutter_background_service.flutter_background_service_android-merged_res-10:/layout/notification_template_part_chronometer.xml",
+        "source": "id.flutter.flutter_background_service.flutter_background_service_android-core-1.6.0-1:/layout/notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "id.flutter.flutter_background_service.flutter_background_service_android-merged_res-10:/layout/notification_template_icon_group.xml",
+        "source": "id.flutter.flutter_background_service.flutter_background_service_android-core-1.6.0-1:/layout/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "id.flutter.flutter_background_service.flutter_background_service_android-merged_res-10:/layout/notification_template_part_time.xml",
+        "source": "id.flutter.flutter_background_service.flutter_background_service_android-core-1.6.0-1:/layout/notification_template_part_time.xml"
+    },
+    {
+        "merged": "id.flutter.flutter_background_service.flutter_background_service_android-merged_res-10:/layout/custom_dialog.xml",
+        "source": "id.flutter.flutter_background_service.flutter_background_service_android-core-1.6.0-1:/layout/custom_dialog.xml"
+    },
+    {
+        "merged": "id.flutter.flutter_background_service.flutter_background_service_android-merged_res-10:/layout/notification_action.xml",
+        "source": "id.flutter.flutter_background_service.flutter_background_service_android-core-1.6.0-1:/layout/notification_action.xml"
+    }
+]

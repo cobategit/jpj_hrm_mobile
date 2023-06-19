@@ -1,0 +1,14 @@
+com.baseflow.geolocator.geolocator_android-jetified-window-java-1.0.0-beta04-0 C:\Users\alani\.gradle\caches\transforms-3\006d93cd422dbc43e89591147c2de572\transformed\jetified-window-java-1.0.0-beta04\res
+com.baseflow.geolocator.geolocator_android-jetified-play-services-base-17.0.0-1 C:\Users\alani\.gradle\caches\transforms-3\2859c87699c9f3d1a56cc4c22cfa28d8\transformed\jetified-play-services-base-17.0.0\res
+com.baseflow.geolocator.geolocator_android-core-1.6.0-2 C:\Users\alani\.gradle\caches\transforms-3\4ca28c4a71705f8a687c69dda140a277\transformed\core-1.6.0\res
+com.baseflow.geolocator.geolocator_android-jetified-annotation-experimental-1.1.0-3 C:\Users\alani\.gradle\caches\transforms-3\8965c941cf4bee4d72541b965c7c9d39\transformed\jetified-annotation-experimental-1.1.0\res
+com.baseflow.geolocator.geolocator_android-jetified-window-1.0.0-beta04-4 C:\Users\alani\.gradle\caches\transforms-3\dee59bb480020f42d53c2ea15e4501f7\transformed\jetified-window-1.0.0-beta04\res
+com.baseflow.geolocator.geolocator_android-jetified-play-services-basement-17.0.0-5 C:\Users\alani\.gradle\caches\transforms-3\f7cba3abe37e36382f1f2949e5f38fbe\transformed\jetified-play-services-basement-17.0.0\res
+com.baseflow.geolocator.geolocator_android-main-6 C:\Users\alani\AppData\Local\Pub\Cache\hosted\pub.dev\geolocator_android-3.2.1\android\src\main\res
+com.baseflow.geolocator.geolocator_android-release-7 C:\Users\alani\AppData\Local\Pub\Cache\hosted\pub.dev\geolocator_android-3.2.1\android\src\release\res
+com.baseflow.geolocator.geolocator_android-pngs-8 C:\laragon\www\jpj_hrm_mobile\build\geolocator_android\generated\res\pngs\release
+com.baseflow.geolocator.geolocator_android-resValues-9 C:\laragon\www\jpj_hrm_mobile\build\geolocator_android\generated\res\resValues\release
+com.baseflow.geolocator.geolocator_android-rs-10 C:\laragon\www\jpj_hrm_mobile\build\geolocator_android\generated\res\rs\release
+com.baseflow.geolocator.geolocator_android-mergeReleaseResources-11 C:\laragon\www\jpj_hrm_mobile\build\geolocator_android\intermediates\incremental\release\mergeReleaseResources\merged.dir
+com.baseflow.geolocator.geolocator_android-mergeReleaseResources-12 C:\laragon\www\jpj_hrm_mobile\build\geolocator_android\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+com.baseflow.geolocator.geolocator_android-merged_res-13 C:\laragon\www\jpj_hrm_mobile\build\geolocator_android\intermediates\merged_res\release
