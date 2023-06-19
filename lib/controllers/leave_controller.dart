@@ -335,56 +335,53 @@ class LeaveController extends GetxController {
       }
       isLoading!(true);
 
-      // final Map<String, dynamic> res = await PostData().postData(apiModel);
-      // isLoading!(false);
+      final Map<String, dynamic> res = await PostData().postData(apiModel);
+      isLoading!(false);
 
-      // if (res['success']) {
-      //   WidgetsBinding.instance.addPostFrameCallback((_) async {
-      //     await AlertDialogMsg.showCupertinoDialogSimple(
-      //         ctx,
-      //         'Informasi',
-      //         'Berhasil Ajukan Cuti...',
-      //         [
-      //           ElevatedButton(
-      //             onPressed: () async {
-      //               AllNavigation.pushRemoveUntilNav(
-      //                   ctx,
-      //                   const BottomNavScreen(
-      //                       selectedIdx: 2, selectedIdxLeave: 0),
-      //                   (_) => {});
-      //               dariTglTxt?.clear();
-      //               sampaiTglTxt?.clear();
-      //               keteranganTxt?.clear();
-      //               backUpEmpTxt!({});
-      //               valTypeCuti!(null);
-      //             },
-      //             child: const Text('OK'),
-      //           ),
-      //         ],
-      //         hp);
-      //   });
-      // } else {
-      //   WidgetsBinding.instance.addPostFrameCallback((_) async {
-      //     await AlertDialogMsg.showCupertinoDialogSimple(
-      //         ctx,
-      //         'Informasi',
-      //         '${res['message']}',
-      //         [
-      //           ElevatedButton(
-      //             onPressed: () async {
-      //               AllNavigation.popNav(ctx, false, null);
-      //               dariTglTxt?.clear();
-      //               sampaiTglTxt?.clear();
-      //               keteranganTxt?.clear();
-      //               backUpEmpTxt!({});
-      //               valTypeCuti!(null);
-      //             },
-      //             child: const Text('OK'),
-      //           ),
-      //         ],
-      //         hp);
-      //   });
-      // }
+      if (res['success']) {
+        WidgetsBinding.instance.addPostFrameCallback((_) async {
+          await AlertDialogMsg.showCupertinoDialogSimple(
+              ctx,
+              'Informasi',
+              'Berhasil Ajukan Cuti...',
+              [
+                ElevatedButton(
+                  onPressed: () async {
+                    AllNavigation.pushRemoveUntilNav(
+                        ctx, AllNavigation.popNav(ctx, false, null), (_) => {});
+                    dariTglTxt?.clear();
+                    sampaiTglTxt?.clear();
+                    keteranganTxt?.clear();
+                    backUpEmpTxt!({});
+                    valTypeCuti!(null);
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+              hp);
+        });
+      } else {
+        WidgetsBinding.instance.addPostFrameCallback((_) async {
+          await AlertDialogMsg.showCupertinoDialogSimple(
+              ctx,
+              'Informasi',
+              '${res['message']}',
+              [
+                ElevatedButton(
+                  onPressed: () async {
+                    AllNavigation.popNav(ctx, false, null);
+                    dariTglTxt?.clear();
+                    sampaiTglTxt?.clear();
+                    keteranganTxt?.clear();
+                    backUpEmpTxt!({});
+                    valTypeCuti!(null);
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+              hp);
+        });
+      }
     }
   }
 
