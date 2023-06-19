@@ -53,10 +53,10 @@ library {
   maven_library {
     groupId: "org.jetbrains.kotlin"
     artifactId: "kotlin-stdlib"
-    version: "1.7.20"
+    version: "1.7.22"
   }
   digests {
-    sha256: "wy\354\226\271\254\277\222\312\0028X\254\004T?\235,;\337\027\"B_\377B\362_\363\254\374\233"
+    sha256: "\371\205\005\365\nj\034\035\300\002\326\020.KA\232\371=\001\035Z\020inu\243\2115\251n\251/"
   }
   repo_index {
     value: 1
@@ -66,10 +66,10 @@ library {
   maven_library {
     groupId: "org.jetbrains.kotlin"
     artifactId: "kotlin-stdlib-common"
-    version: "1.7.20"
+    version: "1.7.22"
   }
   digests {
-    sha256: "\340\351\031b\274\000\a3\213\365\261s\237b\222z\303-\024\272=\202\177\246\b\253NSQr\235]"
+    sha256: "yH\214\337(LK[9\230\323\002\352\351\277\t\200\372D\0369\006\306\245=\021t\371x\243\344\204"
   }
   repo_index {
     value: 1
@@ -935,7 +935,7 @@ library {
 }
 library {
   digests {
-    sha256: "#\341i\023\2338\246#\244\206\361\320\202p+\r\035\337\241\2003\373_\025\246\n\375\336\330Gy\272"
+    sha256: "\256\351\2154\303\032{\345!\313\367\0251\f\032\222^\316\200?\324#\220\036\301\377*uW\276\217B"
   }
 }
 library_dependencies {
@@ -1402,6 +1402,7 @@ module_dependencies {
   dependency_index: 48
   dependency_index: 59
   dependency_index: 67
+  dependency_index: 4
   dependency_index: 72
   dependency_index: 33
   dependency_index: 73

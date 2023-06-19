@@ -472,13 +472,13 @@
       jars="C:\Users\alani\.gradle\caches\modules-2\files-2.1\androidx.annotation\annotation\1.5.0\857678d6b4ca7b28571ef7935c668bdb57e15027\annotation-1.5.0.jar"
       resolved="androidx.annotation:annotation:1.5.0"/>
   <library
-      name="org.jetbrains.kotlin:kotlin-stdlib:1.7.20@jar"
-      jars="C:\Users\alani\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib\1.7.20\726594ea9ba2beb2ee113647fefa9a10f9fabe52\kotlin-stdlib-1.7.20.jar"
-      resolved="org.jetbrains.kotlin:kotlin-stdlib:1.7.20"/>
+      name="org.jetbrains.kotlin:kotlin-stdlib:1.7.22@jar"
+      jars="C:\Users\alani\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib\1.7.22\9fb43bccb6cf8cfaaf3776c75f5df4f052f09b72\kotlin-stdlib-1.7.22.jar"
+      resolved="org.jetbrains.kotlin:kotlin-stdlib:1.7.22"/>
   <library
-      name="org.jetbrains.kotlin:kotlin-stdlib-common:1.7.20@jar"
-      jars="C:\Users\alani\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib-common\1.7.20\e15351bdaf9fa06f009be5da7a202e4184f00ae3\kotlin-stdlib-common-1.7.20.jar"
-      resolved="org.jetbrains.kotlin:kotlin-stdlib-common:1.7.20"/>
+      name="org.jetbrains.kotlin:kotlin-stdlib-common:1.7.22@jar"
+      jars="C:\Users\alani\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib-common\1.7.22\5dd2c9dcf64c94b46cf4bdb6fa4035b9bb726e2e\kotlin-stdlib-common-1.7.22.jar"
+      resolved="org.jetbrains.kotlin:kotlin-stdlib-common:1.7.22"/>
   <library
       name="org.jetbrains:annotations:13.0@jar"
       jars="C:\Users\alani\.gradle\caches\modules-2\files-2.1\org.jetbrains\annotations\13.0\919f0dfe192fb4e063e7dacadee7f8bb9a2672a9\annotations-13.0.jar"

@@ -845,7 +845,7 @@ class AbsensiController extends GetxController {
                             await AlertDialogMsg.showCupertinoDialogSimple(
                                 ctx,
                                 'Peringatan!',
-                                'Clear Cache Apps',
+                                'Location Cant Detect, Please Clear Cache Apps',
                                 [
                                   ElevatedButton(
                                     onPressed: () async {

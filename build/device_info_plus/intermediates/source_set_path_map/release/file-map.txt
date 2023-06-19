@@ -2,8 +2,8 @@ dev.fluttercommunity.plus.device_info.device_info_plus-jetified-window-java-1.0.
 dev.fluttercommunity.plus.device_info.device_info_plus-core-1.6.0-1 C:\Users\alani\.gradle\caches\transforms-3\4ca28c4a71705f8a687c69dda140a277\transformed\core-1.6.0\res
 dev.fluttercommunity.plus.device_info.device_info_plus-jetified-annotation-experimental-1.1.0-2 C:\Users\alani\.gradle\caches\transforms-3\8965c941cf4bee4d72541b965c7c9d39\transformed\jetified-annotation-experimental-1.1.0\res
 dev.fluttercommunity.plus.device_info.device_info_plus-jetified-window-1.0.0-beta04-3 C:\Users\alani\.gradle\caches\transforms-3\dee59bb480020f42d53c2ea15e4501f7\transformed\jetified-window-1.0.0-beta04\res
-dev.fluttercommunity.plus.device_info.device_info_plus-main-4 C:\Users\alani\AppData\Local\Pub\Cache\hosted\pub.dev\device_info_plus-4.1.3\android\src\main\res
-dev.fluttercommunity.plus.device_info.device_info_plus-release-5 C:\Users\alani\AppData\Local\Pub\Cache\hosted\pub.dev\device_info_plus-4.1.3\android\src\release\res
+dev.fluttercommunity.plus.device_info.device_info_plus-main-4 C:\Users\alani\AppData\Local\Pub\Cache\hosted\pub.dev\device_info_plus-9.0.0\android\src\main\res
+dev.fluttercommunity.plus.device_info.device_info_plus-release-5 C:\Users\alani\AppData\Local\Pub\Cache\hosted\pub.dev\device_info_plus-9.0.0\android\src\release\res
 dev.fluttercommunity.plus.device_info.device_info_plus-pngs-6 C:\laragon\www\jpj_hrm_mobile\build\device_info_plus\generated\res\pngs\release
 dev.fluttercommunity.plus.device_info.device_info_plus-resValues-7 C:\laragon\www\jpj_hrm_mobile\build\device_info_plus\generated\res\resValues\release
 dev.fluttercommunity.plus.device_info.device_info_plus-rs-8 C:\laragon\www\jpj_hrm_mobile\build\device_info_plus\generated\res\rs\release

@@ -3,8 +3,8 @@
 # min_api: 21
 # common_typos_disable
 # {"id":"com.android.tools.r8.mapping","version":"2.0"}
-# pg_map_id: 8ea82e9
-# pg_map_hash: SHA-256 8ea82e9350019e3d91dbe7f78a843839ff6393b45be93ca44770a67162173339
+# pg_map_id: 4e43a1a
+# pg_map_hash: SHA-256 4e43a1a59a3fa0486913e308b190097d20531af5f44fba581da75307651ab20c
 android.support.v4.app.INotificationSideChannel -> a.a:
     void notify(java.lang.String,int,java.lang.String,android.app.Notification) -> b0
 android.support.v4.app.INotificationSideChannel$Stub -> a.a$a:
@@ -25142,13 +25142,12 @@ dev.fluttercommunity.plus.connectivity.ConnectivityPlugin -> y2.f:
     void setupChannels(io.flutter.plugin.common.BinaryMessenger,android.content.Context) -> a
     void teardownChannels() -> b
 dev.fluttercommunity.plus.device_info.DeviceInfoPlusPlugin -> z2.a:
-    io.flutter.plugin.common.MethodChannel channel -> e
+    io.flutter.plugin.common.MethodChannel methodChannel -> e
     void setupMethodChannel(io.flutter.plugin.common.BinaryMessenger,android.content.Context) -> a
-    void tearDownChannel() -> b
 dev.fluttercommunity.plus.device_info.MethodCallHandlerImpl -> z2.b:
-    java.lang.String[] EMPTY_STRING_LIST -> f
+    android.view.WindowManager windowManager -> f
     android.content.pm.PackageManager packageManager -> e
-    java.lang.String[] getSystemFeatures() -> a
+    java.util.List getSystemFeatures() -> a
     boolean isEmulator() -> b
 e3.FlutterLoader$1$$ExternalSyntheticLambda0 -> e3.c:
 # {"id":"sourceFile","fileName":"R8$$SyntheticClass"}

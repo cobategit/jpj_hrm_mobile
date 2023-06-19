@@ -9,6 +9,7 @@ import 'package:jpj_hrm_mobile/services/index.dart';
 import 'package:jpj_hrm_mobile/utils/allNav/index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
+import '../screens/index.dart';
 import '../utils/alertDialog/index.dart';
 
 class LeaveController extends GetxController {
@@ -348,7 +349,10 @@ class LeaveController extends GetxController {
                 ElevatedButton(
                   onPressed: () async {
                     AllNavigation.pushRemoveUntilNav(
-                        ctx, AllNavigation.popNav(ctx, false, null), (_) => {});
+                        ctx,
+                        const BottomNavScreen(
+                            selectedIdx: 2, selectedIdxLeave: 0),
+                        (_) => {});
                     dariTglTxt?.clear();
                     sampaiTglTxt?.clear();
                     keteranganTxt?.clear();
