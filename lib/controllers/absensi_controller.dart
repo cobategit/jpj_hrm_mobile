@@ -84,17 +84,32 @@ class AbsensiController extends GetxController {
     checkNetwork = Rx<bool>(false);
     getDataProfile();
     handleGetLogAttandance();
-    networkConnectivitySubscription =
-        networkConnectivity.onConnectivityChanged.listen((event) {
-      if (event == ConnectivityResult.mobile ||
-          event == ConnectivityResult.wifi) {
-        checkNetwork!(true);
-      } else {
-        checkNetwork!(false);
-      }
-    });
     if (!kIsWeb) {
       await gpsController?.handleLocationPermission();
+      await handleGetCurrentLocation();
+    }
+    if (!kIsWeb) {
+      networkConnectivitySubscription =
+          networkConnectivity.onConnectivityChanged.listen((event) {
+        if (event == ConnectivityResult.mobile ||
+            event == ConnectivityResult.wifi) {
+          checkNetwork!(true);
+        } else {
+          checkNetwork!(false);
+        }
+      });
+
+      // positionStream = Geolocator.getPositionStream(
+      //     locationSettings: const LocationSettings(
+      //   accuracy: LocationAccuracy.high,
+      //   distanceFilter: 100,
+      // )).listen((Position position) async {
+      //   long!(position.longitude.toString());
+      //   lat!(position.latitude.toString());
+      //   final placemarks = await placemarkFromCoordinates(
+      //       position.latitude, position.longitude);
+      //   location!(placemarks[0].locality);
+      // });
     }
     hostnameWeb = Rx<dynamic>('');
     super.onInit();
@@ -103,19 +118,22 @@ class AbsensiController extends GetxController {
   @override
   void onReady() async {
     if (!kIsWeb) {
-      positionStream = Geolocator.getPositionStream(
-          locationSettings: const LocationSettings(
-        accuracy: LocationAccuracy.high,
-        distanceFilter: 100,
-      )).listen((Position position) async {
-        long!(position.longitude.toString());
-        lat!(position.latitude.toString());
-        final placemarks = await placemarkFromCoordinates(
-            position.latitude, position.longitude);
-        location!(placemarks[0].locality);
-      });
+      // handleGetCurrentLocation();
+      // positionStream = Geolocator.getPositionStream(
+      //     locationSettings: const LocationSettings(
+      //   accuracy: LocationAccuracy.high,
+      //   distanceFilter: 100,
+      // )).listen((Position position) async {
+      //   long!(position.longitude.toString());
+      //   lat!(position.latitude.toString());
+      //   final placemarks = await placemarkFromCoordinates(
+      //       position.latitude, position.longitude);
+      //   location!(placemarks[0].locality);
+      // });
     }
-    hostnameWeb!(await Ipify.ipv4());
+    if (kIsWeb) {
+      hostnameWeb!(await Ipify.ipv4());
+    }
     super.onReady();
   }
 
@@ -138,6 +156,29 @@ class AbsensiController extends GetxController {
       getDataScheduleEmpPerDay();
     }
     handleGetLogAttandance();
+  }
+
+  handleGetCurrentLocation() async {
+    await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
+        .then((position) async {
+      long!(position.longitude.toString());
+      lat!(position.latitude.toString());
+      final placemarks =
+          await placemarkFromCoordinates(position.latitude, position.longitude);
+      location!(placemarks[0].locality);
+    });
+
+    positionStream = Geolocator.getPositionStream(
+        locationSettings: const LocationSettings(
+      accuracy: LocationAccuracy.high,
+      distanceFilter: 100,
+    )).listen((Position position) async {
+      long!(position.longitude.toString());
+      lat!(position.latitude.toString());
+      final placemarks =
+          await placemarkFromCoordinates(position.latitude, position.longitude);
+      location!(placemarks[0].locality);
+    });
   }
 
   handleSelectDateFilter(BuildContext context) async {
@@ -173,8 +214,8 @@ class AbsensiController extends GetxController {
   Future<dynamic> handleScanBarcode() async {
     dynamic barcode = await FlutterBarcodeScanner.scanBarcode(
         "#004297", "Cancel", true, ScanMode.DEFAULT);
-    Map<String, dynamic> convertBarcode = jsonDecode(barcode);
     if (barcode != '-1') {
+      Map<String, dynamic> convertBarcode = jsonDecode(barcode);
       maxDistance!(double.parse(convertBarcode['max_distance'].toString()));
       locationWorkLong!(double.parse(convertBarcode['longitude'].toString()));
       locationWorkLat!(double.parse(convertBarcode['latitude'].toString()));
@@ -431,7 +472,7 @@ class AbsensiController extends GetxController {
 
   handleCheckInStockfile(ctx, wp, hp) async {
     hasilBarcode!(await handleScanBarcode());
-    if (hasilBarcode?.value != '') {
+    if (hasilBarcode?.value != null) {
       if (!((totalDistanceAbsen!.value - maxDistance!.value) <= 0)) {
         return WidgetsBinding.instance.addPostFrameCallback((_) async {
           await AlertDialogMsg.showCupertinoDialogSimple(
@@ -452,10 +493,10 @@ class AbsensiController extends GetxController {
       isLoading!(true);
       hasilCamera!(await handleCamera());
       if (hasilCamera?.value != null) {
-        if (kDebugMode) {
-          print('hasil barcode: ${hasilBarcode?.value}');
-          print('hasil camera: ${hasilCamera?.value?.path}');
-        }
+        // if (kDebugMode) {
+        //   print('hasil barcode: ${hasilBarcode?.value}');
+        //   print('hasil camera: ${hasilCamera?.value?.path}');
+        // }
         if (isMocked!.value) {
           WidgetsBinding.instance.addPostFrameCallback((_) async {
             await AlertDialogMsg.showCupertinoDialogSimple(
@@ -711,7 +752,7 @@ class AbsensiController extends GetxController {
                                 [
                                   ElevatedButton(
                                     onPressed: () async {
-                                      AllNavigation.popNav(ctx, false, null);
+                                      SystemNavigator.pop();
                                     },
                                     child: const Text('OK'),
                                   ),
@@ -726,7 +767,6 @@ class AbsensiController extends GetxController {
                         } else {
                           hasilCamera!(await handleCamera());
                           if (hasilCamera?.value != null) {
-                            isLoading!(true);
                             if (isMocked!.value) {
                               WidgetsBinding.instance
                                   .addPostFrameCallback((_) async {
@@ -771,6 +811,7 @@ class AbsensiController extends GetxController {
                                   token: session.getString('token'),
                                   isToken: true);
 
+                              isLoading!(true);
                               final Map<String, dynamic> res = await PostData()
                                   .postFormData(apiModel, 'POST');
                               isLoading!(false);
@@ -849,7 +890,7 @@ class AbsensiController extends GetxController {
                                 [
                                   ElevatedButton(
                                     onPressed: () async {
-                                      AllNavigation.popNav(ctx, false, null);
+                                      SystemNavigator.pop();
                                     },
                                     child: const Text('OK'),
                                   ),
@@ -869,7 +910,7 @@ class AbsensiController extends GetxController {
                           //       'hasil barcode: ${hasilBarcode!.value['id'].toString()}');
                           //   print('hasil distance max: ${maxDistance!.value}');
                           // }
-                          if (hasilBarcode?.value != '') {
+                          if (hasilBarcode?.value != null) {
                             if (!((totalDistanceAbsen!.value -
                                     maxDistance!.value) <=
                                 0)) {
@@ -892,7 +933,6 @@ class AbsensiController extends GetxController {
                               });
                             }
                             hasilCamera!(await handleCamera());
-                            isLoading!(true);
                             if (hasilCamera?.value != null) {
                               if (isMocked!.value) {
                                 WidgetsBinding.instance
@@ -941,6 +981,7 @@ class AbsensiController extends GetxController {
                                     token: session.getString('token'),
                                     isToken: true);
 
+                                isLoading!(true);
                                 final Map<String, dynamic> res =
                                     await PostData()
                                         .postFormData(apiModel, 'POST');
@@ -1155,9 +1196,9 @@ class AbsensiController extends GetxController {
                         final Map<String, dynamic> res =
                             await PostData().postData(apiModel);
                         isLoading!(false);
-                        if (kDebugMode) {
-                          print('res $res');
-                        }
+                        // if (kDebugMode) {
+                        //   print('res $res');
+                        // }
 
                         if (res['success']) {
                           getDataScheduleEmpPerDay();
@@ -1228,7 +1269,7 @@ class AbsensiController extends GetxController {
       'check_out': DateFormat('HH:mm:ss').format(DateTime.now()),
       'longitude_out': long?.value,
       'latitude_out': lat?.value,
-      'id_barcode': hasilBarcode?.value,
+      'id_barcode': hasilBarcode!.value['id'].toString(),
     };
 
     final ApiModel apiModel = ApiModel(
@@ -1240,6 +1281,24 @@ class AbsensiController extends GetxController {
     );
 
     final Map<String, dynamic> res = await PostData().putData(apiModel);
+
+    if (location!.value == '' && !kIsWeb) {
+      return WidgetsBinding.instance.addPostFrameCallback((_) async {
+        await AlertDialogMsg.showCupertinoDialogSimple(
+            ctx,
+            'Peringatan!',
+            'Location Cant Detect, Please Clear Cache Apps',
+            [
+              ElevatedButton(
+                onPressed: () async {
+                  SystemNavigator.pop();
+                },
+                child: const Text('OK'),
+              ),
+            ],
+            hp);
+      });
+    }
 
     if (res['success']) {
       getDataScheduleEmpPerDay();
@@ -1364,7 +1423,7 @@ class AbsensiController extends GetxController {
                   );
                 }
                 hasilBarcode!(await handleScanBarcode());
-                if (hasilBarcode?.value != '') {
+                if (hasilBarcode?.value != null) {
                   if (dataProfile!['department'] == 'SP Operational') {
                     handleCheckoutStockfile(ctx, wp, hp);
                   } else {
