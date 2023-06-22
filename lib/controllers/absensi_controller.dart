@@ -98,18 +98,6 @@ class AbsensiController extends GetxController {
           checkNetwork!(false);
         }
       });
-
-      // positionStream = Geolocator.getPositionStream(
-      //     locationSettings: const LocationSettings(
-      //   accuracy: LocationAccuracy.high,
-      //   distanceFilter: 100,
-      // )).listen((Position position) async {
-      //   long!(position.longitude.toString());
-      //   lat!(position.latitude.toString());
-      //   final placemarks = await placemarkFromCoordinates(
-      //       position.latitude, position.longitude);
-      //   location!(placemarks[0].locality);
-      // });
     }
     hostnameWeb = Rx<dynamic>('');
     super.onInit();
@@ -117,20 +105,6 @@ class AbsensiController extends GetxController {
 
   @override
   void onReady() async {
-    if (!kIsWeb) {
-      // handleGetCurrentLocation();
-      // positionStream = Geolocator.getPositionStream(
-      //     locationSettings: const LocationSettings(
-      //   accuracy: LocationAccuracy.high,
-      //   distanceFilter: 100,
-      // )).listen((Position position) async {
-      //   long!(position.longitude.toString());
-      //   lat!(position.latitude.toString());
-      //   final placemarks = await placemarkFromCoordinates(
-      //       position.latitude, position.longitude);
-      //   location!(placemarks[0].locality);
-      // });
-    }
     if (kIsWeb) {
       hostnameWeb!(await Ipify.ipv4());
     }
@@ -237,9 +211,9 @@ class AbsensiController extends GetxController {
     )).listen((Position position) {
       hasil = Geolocator.distanceBetween(
           position.latitude, position.longitude, -6.224571, 106.825503);
-      if (kDebugMode) {
-        print('hasil check distance $hasil');
-      }
+      // if (kDebugMode) {
+      //   print('hasil check distance $hasil');
+      // }
     });
     return hasil;
   }

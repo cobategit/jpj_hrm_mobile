@@ -1,6 +1,7 @@
 class Path {
   static String login = '/login';
   static String profile = '/profile';
+  static String changePass = '/change-password';
   static String schedulePerDay = '/attendances/employee/schedule';
   static String schedulestockfile = '/attendances/stockfiles/schedule';
   static String checkinoffice = '/attendances/employee/in';

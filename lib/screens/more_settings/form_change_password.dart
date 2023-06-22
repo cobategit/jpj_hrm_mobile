@@ -152,7 +152,35 @@ class FormChangePassword extends StatelessWidget {
                                 height: GlobalSize.blockSizeVertical! * 2,
                               ),
                               GlobalButtonElevated(
-                                onPressed: () {},
+                                onPressed: () {
+                                  if (authController.oldPassTxt!.text.isEmpty ||
+                                      authController.newPassTxt!.text.isEmpty ||
+                                      authController.rePassTxt!.text.isEmpty) {
+                                    WidgetsBinding.instance
+                                        .addPostFrameCallback((_) async {
+                                      await AlertDialogMsg
+                                          .showCupertinoDialogSimple(
+                                              context,
+                                              'Peringatan!',
+                                              'Silakan isi field yang kosong',
+                                              [
+                                                ElevatedButton(
+                                                  onPressed: () {
+                                                    AllNavigation.popNav(
+                                                        context, false, null);
+                                                  },
+                                                  child: const Text('OK'),
+                                                ),
+                                              ],
+                                              GlobalSize.blockSizeVertical!);
+                                    });
+                                  } else {
+                                    authController.handleChangedPassword(
+                                        context,
+                                        GlobalSize.blockSizeVertical!,
+                                        GlobalSize.safeBlockHorizontal!);
+                                  }
+                                },
                                 tittle: 'CHANGE',
                                 fontSize: GlobalSize.blockSizeVertical! * 1.8,
                                 color: GlobalColor.light,

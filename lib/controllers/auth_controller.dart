@@ -52,20 +52,15 @@ class AuthController extends GetxController {
     autoValidate = false.obs;
     checkConnection = false.obs;
     // dbController = Get.put(DbController());
-    super.onInit();
-  }
-
-  @override
-  void onReady() async {
     if (!kIsWeb) {
-      await handleGetDevice();
+      handleGetDevice();
     }
     if (!kIsWeb) {
-      await handleCheckConnection();
+      handleCheckConnection();
     } else {
       checkConnection!(true);
     }
-    super.onReady();
+    super.onInit();
   }
 
   @override
@@ -259,5 +254,81 @@ class AuthController extends GetxController {
     }
     emailText?.clear();
     passText?.clear();
+  }
+
+  handleChangedPassword(context, hp, wp) async {
+    SharedPreferences session = await SharedPreferences.getInstance();
+    final Map<String, dynamic> bodyData = {
+      'current_password': oldPassTxt!.text,
+      'new_password': newPassTxt!.text,
+      'new_confirm_password': rePassTxt!.text
+    };
+
+    final ApiModel apiModel = ApiModel(
+        url: Api.apiUrl,
+        path: Path.changePass,
+        body: bodyData,
+        isToken: true,
+        token: session.getString('token'));
+
+    final Map<String, dynamic> res = await PostData().putData(apiModel);
+    isLoading!(false);
+
+    if (res['success']) {
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        await AlertDialogMsg.showCupertinoDialogSimple(
+            context,
+            'Informasi!',
+            'Password berhasil di ubah',
+            [
+              ElevatedButton(
+                onPressed: () {
+                  AllNavigation.pushReplaceNav(
+                      context,
+                      const BottomNavScreen(
+                        selectedIdx: 3,
+                        selectedIdxMoreSettings: 0,
+                      ),
+                      (_) => null);
+                },
+                child: const Text('OK'),
+              ),
+            ],
+            GlobalSize.blockSizeVertical!);
+      });
+    } else {
+      AlertDialogMsg.showCupertinoDialogSimple(
+        context,
+        'Infomasi!',
+        '${res['message']}',
+        [
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              foregroundColor: GlobalColor.light,
+              elevation: 2,
+              backgroundColor: GlobalColor.grey,
+              shadowColor: GlobalColor.light.withOpacity(0.8),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(
+                  hp! * 1,
+                ),
+              ),
+              minimumSize: Size(
+                wp! * 10,
+                hp! * 4,
+              ),
+            ),
+            onPressed: () {
+              AllNavigation.popNav(context, false, null);
+            },
+            child: const Text('OK'),
+          ),
+        ],
+        hp,
+      );
+    }
+    oldPassTxt?.clear();
+    newPassTxt?.clear();
+    rePassTxt?.clear();
   }
 }
