@@ -19243,6 +19243,40 @@ com.google.common.util.concurrent.ListenableFuture
 com.google.firebase.FirebaseApiNotAvailableException
 com.google.firebase.FirebaseException
 com.google.firebase.FirebaseExceptionMapper
+com.scottyab.rootbeer.BuildConfig
+com.scottyab.rootbeer.Const:
+    static final java.lang.String BINARY_BUSYBOX
+    static final java.lang.String BINARY_SU
+    private void <init>()
+com.scottyab.rootbeer.R
+com.scottyab.rootbeer.RootBeer:
+    public boolean checkForBusyBoxBinary()
+    public boolean checkForNativeLibraryReadAccess()
+    public boolean checkForSuBinary()
+    public boolean detectRootCloakingApps()
+    public boolean detectRootCloakingApps(java.lang.String[])
+    public boolean isRootedWithBusyBoxCheck()
+    public void setLogging(boolean)
+com.scottyab.rootbeer.util.QLog:
+    public static final int ALL
+    public static final int ERRORS_ONLY
+    public static final int ERRORS_WARNINGS
+    public static final int ERRORS_WARNINGS_INFO
+    public static final int ERRORS_WARNINGS_INFO_DEBUG
+    public static final int NONE
+    private static final java.lang.String TAG
+    private static final java.lang.String TAG_GENERAL_OUTPUT
+    private void <init>()
+    public static void d(java.lang.Object)
+    public static void e(java.lang.Object,java.lang.Throwable)
+    private static java.lang.String getThrowableTrace(java.lang.Throwable)
+    public static void i(java.lang.Object)
+    public static boolean isDLoggable()
+    public static boolean isILoggable()
+    public static boolean isWLoggable()
+    public static void w(java.lang.Object)
+    public static void w(java.lang.Object,java.lang.Throwable)
+com.scottyab.rootbeer.util.Utils
 com.tekartik.sqflite.BuildConfig
 com.tekartik.sqflite.Constant:
     static final java.lang.String CMD_GET
@@ -19366,6 +19400,34 @@ com.wongpiwat.trust_location.R
 com.wongpiwat.trust_location.TrustLocationPlugin:
     private static final java.lang.String CHANNEL
     public static void registerWith(io.flutter.plugin.common.PluginRegistry$Registrar)
+com.xamdesign.safe_device.BuildConfig
+com.xamdesign.safe_device.DevelopmentMode.DevelopmentModeCheck:
+    public void <init>()
+com.xamdesign.safe_device.Emulator.EmulatorCheck:
+    public void <init>()
+com.xamdesign.safe_device.ExternalStorage.ExternalStorageCheck:
+    public void <init>()
+com.xamdesign.safe_device.R$anim
+com.xamdesign.safe_device.R$animator
+com.xamdesign.safe_device.R$attr
+com.xamdesign.safe_device.R$bool
+com.xamdesign.safe_device.R$color
+com.xamdesign.safe_device.R$dimen
+com.xamdesign.safe_device.R$drawable
+com.xamdesign.safe_device.R$id
+com.xamdesign.safe_device.R$integer
+com.xamdesign.safe_device.R$interpolator
+com.xamdesign.safe_device.R$layout
+com.xamdesign.safe_device.R$string
+com.xamdesign.safe_device.R$style
+com.xamdesign.safe_device.R$styleable
+com.xamdesign.safe_device.R
+com.xamdesign.safe_device.Rooted.RootedCheck:
+    private static final java.lang.String LENOVO
+    private static final java.lang.String MOTO
+    private static final java.lang.String ONEPLUS
+    private static final java.lang.String XIAOMI
+    public void <init>()
 dev.fluttercommunity.plus.connectivity.BuildConfig
 dev.fluttercommunity.plus.connectivity.Connectivity:
     static final java.lang.String CONNECTIVITY_BLUETOOTH

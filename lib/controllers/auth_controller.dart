@@ -36,7 +36,7 @@ class AuthController extends GetxController {
   // DbController? dbController;
 
   @override
-  void onInit() {
+  void onInit() async {
     emailText = TextEditingController();
     passText = TextEditingController();
     oldPassTxt = TextEditingController();
@@ -53,12 +53,8 @@ class AuthController extends GetxController {
     checkConnection = false.obs;
     // dbController = Get.put(DbController());
     if (!kIsWeb) {
-      handleGetDevice();
-    }
-    if (!kIsWeb) {
-      handleCheckConnection();
-    } else {
-      checkConnection!(true);
+      await handleGetDevice();
+      await handleCheckConnection();
     }
     super.onInit();
   }
@@ -111,10 +107,10 @@ class AuthController extends GetxController {
 
   handleCheckConnection() async {
     try {
-      // final rs = await InternetAddress.lookup('www.google.com');
-      // if (rs.isNotEmpty && rs[0].rawAddress.isNotEmpty) {
-      //   checkConnection!(true);
-      // }
+      final rs = await InternetAddress.lookup('www.google.com');
+      if (rs.isNotEmpty && rs[0].rawAddress.isNotEmpty) {
+        checkConnection!(true);
+      }
       networkConnectivitySubscription =
           networkConnectivity.onConnectivityChanged.listen((event) {
         if (event == ConnectivityResult.mobile ||

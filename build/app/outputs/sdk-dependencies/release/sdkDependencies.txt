@@ -872,14 +872,15 @@ library {
 }
 library {
   maven_library {
-    groupId: "androidx.exifinterface"
-    artifactId: "exifinterface"
-    version: "1.3.3"
+    groupId: "com.scottyab"
+    artifactId: "rootbeer-lib"
+    version: "0.1.0"
   }
   digests {
-    sha256: "\231h\024\230L\263=\220\222\020d\310g\320\254A\337\372\020\241\004\212\332e(\201\302\023&`#\227"
+    sha256: "lM. \024\201\021\245P\2529#\302N\233\023`\363\000\361EA\027#ZMC^E\222\216\347"
   }
   repo_index {
+    value: 1
   }
 }
 library {
@@ -890,6 +891,18 @@ library {
   }
   digests {
     sha256: "e\365\374\265vD\323\201\324q\240\017\337P\371\v\200\213\346\264\212\212\345\177\264\3529\267\332\214\312\206"
+  }
+  repo_index {
+  }
+}
+library {
+  maven_library {
+    groupId: "androidx.exifinterface"
+    artifactId: "exifinterface"
+    version: "1.3.3"
+  }
+  digests {
+    sha256: "\231h\024\230L\263=\220\222\020d\310g\320\254A\337\372\020\241\004\212\332e(\201\302\023&`#\227"
   }
   repo_index {
   }
@@ -935,7 +948,7 @@ library {
 }
 library {
   digests {
-    sha256: "\256\351\2154\303\032{\345!\313\367\0251\f\032\222^\316\200?\324#\220\036\301\377*uW\276\217B"
+    sha256: "\225\324\270\203\303\373\220\264=\364-!\363\344\372\022Q\375\222\314wM<\220\222\356hQ{`\253I"
   }
 }
 library_dependencies {
@@ -1381,19 +1394,19 @@ library_dependencies {
   library_dep_index: 35
 }
 library_dependencies {
-  library_index: 72
-  library_dep_index: 3
-}
-library_dependencies {
   library_index: 73
   library_dep_index: 48
+}
+library_dependencies {
+  library_index: 74
+  library_dep_index: 3
 }
 module_dependencies {
   module_name: "base"
   dependency_index: 32
-  dependency_index: 74
   dependency_index: 75
   dependency_index: 76
+  dependency_index: 77
   dependency_index: 0
   dependency_index: 7
   dependency_index: 38
@@ -1402,11 +1415,12 @@ module_dependencies {
   dependency_index: 48
   dependency_index: 59
   dependency_index: 67
-  dependency_index: 4
   dependency_index: 72
-  dependency_index: 33
   dependency_index: 73
-  dependency_index: 77
+  dependency_index: 4
+  dependency_index: 74
+  dependency_index: 33
+  dependency_index: 78
 }
 repositories {
   maven_repo {
@@ -1531,6 +1545,16 @@ repositories {
 repositories {
   maven_repo {
     url: "https://repo.maven.apache.org/maven2/"
+  }
+}
+repositories {
+  maven_repo {
+    url: "https://dl.google.com/dl/android/maven2/"
+  }
+}
+repositories {
+  maven_repo {
+    url: "https://jcenter.bintray.com/"
   }
 }
 repositories {

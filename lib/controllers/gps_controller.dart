@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
 import 'package:jpj_hrm_mobile/utils/index.dart';
 import 'package:trust_location/trust_location.dart';
 
@@ -29,6 +28,7 @@ class GpsController extends GetxController {
     location = Rx<String>('');
     servGpsEnable = false.obs;
     if (!kIsWeb) {
+      TrustLocation.start(3);
       handleGetLoc();
     }
     super.onInit();
@@ -110,30 +110,31 @@ class GpsController extends GetxController {
     }
   }
 
-  handleTrustLocation(ctx, hp) async {
+  handleTrustLocation() async {
     try {
       TrustLocation.onChange.listen((values) {
         isMockLoc!(values.isMockLocation);
-        if (kDebugMode) {
-          print('is moclocation $isMockLoc');
-        }
-        if (isMockLoc!.value) {
-          WidgetsBinding.instance.addPostFrameCallback((_) async {
-            await AlertDialogMsg.showCupertinoDialogSimple(
-                ctx,
-                'Peringatan!',
-                'Matikan Fake GPS...',
-                [
-                  ElevatedButton(
-                    onPressed: () async {
-                      Platform.isAndroid ? SystemNavigator.pop() : exit(0);
-                    },
-                    child: const Text('OK'),
-                  ),
-                ],
-                hp);
-          });
-        }
+        // if (kDebugMode) {
+        //   print('is moclocation $isMockLoc');
+        // }
+        // if (isMockLoc!.value) {
+        //   return WidgetsBinding.instance.addPostFrameCallback((_) async {
+        //     await AlertDialogMsg.showCupertinoDialogSimple(
+        //         ctx,
+        //         'Peringatan!',
+        //         'Matikan Fake GPS...',
+        //         [
+        //           ElevatedButton(
+        //             onPressed: () async {
+        //               Get.delete<GpsController>(force: true);
+        //               Platform.isAndroid ? SystemNavigator.pop() : exit(0);
+        //             },
+        //             child: const Text('OK'),
+        //           ),
+        //         ],
+        //         hp);
+        //   });
+        // }
       });
     } on PlatformException catch (e) {
       if (kDebugMode) {

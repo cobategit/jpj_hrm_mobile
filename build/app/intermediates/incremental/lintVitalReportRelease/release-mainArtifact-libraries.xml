@@ -69,6 +69,19 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
+      name="C:\laragon\www\jpj_hrm_mobile\android@@:safe_device::release"
+      jars="C:\laragon\www\jpj_hrm_mobile\build\safe_device\.transforms\cf1df8684c63e972f88ae369b645350c\transformed\out\jars\classes.jar"
+      resolved="com.xamdesign.safe_device:safe_device:unspecified"
+      folder="C:\laragon\www\jpj_hrm_mobile\build\safe_device\.transforms\cf1df8684c63e972f88ae369b645350c\transformed\out"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
       name="C:\laragon\www\jpj_hrm_mobile\android@@:connectivity_plus::release"
       jars="C:\laragon\www\jpj_hrm_mobile\build\connectivity_plus\.transforms\ce90f325f85319fedda5f46719373cb0\transformed\out\jars\classes.jar"
       resolved="io.flutter.plugins.connectivity:connectivity_plus:unspecified"
@@ -986,6 +999,19 @@
       jars="C:\Users\alani\.gradle\caches\transforms-3\0ba9c48dd5ff84ca64a6f8c4dc29ae01\transformed\interpolator-1.0.0\jars\classes.jar"
       resolved="androidx.interpolator:interpolator:1.0.0"
       folder="C:\Users\alani\.gradle\caches\transforms-3\0ba9c48dd5ff84ca64a6f8c4dc29ae01\transformed\interpolator-1.0.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="com.scottyab:rootbeer-lib:0.1.0@aar"
+      jars="C:\Users\alani\.gradle\caches\transforms-3\de11c3fa811e18ee799213c47dedaea5\transformed\jetified-rootbeer-lib-0.1.0\jars\classes.jar"
+      resolved="com.scottyab:rootbeer-lib:0.1.0"
+      folder="C:\Users\alani\.gradle\caches\transforms-3\de11c3fa811e18ee799213c47dedaea5\transformed\jetified-rootbeer-lib-0.1.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"

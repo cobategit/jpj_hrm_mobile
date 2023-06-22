@@ -512,6 +512,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "safe_device",
+      "rootUri": "file:///C:/Users/alani/AppData/Local/Pub/Cache/hosted/pub.dev/safe_device-1.1.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
       "name": "search_choices",
       "rootUri": "file:///C:/Users/alani/AppData/Local/Pub/Cache/hosted/pub.dev/search_choices-2.2.5",
       "packageUri": "lib/",
@@ -710,7 +716,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-06-19T07:16:59.509059Z",
+  "generated": "2023-06-22T12:01:23.884191Z",
   "generator": "pub",
   "generatorVersion": "2.19.3"
 }
