@@ -700,110 +700,111 @@ class AbsensiController extends GetxController {
                     // WFH
                     GestureDetector(
                       onTap: () async {
-                        AllNavigation.popNav(ctx, false, null);
-                        if (location!.value == '' && !kIsWeb) {
-                          return WidgetsBinding.instance
-                              .addPostFrameCallback((_) async {
-                            await AlertDialogMsg.showCupertinoDialogSimple(
-                                ctx,
-                                'Peringatan!',
-                                'Clear Cache Apps',
-                                [
-                                  ElevatedButton(
-                                    onPressed: () async {
-                                      AllNavigation.popNav(ctx, false, null);
-                                    },
-                                    child: const Text('OK'),
-                                  ),
-                                ],
-                                hp);
-                          });
-                        }
-                        final serviceGps = await gpsController!
-                            .handleCheckServiceGps(context, hp);
-                        if (!serviceGps) {
-                          gpsController!.handleCheckGps(context, hp);
-                        } else {
-                          hasilCamera!(await handleCamera());
-                          if (hasilCamera?.value != null) {
-                            isLoading!(true);
-                            if (isMocked!.value) {
-                              WidgetsBinding.instance
-                                  .addPostFrameCallback((_) async {
-                                await AlertDialogMsg.showCupertinoDialogSimple(
-                                    ctx,
-                                    'Peringatan!',
-                                    'Matikan Fake GPS...',
-                                    [
-                                      ElevatedButton(
-                                        onPressed: () async {
-                                          Platform.isAndroid
-                                              ? SystemNavigator.pop()
-                                              : exit(0);
-                                        },
-                                        child: const Text('OK'),
-                                      ),
-                                    ],
-                                    hp);
-                              });
-                              isLoading!(false);
-                            } else {
-                              SharedPreferences session =
-                                  await SharedPreferences.getInstance();
-                              final Map<String, dynamic> bodyData = {
-                                'date': DateFormat('yyyy-MM-dd')
-                                    .format(DateTime.now()),
-                                'id_dept':
-                                    dataProfile!['id_department'].toString(),
-                                'check_in': DateFormat('HH:mm:ss')
-                                    .format(DateTime.now()),
-                                'longitude': long?.value,
-                                'latitude': lat?.value,
-                                'type': 'true',
-                                'device': authController?.deviceData?.value,
-                                'picture': hasilCamera?.value?.path,
-                                'is_wfh': 'true'
-                              };
-                              final ApiModel apiModel = ApiModel(
-                                  url: Api.apiUrl,
-                                  path: Path.checkinoffice,
-                                  body: bodyData,
-                                  token: session.getString('token'),
-                                  isToken: true);
+                        null;
+                        // AllNavigation.popNav(ctx, false, null);
+                        // if (location!.value == '' && !kIsWeb) {
+                        //   return WidgetsBinding.instance
+                        //       .addPostFrameCallback((_) async {
+                        //     await AlertDialogMsg.showCupertinoDialogSimple(
+                        //         ctx,
+                        //         'Peringatan!',
+                        //         'Clear Cache Apps',
+                        //         [
+                        //           ElevatedButton(
+                        //             onPressed: () async {
+                        //               AllNavigation.popNav(ctx, false, null);
+                        //             },
+                        //             child: const Text('OK'),
+                        //           ),
+                        //         ],
+                        //         hp);
+                        //   });
+                        // }
+                        // final serviceGps = await gpsController!
+                        //     .handleCheckServiceGps(context, hp);
+                        // if (!serviceGps) {
+                        //   gpsController!.handleCheckGps(context, hp);
+                        // } else {
+                        //   hasilCamera!(await handleCamera());
+                        //   if (hasilCamera?.value != null) {
+                        //     isLoading!(true);
+                        //     if (isMocked!.value) {
+                        //       WidgetsBinding.instance
+                        //           .addPostFrameCallback((_) async {
+                        //         await AlertDialogMsg.showCupertinoDialogSimple(
+                        //             ctx,
+                        //             'Peringatan!',
+                        //             'Matikan Fake GPS...',
+                        //             [
+                        //               ElevatedButton(
+                        //                 onPressed: () async {
+                        //                   Platform.isAndroid
+                        //                       ? SystemNavigator.pop()
+                        //                       : exit(0);
+                        //                 },
+                        //                 child: const Text('OK'),
+                        //               ),
+                        //             ],
+                        //             hp);
+                        //       });
+                        //       isLoading!(false);
+                        //     } else {
+                        //       SharedPreferences session =
+                        //           await SharedPreferences.getInstance();
+                        //       final Map<String, dynamic> bodyData = {
+                        //         'date': DateFormat('yyyy-MM-dd')
+                        //             .format(DateTime.now()),
+                        //         'id_dept':
+                        //             dataProfile!['id_department'].toString(),
+                        //         'check_in': DateFormat('HH:mm:ss')
+                        //             .format(DateTime.now()),
+                        //         'longitude': long?.value,
+                        //         'latitude': lat?.value,
+                        //         'type': 'true',
+                        //         'device': authController?.deviceData?.value,
+                        //         'picture': hasilCamera?.value?.path,
+                        //         'is_wfh': 'true'
+                        //       };
+                        //       final ApiModel apiModel = ApiModel(
+                        //           url: Api.apiUrl,
+                        //           path: Path.checkinoffice,
+                        //           body: bodyData,
+                        //           token: session.getString('token'),
+                        //           isToken: true);
 
-                              final Map<String, dynamic> res = await PostData()
-                                  .postFormData(apiModel, 'POST');
-                              isLoading!(false);
+                        //       final Map<String, dynamic> res = await PostData()
+                        //           .postFormData(apiModel, 'POST');
+                        //       isLoading!(false);
 
-                              if (res['success']) {
-                                getDataScheduleEmpPerDay();
-                              } else {
-                                WidgetsBinding.instance
-                                    .addPostFrameCallback((_) async {
-                                  await AlertDialogMsg
-                                      .showCupertinoDialogSimple(
-                                          ctx,
-                                          'Informasi!',
-                                          '${res['message']}',
-                                          [
-                                            ElevatedButton(
-                                              onPressed: () async {
-                                                AllNavigation.popNav(
-                                                    ctx, false, null);
-                                              },
-                                              child: const Text('OK'),
-                                            ),
-                                          ],
-                                          hp);
-                                });
-                              }
-                            }
-                          }
-                          // if (kDebugMode) {
-                          //   print('choose WFH');
-                          //   print('hasil camera: ${hasilCamera?.value?.path}');
-                          // }
-                        }
+                        //       if (res['success']) {
+                        //         getDataScheduleEmpPerDay();
+                        //       } else {
+                        //         WidgetsBinding.instance
+                        //             .addPostFrameCallback((_) async {
+                        //           await AlertDialogMsg
+                        //               .showCupertinoDialogSimple(
+                        //                   ctx,
+                        //                   'Informasi!',
+                        //                   '${res['message']}',
+                        //                   [
+                        //                     ElevatedButton(
+                        //                       onPressed: () async {
+                        //                         AllNavigation.popNav(
+                        //                             ctx, false, null);
+                        //                       },
+                        //                       child: const Text('OK'),
+                        //                     ),
+                        //                   ],
+                        //                   hp);
+                        //         });
+                        //       }
+                        //     }
+                        //   }
+                        //   // if (kDebugMode) {
+                        //   //   print('choose WFH');
+                        //   //   print('hasil camera: ${hasilCamera?.value?.path}');
+                        //   // }
+                        // }
                       },
                       child: Container(
                         width: wp * 30,
