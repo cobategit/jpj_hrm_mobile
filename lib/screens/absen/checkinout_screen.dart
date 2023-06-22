@@ -5,6 +5,7 @@ import 'package:jpj_hrm_mobile/utils/index.dart';
 import 'package:jpj_hrm_mobile/widgets/index.dart';
 import 'package:get/get.dart';
 import 'package:jpj_hrm_mobile/controllers/index.dart';
+import 'package:dart_ipify/dart_ipify.dart';
 
 class CheckInOutScreen extends StatelessWidget {
   CheckInOutScreen({Key? key}) : super(key: key);
@@ -106,7 +107,9 @@ class CheckInOutScreen extends StatelessWidget {
                                 }
                               }
                             } else {
-                              if (absensiController.hostnameWeb?.value ==
+                              absensiController
+                                  .hostnameWeb!(await Ipify.ipv4());
+                              if (absensiController.hostnameWeb!.value ==
                                   '210.210.175.1') {
                                 absensiController.handleWebCheckinOffice(
                                   context,
@@ -182,13 +185,15 @@ class CheckInOutScreen extends StatelessWidget {
                                   'SP Operational')) {
                         // CHECK OUT
                         return InkWell(
-                          onTap: () {
+                          onTap: () async {
                             if (!kIsWeb) {
                               absensiController.handleCheckOut(
                                   context,
                                   GlobalSize.safeBlockVertical!,
                                   GlobalSize.safeBlockHorizontal!);
                             } else {
+                              absensiController
+                                  .hostnameWeb!(await Ipify.ipv4());
                               if (absensiController.hostnameWeb?.value ==
                                   '210.210.175.1') {
                                 absensiController.handleWebCheckoutOffice(

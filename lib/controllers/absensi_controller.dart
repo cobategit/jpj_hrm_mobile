@@ -97,6 +97,7 @@ class AbsensiController extends GetxController {
       await gpsController?.handleLocationPermission();
     }
     hostnameWeb = Rx<dynamic>('');
+    hostnameWeb!(await Ipify.ipv4());
     super.onInit();
   }
 
@@ -115,7 +116,6 @@ class AbsensiController extends GetxController {
         location!(placemarks[0].locality);
       });
     }
-    hostnameWeb!(await Ipify.ipv4());
     super.onReady();
   }
 
@@ -1056,49 +1056,50 @@ class AbsensiController extends GetxController {
                     // WFH
                     GestureDetector(
                       onTap: () async {
-                        AllNavigation.popNav(ctx, false, null);
-                        SharedPreferences session =
-                            await SharedPreferences.getInstance();
-                        final Map<String, dynamic> bodyData = {
-                          'date':
-                              DateFormat('yyyy-MM-dd').format(DateTime.now()),
-                          'id_dept': dataProfile!['id_department'].toString(),
-                          'check_in':
-                              DateFormat('HH:mm:ss').format(DateTime.now()),
-                          'type': 'true',
-                          'is_wfh': 'true'
-                        };
-                        final ApiModel apiModel = ApiModel(
-                            url: Api.apiUrl,
-                            path: Path.checkinoffice,
-                            body: bodyData,
-                            token: session.getString('token'),
-                            isToken: true);
+                        null;
+                        // AllNavigation.popNav(ctx, false, null);
+                        // SharedPreferences session =
+                        //     await SharedPreferences.getInstance();
+                        // final Map<String, dynamic> bodyData = {
+                        //   'date':
+                        //       DateFormat('yyyy-MM-dd').format(DateTime.now()),
+                        //   'id_dept': dataProfile!['id_department'].toString(),
+                        //   'check_in':
+                        //       DateFormat('HH:mm:ss').format(DateTime.now()),
+                        //   'type': 'true',
+                        //   'is_wfh': 'true'
+                        // };
+                        // final ApiModel apiModel = ApiModel(
+                        //     url: Api.apiUrl,
+                        //     path: Path.checkinoffice,
+                        //     body: bodyData,
+                        //     token: session.getString('token'),
+                        //     isToken: true);
 
-                        final Map<String, dynamic> res =
-                            await PostData().postFormData(apiModel, 'POST');
-                        isLoading!(false);
+                        // final Map<String, dynamic> res =
+                        //     await PostData().postFormData(apiModel, 'POST');
+                        // isLoading!(false);
 
-                        if (res['success']) {
-                          getDataScheduleEmpPerDay();
-                        } else {
-                          WidgetsBinding.instance
-                              .addPostFrameCallback((_) async {
-                            await AlertDialogMsg.showCupertinoDialogSimple(
-                                ctx,
-                                'Informasi!',
-                                '${res['message']}',
-                                [
-                                  ElevatedButton(
-                                    onPressed: () async {
-                                      AllNavigation.popNav(ctx, false, null);
-                                    },
-                                    child: const Text('OK'),
-                                  ),
-                                ],
-                                hp);
-                          });
-                        }
+                        // if (res['success']) {
+                        //   getDataScheduleEmpPerDay();
+                        // } else {
+                        //   WidgetsBinding.instance
+                        //       .addPostFrameCallback((_) async {
+                        //     await AlertDialogMsg.showCupertinoDialogSimple(
+                        //         ctx,
+                        //         'Informasi!',
+                        //         '${res['message']}',
+                        //         [
+                        //           ElevatedButton(
+                        //             onPressed: () async {
+                        //               AllNavigation.popNav(ctx, false, null);
+                        //             },
+                        //             child: const Text('OK'),
+                        //           ),
+                        //         ],
+                        //         hp);
+                        //   });
+                        // }
                       },
                       child: Container(
                         width: wp * 30,
