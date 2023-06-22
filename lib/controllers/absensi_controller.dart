@@ -887,7 +887,12 @@ class AbsensiController extends GetxController {
                     // WFO
                     GestureDetector(
                       onTap: () async {
+                        await handleGetCurrentLocation();
+                        safeDeviceMocLoc!(await SafeDevice.canMockLocation);
+                        safeDeviceDevMod!(
+                            await SafeDevice.isDevelopmentModeEnable);
                         AllNavigation.popNav(ctx, false, null);
+
                         if (location!.value == '' && !kIsWeb) {
                           return WidgetsBinding.instance
                               .addPostFrameCallback((_) async {
