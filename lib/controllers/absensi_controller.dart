@@ -98,25 +98,14 @@ class AbsensiController extends GetxController {
       safeDeviceDevMod!(await SafeDevice.isDevelopmentModeEnable);
     }
     hostnameWeb = Rx<dynamic>('');
-    Future.delayed(const Duration(seconds: 0), () {
-      isLoading!(true);
-    });
-    if (kDebugMode) {
-      print(
-          'moc loc ${safeDeviceMocLoc!.value} dan moc dev ${safeDeviceDevMod!.value}');
-    }
+    isLoading!(true);
     Future.delayed(const Duration(seconds: 4), () {
       isLoading!(false);
     });
-    super.onInit();
-  }
-
-  @override
-  void onReady() async {
     if (kIsWeb) {
       hostnameWeb!(await Ipify.ipv4());
     }
-    super.onReady();
+    super.onInit();
   }
 
   @override
@@ -1299,8 +1288,6 @@ class AbsensiController extends GetxController {
       isToken: true,
     );
 
-    final Map<String, dynamic> res = await PostData().putData(apiModel);
-
     if (location!.value == '' && !kIsWeb) {
       return WidgetsBinding.instance.addPostFrameCallback((_) async {
         await AlertDialogMsg.showCupertinoDialogSimple(
@@ -1342,6 +1329,8 @@ class AbsensiController extends GetxController {
             hp);
       });
     }
+
+    final Map<String, dynamic> res = await PostData().putData(apiModel);
 
     if (res['success']) {
       getDataScheduleEmpPerDay();
