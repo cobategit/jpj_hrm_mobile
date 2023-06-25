@@ -839,7 +839,29 @@ class AbsensiController extends GetxController {
                     // WFO
                     GestureDetector(
                       onTap: () async {
+                        hostnameWeb!(await Ipify.ipv4());
                         AllNavigation.popNav(ctx, false, null);
+
+                        if (hostnameWeb!.value != '210.210.175.1') {
+                          return WidgetsBinding.instance
+                              .addPostFrameCallback((_) async {
+                            await AlertDialogMsg.showCupertinoDialogSimple(
+                                context,
+                                'Informasi!',
+                                'Maaf anda tidak bisa absen',
+                                [
+                                  ElevatedButton(
+                                    onPressed: () async {
+                                      AllNavigation.popNav(
+                                          context, false, null);
+                                    },
+                                    child: const Text('OK'),
+                                  ),
+                                ],
+                                GlobalSize.safeBlockHorizontal);
+                          });
+                        }
+
                         if (location!.value == '' && !kIsWeb) {
                           return WidgetsBinding.instance
                               .addPostFrameCallback((_) async {

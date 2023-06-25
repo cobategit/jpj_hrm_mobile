@@ -107,35 +107,11 @@ class CheckInOutScreen extends StatelessWidget {
                                 }
                               }
                             } else {
-                              absensiController
-                                  .hostnameWeb!(await Ipify.ipv4());
-                              if (absensiController.hostnameWeb!.value ==
-                                  '210.210.175.1') {
-                                absensiController.handleWebCheckinOffice(
-                                  context,
-                                  GlobalSize.safeBlockHorizontal,
-                                  GlobalSize.safeBlockVertical,
-                                );
-                              } else {
-                                WidgetsBinding.instance
-                                    .addPostFrameCallback((_) async {
-                                  await AlertDialogMsg
-                                      .showCupertinoDialogSimple(
-                                          context,
-                                          'Informasi!',
-                                          'Maaf anda tidak bisa absen',
-                                          [
-                                            ElevatedButton(
-                                              onPressed: () async {
-                                                AllNavigation.popNav(
-                                                    context, false, null);
-                                              },
-                                              child: const Text('OK'),
-                                            ),
-                                          ],
-                                          GlobalSize.safeBlockHorizontal);
-                                });
-                              }
+                              absensiController.handleWebCheckinOffice(
+                                context,
+                                GlobalSize.safeBlockHorizontal,
+                                GlobalSize.safeBlockVertical,
+                              );
                             }
                           },
                           child: Container(
