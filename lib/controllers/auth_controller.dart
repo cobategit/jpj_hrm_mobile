@@ -13,6 +13,7 @@ import 'package:jpj_hrm_mobile/services/index.dart';
 import 'package:jpj_hrm_mobile/utils/index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'dart:html' as html;
 
 class AuthController extends GetxController {
   TextEditingController? emailText;
@@ -30,9 +31,11 @@ class AuthController extends GetxController {
   RxString? deviceData;
   RxBool? checkConnection;
   RxMap? readDataDeviceAndro;
+  Rx<String>? ipLocalClient;
   DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
   late StreamSubscription<ConnectivityResult> networkConnectivitySubscription;
   final Connectivity networkConnectivity = Connectivity();
+  Rx<String>? ipLocalWebClient;
   // DbController? dbController;
 
   @override
@@ -51,6 +54,9 @@ class AuthController extends GetxController {
     hideNewPass = true.obs;
     autoValidate = false.obs;
     checkConnection = false.obs;
+    if (html.window.location.href.split("=")[1] != '') {
+      ipLocalClient = Rx<String>(html.window.location.href.split("=")[1]);
+    }
     // dbController = Get.put(DbController());
     super.onInit();
   }
@@ -80,6 +86,12 @@ class AuthController extends GetxController {
     passText?.clear();
     networkConnectivitySubscription.cancel();
     super.onClose();
+  }
+
+  handleRedirectGetIpLocal() async {
+    const urlGetIpLocal = "http://10.15.14.74:8010/jpj.php";
+
+    html.window.open(urlGetIpLocal, '_self');
   }
 
   handleHideShowPass() {

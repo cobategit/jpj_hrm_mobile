@@ -5,7 +5,6 @@ import 'package:jpj_hrm_mobile/utils/index.dart';
 import 'package:jpj_hrm_mobile/widgets/index.dart';
 import 'package:get/get.dart';
 import 'package:jpj_hrm_mobile/controllers/index.dart';
-import 'package:dart_ipify/dart_ipify.dart';
 
 class CheckInOutScreen extends StatelessWidget {
   CheckInOutScreen({Key? key}) : super(key: key);
@@ -168,34 +167,10 @@ class CheckInOutScreen extends StatelessWidget {
                                   GlobalSize.safeBlockVertical!,
                                   GlobalSize.safeBlockHorizontal!);
                             } else {
-                              absensiController
-                                  .hostnameWeb!(await Ipify.ipv4());
-                              if (absensiController.hostnameWeb?.value ==
-                                  '210.210.175.1') {
-                                absensiController.handleWebCheckoutOffice(
-                                    context,
-                                    GlobalSize.safeBlockVertical!,
-                                    GlobalSize.safeBlockHorizontal!);
-                              } else {
-                                WidgetsBinding.instance
-                                    .addPostFrameCallback((_) async {
-                                  await AlertDialogMsg
-                                      .showCupertinoDialogSimple(
-                                          context,
-                                          'Informasi!',
-                                          'Maaf anda tidak bisa absen',
-                                          [
-                                            ElevatedButton(
-                                              onPressed: () async {
-                                                AllNavigation.popNav(
-                                                    context, false, null);
-                                              },
-                                              child: const Text('OK'),
-                                            ),
-                                          ],
-                                          GlobalSize.safeBlockHorizontal);
-                                });
-                              }
+                              absensiController.handleWebCheckoutOffice(
+                                  context,
+                                  GlobalSize.safeBlockVertical!,
+                                  GlobalSize.safeBlockHorizontal!);
                             }
                           },
                           child: Container(

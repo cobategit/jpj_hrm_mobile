@@ -19,7 +19,6 @@ import 'package:jpj_hrm_mobile/utils/index.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:month_picker_dialog/month_picker_dialog.dart';
-import 'package:dart_ipify/dart_ipify.dart';
 
 class AbsensiController extends GetxController {
   TextEditingController? filterTglLeave;
@@ -77,8 +76,8 @@ class AbsensiController extends GetxController {
       handleGetTimer();
     });
     hasilCamera = Rxn<XFile>();
-    gpsController = Get.put(GpsController());
-    authController = Get.put(AuthController());
+    gpsController = Get.find<GpsController>();
+    authController = Get.find<AuthController>();
     refreshKey = GlobalKey<RefreshIndicatorState>();
     listLogAtt = <dynamic>[].obs;
     checkNetwork = Rx<bool>(false);
@@ -97,7 +96,6 @@ class AbsensiController extends GetxController {
       await gpsController?.handleLocationPermission();
     }
     hostnameWeb = Rx<dynamic>('');
-    hostnameWeb!(await Ipify.ipv4());
     super.onInit();
   }
 
@@ -839,28 +837,27 @@ class AbsensiController extends GetxController {
                     // WFO
                     GestureDetector(
                       onTap: () async {
-                        hostnameWeb!(await Ipify.ipv4());
                         AllNavigation.popNav(ctx, false, null);
 
-                        if (hostnameWeb!.value != '210.210.175.1') {
-                          return WidgetsBinding.instance
-                              .addPostFrameCallback((_) async {
-                            await AlertDialogMsg.showCupertinoDialogSimple(
-                                context,
-                                'Informasi!',
-                                'Maaf anda tidak bisa absen',
-                                [
-                                  ElevatedButton(
-                                    onPressed: () async {
-                                      AllNavigation.popNav(
-                                          context, false, null);
-                                    },
-                                    child: const Text('OK'),
-                                  ),
-                                ],
-                                GlobalSize.safeBlockHorizontal);
-                          });
-                        }
+                        // if (hostnameWeb!.value != '210.210.175.1') {
+                        //   return WidgetsBinding.instance
+                        //       .addPostFrameCallback((_) async {
+                        //     await AlertDialogMsg.showCupertinoDialogSimple(
+                        //         context,
+                        //         'Informasi!',
+                        //         'Maaf anda tidak bisa absen',
+                        //         [
+                        //           ElevatedButton(
+                        //             onPressed: () async {
+                        //               AllNavigation.popNav(
+                        //                   context, false, null);
+                        //             },
+                        //             child: const Text('OK'),
+                        //           ),
+                        //         ],
+                        //         GlobalSize.safeBlockHorizontal);
+                        //   });
+                        // }
 
                         if (location!.value == '' && !kIsWeb) {
                           return WidgetsBinding.instance
@@ -1157,6 +1154,28 @@ class AbsensiController extends GetxController {
                     GestureDetector(
                       onTap: () async {
                         AllNavigation.popNav(ctx, false, null);
+
+                        if (authController!.ipLocalClient!.value == null) {
+                          return WidgetsBinding.instance
+                              .addPostFrameCallback((_) async {
+                            await AlertDialogMsg.showCupertinoDialogSimple(
+                                ctx,
+                                'Peringatan!',
+                                'Ip anda tidak terdeteksi, silakan lakukan reload',
+                                [
+                                  ElevatedButton(
+                                    onPressed: () async {
+                                      authController!
+                                          .handleRedirectGetIpLocal();
+                                      AllNavigation.popNav(ctx, false, null);
+                                    },
+                                    child: const Text('OK'),
+                                  ),
+                                ],
+                                hp);
+                          });
+                        }
+
                         SharedPreferences session =
                             await SharedPreferences.getInstance();
                         final Map<String, dynamic> bodyData = {
@@ -1167,6 +1186,7 @@ class AbsensiController extends GetxController {
                               DateFormat('HH:mm:ss').format(DateTime.now()),
                           'type': false,
                           'is_wfh': false,
+                          'ipabsenin': authController!.ipLocalClient!.value
                         };
 
                         final ApiModel apiModel = ApiModel(
@@ -1453,6 +1473,25 @@ class AbsensiController extends GetxController {
               ),
             ),
             onPressed: () async {
+              if (authController!.ipLocalClient!.value == null) {
+                return WidgetsBinding.instance.addPostFrameCallback((_) async {
+                  await AlertDialogMsg.showCupertinoDialogSimple(
+                      ctx,
+                      'Peringatan!',
+                      'Ip anda tidak terdeteksi, silakan lakukan reload',
+                      [
+                        ElevatedButton(
+                          onPressed: () async {
+                            authController!.handleRedirectGetIpLocal();
+                            AllNavigation.popNav(ctx, false, null);
+                          },
+                          child: const Text('OK'),
+                        ),
+                      ],
+                      hp);
+                });
+              }
+
               final checkHoursBeforeCheckOut = await handleBeforeCheckout();
               isLoading!(true);
               if (!checkHoursBeforeCheckOut) {
@@ -1493,6 +1532,7 @@ class AbsensiController extends GetxController {
               final Map<String, dynamic> bodyData = {
                 'date': DateFormat('yyyy-MM-dd').format(DateTime.now()),
                 'check_out': DateFormat('HH:mm:ss').format(DateTime.now()),
+                'ipabsenout': authController!.ipLocalClient!.value
               };
 
               final ApiModel apiModel = ApiModel(
