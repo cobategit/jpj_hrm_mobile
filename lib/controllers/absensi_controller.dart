@@ -31,7 +31,7 @@ class AbsensiController extends GetxController {
   AuthController? authController;
   Rx<dynamic>? hasilBarcode;
   Rxn<XFile>? hasilCamera;
-  RxBool? isLoading;
+  Rx<bool>? isLoading;
   RxMap? dataProfile;
   RxMap? dataAbsen;
   Rx<String>? thisDay;
@@ -56,7 +56,7 @@ class AbsensiController extends GetxController {
 
   @override
   void onInit() async {
-    isLoading = false.obs;
+    isLoading = Rx<bool>(true);
     dataProfile = {}.obs;
     dataAbsen = {}.obs;
     timerString = Rx<String>('');
@@ -87,21 +87,16 @@ class AbsensiController extends GetxController {
     checkNetwork = Rx<bool>(false);
     safeDeviceMocLoc = Rx<bool>(false);
     safeDeviceDevMod = Rx<bool>(false);
-    getDataProfile();
-    handleGetLogAttandance();
+    await getDataProfile();
+    await handleGetLogAttandance();
     if (!kIsWeb) {
       await gpsController?.handleLocationPermission();
-      await gpsController!.handleTrustLocation();
       await handleGetCurrentLocation();
       await handleCheckConnection();
       safeDeviceMocLoc!(await SafeDevice.canMockLocation);
       safeDeviceDevMod!(await SafeDevice.isDevelopmentModeEnable);
     }
     hostnameWeb = Rx<dynamic>('');
-    isLoading!(true);
-    Future.delayed(const Duration(seconds: 4), () {
-      isLoading!(false);
-    });
     if (kIsWeb) {
       hostnameWeb!(await Ipify.ipv4());
     }
