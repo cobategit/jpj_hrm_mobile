@@ -52,7 +52,7 @@ class AbsensiController extends GetxController {
 
   @override
   void onInit() async {
-    isLoading = false.obs;
+    isLoading = true.obs;
     dataProfile = {}.obs;
     dataAbsen = {}.obs;
     timerString = Rx<String>('');
@@ -81,8 +81,8 @@ class AbsensiController extends GetxController {
     refreshKey = GlobalKey<RefreshIndicatorState>();
     listLogAtt = <dynamic>[].obs;
     checkNetwork = Rx<bool>(false);
-    getDataProfile();
-    handleGetLogAttandance();
+    await getDataProfile();
+    await handleGetLogAttandance();
     networkConnectivitySubscription =
         networkConnectivity.onConnectivityChanged.listen((event) {
       if (event == ConnectivityResult.mobile ||
@@ -1160,7 +1160,7 @@ class AbsensiController extends GetxController {
                               .addPostFrameCallback((_) async {
                             await AlertDialogMsg.showCupertinoDialogSimple(
                                 ctx,
-                                'Peringatan!',
+                                'Informasi!',
                                 'Ip anda tidak terdeteksi, silakan lakukan reload',
                                 [
                                   ElevatedButton(

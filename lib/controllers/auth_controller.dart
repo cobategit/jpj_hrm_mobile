@@ -89,7 +89,8 @@ class AuthController extends GetxController {
   }
 
   handleRedirectGetIpLocal() async {
-    const urlGetIpLocal = "http://10.15.14.74:8010/jpj.php";
+    // const urlGetIpLocal = "http://10.1.1.46:8010/jpj.php";
+    const urlGetIpLocal = "http://10.15.14.243:8010/jpj.php";
 
     html.window.open(urlGetIpLocal, '_self');
   }
