@@ -93,11 +93,11 @@ class AuthController extends GetxController {
     try {
       if (Platform.isAndroid) {
         AndroidDeviceInfo androidInfo = await deviceInfoPlugin.androidInfo;
-        deviceData!(androidInfo.model);
+        deviceData!(androidInfo.id);
       }
       if (Platform.isIOS) {
         IosDeviceInfo iosInfo = await deviceInfoPlugin.iosInfo;
-        deviceData!(iosInfo.model);
+        deviceData!(iosInfo.identifierForVendor);
       }
     } on PlatformException {
       const error = "Error Failed to get platform version";

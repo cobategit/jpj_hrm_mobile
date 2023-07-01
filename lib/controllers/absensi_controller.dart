@@ -80,8 +80,8 @@ class AbsensiController extends GetxController {
       handleGetTimer();
     });
     hasilCamera = Rxn<XFile>();
-    gpsController = Get.put(GpsController());
-    authController = Get.put(AuthController());
+    gpsController = Get.find<GpsController>();
+    authController = Get.find<AuthController>();
     refreshKey = GlobalKey<RefreshIndicatorState>();
     listLogAtt = <dynamic>[].obs;
     checkNetwork = Rx<bool>(false);
@@ -90,11 +90,13 @@ class AbsensiController extends GetxController {
     await getDataProfile();
     await handleGetLogAttandance();
     if (!kIsWeb) {
+      isLoading!(true);
       await gpsController?.handleLocationPermission();
       await handleGetCurrentLocation();
       await handleCheckConnection();
       safeDeviceMocLoc!(await SafeDevice.canMockLocation);
       safeDeviceDevMod!(await SafeDevice.isDevelopmentModeEnable);
+      isLoading!(false);
     }
     hostnameWeb = Rx<dynamic>('');
     if (kIsWeb) {
@@ -146,6 +148,7 @@ class AbsensiController extends GetxController {
   }
 
   handleGetCurrentLocation() async {
+    isLoading!(true);
     await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
         .then((position) async {
       long!(position.longitude.toString());
@@ -167,6 +170,7 @@ class AbsensiController extends GetxController {
           await placemarkFromCoordinates(position.latitude, position.longitude);
       location!(placemarks[0].locality);
     });
+    isLoading!(false);
   }
 
   handleSelectDateFilter(BuildContext context) async {

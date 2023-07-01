@@ -9,7 +9,7 @@ import 'package:intl/intl.dart';
 class AttendanceScreen extends StatelessWidget {
   AttendanceScreen({Key? key}) : super(key: key);
 
-  final AbsensiController absensiController = Get.put(AbsensiController());
+  final AbsensiController absensiController = Get.find<AbsensiController>();
 
   @override
   Widget build(BuildContext context) {

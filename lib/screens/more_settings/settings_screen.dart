@@ -10,7 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SettingsScreen extends StatelessWidget {
   SettingsScreen({Key? key}) : super(key: key);
 
-  final AbsensiController absensiController = Get.put(AbsensiController());
+  final AbsensiController absensiController = Get.find<AbsensiController>();
 
   @override
   Widget build(BuildContext context) {

@@ -10,7 +10,7 @@ class HistoryLeaveScreen extends StatelessWidget {
   HistoryLeaveScreen({Key? key}) : super(key: key);
 
   final LeaveController leaveController = Get.put(LeaveController());
-  final AbsensiController absensiController = Get.put(AbsensiController());
+  final AbsensiController absensiController = Get.find<AbsensiController>();
 
   @override
   Widget build(BuildContext context) {

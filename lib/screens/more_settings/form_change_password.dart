@@ -8,8 +8,8 @@ import 'package:jpj_hrm_mobile/widgets/index.dart';
 class FormChangePassword extends StatelessWidget {
   FormChangePassword({Key? key}) : super(key: key);
 
-  final AuthController authController = Get.put(AuthController());
-  final AbsensiController absensiController = Get.put(AbsensiController());
+  final AuthController authController = Get.find<AuthController>();
+  final AbsensiController absensiController = Get.find<AbsensiController>();
 
   @override
   Widget build(BuildContext context) {

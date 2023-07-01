@@ -40,7 +40,8 @@ com.example.jpj_hrm_mobile.app-packaged_res-38 C:\laragon\www\jpj_hrm_mobile\bui
 com.example.jpj_hrm_mobile.app-packaged_res-39 C:\laragon\www\jpj_hrm_mobile\build\hexcolor\intermediates\packaged_res\release
 com.example.jpj_hrm_mobile.app-packaged_res-40 C:\laragon\www\jpj_hrm_mobile\build\image_picker_android\intermediates\packaged_res\release
 com.example.jpj_hrm_mobile.app-packaged_res-41 C:\laragon\www\jpj_hrm_mobile\build\path_provider_android\intermediates\packaged_res\release
-com.example.jpj_hrm_mobile.app-packaged_res-42 C:\laragon\www\jpj_hrm_mobile\build\search_choices\intermediates\packaged_res\release
-com.example.jpj_hrm_mobile.app-packaged_res-43 C:\laragon\www\jpj_hrm_mobile\build\shared_preferences_android\intermediates\packaged_res\release
-com.example.jpj_hrm_mobile.app-packaged_res-44 C:\laragon\www\jpj_hrm_mobile\build\sqflite\intermediates\packaged_res\release
-com.example.jpj_hrm_mobile.app-packaged_res-45 C:\laragon\www\jpj_hrm_mobile\build\trust_location\intermediates\packaged_res\release
+com.example.jpj_hrm_mobile.app-packaged_res-42 C:\laragon\www\jpj_hrm_mobile\build\safe_device\intermediates\packaged_res\release
+com.example.jpj_hrm_mobile.app-packaged_res-43 C:\laragon\www\jpj_hrm_mobile\build\search_choices\intermediates\packaged_res\release
+com.example.jpj_hrm_mobile.app-packaged_res-44 C:\laragon\www\jpj_hrm_mobile\build\shared_preferences_android\intermediates\packaged_res\release
+com.example.jpj_hrm_mobile.app-packaged_res-45 C:\laragon\www\jpj_hrm_mobile\build\sqflite\intermediates\packaged_res\release
+com.example.jpj_hrm_mobile.app-packaged_res-46 C:\laragon\www\jpj_hrm_mobile\build\trust_location\intermediates\packaged_res\release
