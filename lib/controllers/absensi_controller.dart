@@ -877,6 +877,7 @@ class AbsensiController extends GetxController {
                                 hp);
                           });
                         }
+
                         final serviceGps = await gpsController!
                             .handleCheckServiceGps(context, hp);
                         if (!serviceGps) {
@@ -1154,6 +1155,25 @@ class AbsensiController extends GetxController {
                     GestureDetector(
                       onTap: () async {
                         AllNavigation.popNav(ctx, false, null);
+
+                        if (kIsWeb && dataProfile!['flag_android']) {
+                          return WidgetsBinding.instance
+                              .addPostFrameCallback((_) async {
+                            await AlertDialogMsg.showCupertinoDialogSimple(
+                                ctx,
+                                'Peringatan!',
+                                'Hanya untuk pengguna Apple!!!',
+                                [
+                                  ElevatedButton(
+                                    onPressed: () async {
+                                      AllNavigation.popNav(ctx, false, null);
+                                    },
+                                    child: const Text('OK'),
+                                  ),
+                                ],
+                                hp);
+                          });
+                        }
 
                         if (authController!.ipLocalClient!.value == null) {
                           return WidgetsBinding.instance

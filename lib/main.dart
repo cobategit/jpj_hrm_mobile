@@ -93,9 +93,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     AuthController authController = Get.put(AuthController());
 
-    if (authController.checkConnection!.value) {
-      FlutterBackgroundService().invoke("setAsBackground");
-    }
+    // if (authController.checkConnection!.value) {
+    //   FlutterBackgroundService().invoke("setAsBackground");
+    // }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'JPJ HRM',
