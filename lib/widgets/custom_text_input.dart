@@ -10,6 +10,8 @@ class CustomTextInput extends StatelessWidget {
   final bool? readOnly;
   final Function()? onTap;
   final Function(String)? onChanged;
+  final Function(String?)? onSaved;
+  final String? Function(String?)? validator;
   final double? hp;
   final double? wp;
   final String? labelText;
@@ -26,6 +28,8 @@ class CustomTextInput extends StatelessWidget {
     this.readOnly = false,
     this.onTap,
     this.onChanged,
+    this.onSaved,
+    this.validator,
     this.hp,
     this.wp,
     this.labelText,
@@ -42,7 +46,7 @@ class CustomTextInput extends StatelessWidget {
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius:
-              BorderRadius.circular(GlobalSize.blockSizeVertical! * 0.6)),
+              BorderRadius.circular(GlobalSize.blockSizeVertical! * 2)),
       margin: margin,
       height: hp,
       width: wp,
@@ -53,37 +57,44 @@ class CustomTextInput extends StatelessWidget {
         readOnly: readOnly!,
         style: TextStyle(
             fontWeight: FontWeight.w400,
-            fontSize: GlobalSize.safeBlockVertical! * 1.7,
+            fontSize: GlobalSize.safeBlockVertical! * 2.1,
             color: GlobalColor.blue),
         maxLength: maxLength,
         maxLines: maxLines,
         decoration: InputDecoration(
           labelText: labelText,
           labelStyle: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: GlobalSize.safeBlockVertical! * 1.6,
+              fontWeight: FontWeight.w400,
+              fontSize: GlobalSize.safeBlockVertical! * 2.1,
               color: GlobalColor.blue),
           filled: true,
           fillColor: Colors.white.withOpacity(0.08),
           hintText: hintText,
           hintStyle: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: GlobalSize.safeBlockVertical! * 1.7,
+              fontWeight: FontWeight.w400,
+              fontSize: GlobalSize.safeBlockVertical! * 2.1,
               color: GlobalColor.blue),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
               color: GlobalColor.blue,
             ),
+            borderRadius: BorderRadius.circular(
+              GlobalSize.blockSizeVertical! * 2,
+            ),
           ),
           enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: GlobalColor.blue)),
+            borderSide: BorderSide(color: GlobalColor.blue),
+            borderRadius: BorderRadius.circular(
+              GlobalSize.blockSizeVertical! * 2,
+            ),
+          ),
           border: OutlineInputBorder(
             borderSide: const BorderSide(
-              color: Colors.white,
+              color: Colors.blue,
               width: 1,
             ),
             borderRadius: BorderRadius.circular(
-              GlobalSize.blockSizeVertical! * 1,
+              GlobalSize.blockSizeVertical! * 2,
             ),
           ),
           contentPadding: contentPadding,
@@ -92,6 +103,8 @@ class CustomTextInput extends StatelessWidget {
         ),
         onTap: onTap,
         onChanged: onChanged,
+        validator: validator,
+        onSaved: onSaved,
       ),
     );
   }

@@ -91,18 +91,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AuthController authController = Get.put(AuthController());
+    // AuthController authController = Get.put(AuthController());
 
     // if (authController.checkConnection!.value) {
     //   FlutterBackgroundService().invoke("setAsBackground");
     // }
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'JPJ HRM',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const SplashScreen(),
+      // theme: ThemeData(
+      //   primarySwatch: Colors.blue,
+      // ),
+      home: SplashScreen(),
     );
   }
 }

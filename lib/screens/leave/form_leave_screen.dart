@@ -76,6 +76,7 @@ class FormLeaveScreen extends StatelessWidget {
                                     leaveController.handleSelectDateForm(
                                         context,
                                         'dari',
+                                        GlobalSize.blockSizeHorizontal!,
                                         GlobalSize.blockSizeVertical!);
                                   },
                                 ),
@@ -100,6 +101,7 @@ class FormLeaveScreen extends StatelessWidget {
                                         leaveController.handleSelectDateForm(
                                             context,
                                             'sampai',
+                                            GlobalSize.blockSizeHorizontal!,
                                             GlobalSize.blockSizeVertical!);
                                       },
                                     );

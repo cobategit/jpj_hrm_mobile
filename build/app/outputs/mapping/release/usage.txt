@@ -19243,6 +19243,29 @@ com.google.common.util.concurrent.ListenableFuture
 com.google.firebase.FirebaseApiNotAvailableException
 com.google.firebase.FirebaseException
 com.google.firebase.FirebaseExceptionMapper
+com.mr.flutter.plugin.filepicker.BuildConfig
+com.mr.flutter.plugin.filepicker.FilePickerDelegate:
+    private static final java.lang.String TAG
+com.mr.flutter.plugin.filepicker.FilePickerPlugin:
+    private static final java.lang.String CHANNEL
+    private static final java.lang.String EVENT_CHANNEL
+    private static final java.lang.String TAG
+    public static void registerWith(io.flutter.plugin.common.PluginRegistry$Registrar)
+com.mr.flutter.plugin.filepicker.FileUtils:
+    private static final java.lang.String PRIMARY_VOLUME_NAME
+    private static final java.lang.String TAG
+    public void <init>()
+com.mr.flutter.plugin.filepicker.R$attr
+com.mr.flutter.plugin.filepicker.R$color
+com.mr.flutter.plugin.filepicker.R$dimen
+com.mr.flutter.plugin.filepicker.R$drawable
+com.mr.flutter.plugin.filepicker.R$id
+com.mr.flutter.plugin.filepicker.R$integer
+com.mr.flutter.plugin.filepicker.R$layout
+com.mr.flutter.plugin.filepicker.R$string
+com.mr.flutter.plugin.filepicker.R$style
+com.mr.flutter.plugin.filepicker.R$styleable
+com.mr.flutter.plugin.filepicker.R
 com.scottyab.rootbeer.BuildConfig
 com.scottyab.rootbeer.Const:
     static final java.lang.String BINARY_BUSYBOX
@@ -19813,7 +19836,6 @@ io.flutter.embedding.engine.plugins.contentprovider.ContentProviderControlSurfac
 io.flutter.embedding.engine.plugins.contentprovider.ContentProviderPluginBinding:
     public abstract android.content.ContentProvider getContentProvider()
 io.flutter.embedding.engine.plugins.lifecycle.FlutterLifecycleAdapter:
-    private static final java.lang.String TAG
     public void <init>()
 io.flutter.embedding.engine.plugins.service.ServicePluginBinding:
     public abstract void addOnModeChangeListener(io.flutter.embedding.engine.plugins.service.ServiceAware$OnModeChangeListener)

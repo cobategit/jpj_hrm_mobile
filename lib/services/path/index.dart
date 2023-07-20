@@ -10,11 +10,15 @@ class Path {
   static String checkoutstokfile = '/attendances/stockfiles/out';
   static String checkinnotschedulestokfile =
       '/attendances/stockfiles/notscheduledin';
-  static String typeleaves = '/admin/settings/leavetypes';
+  // static String typeleaves = '/admin/settings/leavetypes';
+  static String typeleaves = '/leaves/type';
+  static String leavetypesub = '/leaves/sub-type';
   static String leavesummary = '/leaves/summary';
+  static String historyMangkir = '/leaves/history-mangkir';
   static String backupem = '/leaves/getShiftTo';
-  static String blockdateleave = '/leaves/';
+  static String blockdateleave = '/leaves/block-date';
   static String leavehistory = '/leaves/allMobile';
   static String leavereq = '/leaves/requestMobile';
   static String logAttandance = '/log';
+  static String updateStatusMangkir = '/leaves/status-mangkir';
 }

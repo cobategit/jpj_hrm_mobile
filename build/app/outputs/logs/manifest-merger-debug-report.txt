@@ -56,6 +56,7 @@ INJECTED from C:\laragon\www\jpj_hrm_mobile\android\app\src\main\AndroidManifest
 INJECTED from C:\laragon\www\jpj_hrm_mobile\android\app\src\main\AndroidManifest.xml:1:1-42:12
 MERGED from C:\laragon\www\jpj_hrm_mobile\android\app\src\main\AndroidManifest.xml:1:1-42:12
 MERGED from [:geolocator_android] C:\laragon\www\jpj_hrm_mobile\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-19:12
+MERGED from [:file_picker] C:\laragon\www\jpj_hrm_mobile\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-19:12
 MERGED from [:flutter_barcode_scanner] C:\laragon\www\jpj_hrm_mobile\build\flutter_barcode_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-21:12
 MERGED from [:camera_android] C:\laragon\www\jpj_hrm_mobile\build\camera_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-12:12
 MERGED from [:image_picker_android] C:\laragon\www\jpj_hrm_mobile\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-21:12
@@ -183,6 +184,8 @@ INJECTED from C:\laragon\www\jpj_hrm_mobile\android\app\src\main\AndroidManifest
 INJECTED from C:\laragon\www\jpj_hrm_mobile\android\app\src\main\AndroidManifest.xml
 MERGED from [:geolocator_android] C:\laragon\www\jpj_hrm_mobile\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:geolocator_android] C:\laragon\www\jpj_hrm_mobile\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:file_picker] C:\laragon\www\jpj_hrm_mobile\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:file_picker] C:\laragon\www\jpj_hrm_mobile\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:flutter_barcode_scanner] C:\laragon\www\jpj_hrm_mobile\build\flutter_barcode_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:flutter_barcode_scanner] C:\laragon\www\jpj_hrm_mobile\build\flutter_barcode_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:camera_android] C:\laragon\www\jpj_hrm_mobile\build\camera_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
@@ -351,6 +354,22 @@ ADDED from [:geolocator_android] C:\laragon\www\jpj_hrm_mobile\build\geolocator_
 		ADDED from [:geolocator_android] C:\laragon\www\jpj_hrm_mobile\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-53
 	android:name
 		ADDED from [:geolocator_android] C:\laragon\www\jpj_hrm_mobile\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-77
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from [:file_picker] C:\laragon\www\jpj_hrm_mobile\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-80
+	android:name
+		ADDED from [:file_picker] C:\laragon\www\jpj_hrm_mobile\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:9:22-77
+queries
+ADDED from [:file_picker] C:\laragon\www\jpj_hrm_mobile\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:11:5-17:15
+intent#action:name:android.intent.action.GET_CONTENT+data:mimeType:*/*
+ADDED from [:file_picker] C:\laragon\www\jpj_hrm_mobile\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:12:9-16:18
+action#android.intent.action.GET_CONTENT
+ADDED from [:file_picker] C:\laragon\www\jpj_hrm_mobile\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-72
+	android:name
+		ADDED from [:file_picker] C:\laragon\www\jpj_hrm_mobile\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:13:21-69
+data
+ADDED from [:file_picker] C:\laragon\www\jpj_hrm_mobile\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-44
+	android:mimeType
+		ADDED from [:file_picker] C:\laragon\www\jpj_hrm_mobile\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:15:19-41
 uses-permission#android.permission.CAMERA
 ADDED from [:flutter_barcode_scanner] C:\laragon\www\jpj_hrm_mobile\build\flutter_barcode_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-65
 MERGED from [:camera_android] C:\laragon\www\jpj_hrm_mobile\build\camera_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-65

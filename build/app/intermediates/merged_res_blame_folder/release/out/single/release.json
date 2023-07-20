@@ -193,11 +193,11 @@
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-xxhdpi-v4_ic_bg_service_small.png.flat",
-        "source": "com.example.jpj_hrm_mobile.app-packaged_res-34:/drawable-xxhdpi-v4/ic_bg_service_small.png"
+        "source": "com.example.jpj_hrm_mobile.app-packaged_res-35:/drawable-xxhdpi-v4/ic_bg_service_small.png"
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-ldpi-v4_ic_barcode_flash_off.png.flat",
-        "source": "com.example.jpj_hrm_mobile.app-packaged_res-35:/drawable-ldpi-v4/ic_barcode_flash_off.png"
+        "source": "com.example.jpj_hrm_mobile.app-packaged_res-36:/drawable-ldpi-v4/ic_barcode_flash_off.png"
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/layout_material_textinput_timepicker.xml.flat",
@@ -229,7 +229,7 @@
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-xxxhdpi-v4_ic_barcode_flash_off.png.flat",
-        "source": "com.example.jpj_hrm_mobile.app-packaged_res-35:/drawable-xxxhdpi-v4/ic_barcode_flash_off.png"
+        "source": "com.example.jpj_hrm_mobile.app-packaged_res-36:/drawable-xxxhdpi-v4/ic_barcode_flash_off.png"
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-mdpi-v4_abc_ic_commit_search_api_mtrl_alpha.png.flat",
@@ -345,7 +345,7 @@
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/layout_barcode_capture.xml.flat",
-        "source": "com.example.jpj_hrm_mobile.app-packaged_res-35:/layout/barcode_capture.xml"
+        "source": "com.example.jpj_hrm_mobile.app-packaged_res-36:/layout/barcode_capture.xml"
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-xhdpi-v4_abc_textfield_search_activated_mtrl_alpha.9.png.flat",
@@ -517,7 +517,7 @@
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-xhdpi-v4_ic_barcode_flash_off.png.flat",
-        "source": "com.example.jpj_hrm_mobile.app-packaged_res-35:/drawable-xhdpi-v4/ic_barcode_flash_off.png"
+        "source": "com.example.jpj_hrm_mobile.app-packaged_res-36:/drawable-xhdpi-v4/ic_barcode_flash_off.png"
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/color_mtrl_calendar_selected_range.xml.flat",
@@ -593,7 +593,7 @@
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-mdpi-v4_ic_barcode_flash_on.png.flat",
-        "source": "com.example.jpj_hrm_mobile.app-packaged_res-35:/drawable-mdpi-v4/ic_barcode_flash_on.png"
+        "source": "com.example.jpj_hrm_mobile.app-packaged_res-36:/drawable-mdpi-v4/ic_barcode_flash_on.png"
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-xhdpi-v4_abc_textfield_activated_mtrl_alpha.9.png.flat",
@@ -649,7 +649,7 @@
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-mdpi-v4_ic_barcode_flash_off.png.flat",
-        "source": "com.example.jpj_hrm_mobile.app-packaged_res-35:/drawable-mdpi-v4/ic_barcode_flash_off.png"
+        "source": "com.example.jpj_hrm_mobile.app-packaged_res-36:/drawable-mdpi-v4/ic_barcode_flash_off.png"
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable_material_ic_menu_arrow_down_black_24dp.xml.flat",
@@ -901,7 +901,7 @@
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-xxhdpi-v4_ic_switch_camera.png.flat",
-        "source": "com.example.jpj_hrm_mobile.app-packaged_res-35:/drawable-xxhdpi-v4/ic_switch_camera.png"
+        "source": "com.example.jpj_hrm_mobile.app-packaged_res-36:/drawable-xxhdpi-v4/ic_switch_camera.png"
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-xxhdpi-v4_abc_scrubber_control_to_pressed_mtrl_005.png.flat",
@@ -929,7 +929,7 @@
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-ldpi-v4_ic_switch_camera.png.flat",
-        "source": "com.example.jpj_hrm_mobile.app-packaged_res-35:/drawable-ldpi-v4/ic_switch_camera.png"
+        "source": "com.example.jpj_hrm_mobile.app-packaged_res-36:/drawable-ldpi-v4/ic_switch_camera.png"
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/animator_mtrl_card_state_list_anim.xml.flat",
@@ -937,7 +937,7 @@
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-xxxhdpi-v4_ic_barcode_flash_on.png.flat",
-        "source": "com.example.jpj_hrm_mobile.app-packaged_res-35:/drawable-xxxhdpi-v4/ic_barcode_flash_on.png"
+        "source": "com.example.jpj_hrm_mobile.app-packaged_res-36:/drawable-xxxhdpi-v4/ic_barcode_flash_on.png"
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-v21_design_bottom_navigation_item_background.xml.flat",
@@ -1125,7 +1125,7 @@
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-xhdpi-v4_ic_barcode_flash_on.png.flat",
-        "source": "com.example.jpj_hrm_mobile.app-packaged_res-35:/drawable-xhdpi-v4/ic_barcode_flash_on.png"
+        "source": "com.example.jpj_hrm_mobile.app-packaged_res-36:/drawable-xhdpi-v4/ic_barcode_flash_on.png"
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/anim_design_snackbar_out.xml.flat",
@@ -1141,7 +1141,7 @@
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-xhdpi-v4_ic_switch_camera.png.flat",
-        "source": "com.example.jpj_hrm_mobile.app-packaged_res-35:/drawable-xhdpi-v4/ic_switch_camera.png"
+        "source": "com.example.jpj_hrm_mobile.app-packaged_res-36:/drawable-xhdpi-v4/ic_switch_camera.png"
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/layout-sw600dp-v13_design_layout_snackbar.xml.flat",
@@ -1321,7 +1321,7 @@
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-xxhdpi-v4_ic_barcode_flash_on.png.flat",
-        "source": "com.example.jpj_hrm_mobile.app-packaged_res-35:/drawable-xxhdpi-v4/ic_barcode_flash_on.png"
+        "source": "com.example.jpj_hrm_mobile.app-packaged_res-36:/drawable-xxhdpi-v4/ic_barcode_flash_on.png"
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/layout_abc_popup_menu_item_layout.xml.flat",
@@ -1637,7 +1637,7 @@
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-mdpi-v4_ic_switch_camera.png.flat",
-        "source": "com.example.jpj_hrm_mobile.app-packaged_res-35:/drawable-mdpi-v4/ic_switch_camera.png"
+        "source": "com.example.jpj_hrm_mobile.app-packaged_res-36:/drawable-mdpi-v4/ic_switch_camera.png"
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-xhdpi-v4_notification_bg_normal_pressed.9.png.flat",
@@ -1661,7 +1661,7 @@
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-hdpi-v4_ic_switch_camera.png.flat",
-        "source": "com.example.jpj_hrm_mobile.app-packaged_res-35:/drawable-hdpi-v4/ic_switch_camera.png"
+        "source": "com.example.jpj_hrm_mobile.app-packaged_res-36:/drawable-hdpi-v4/ic_switch_camera.png"
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable_mtrl_ic_arrow_drop_up.xml.flat",
@@ -1689,7 +1689,7 @@
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-anydpi-v21_ic_switch_camera.xml.flat",
-        "source": "com.example.jpj_hrm_mobile.app-packaged_res-35:/drawable-anydpi-v21/ic_switch_camera.xml"
+        "source": "com.example.jpj_hrm_mobile.app-packaged_res-36:/drawable-anydpi-v21/ic_switch_camera.xml"
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/layout_design_navigation_item_header.xml.flat",
@@ -1793,7 +1793,7 @@
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-hdpi-v4_ic_barcode_flash_on.png.flat",
-        "source": "com.example.jpj_hrm_mobile.app-packaged_res-35:/drawable-hdpi-v4/ic_barcode_flash_on.png"
+        "source": "com.example.jpj_hrm_mobile.app-packaged_res-36:/drawable-hdpi-v4/ic_barcode_flash_on.png"
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/color_material_on_surface_emphasis_high_type.xml.flat",
@@ -1837,7 +1837,7 @@
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-xhdpi-v4_ic_bg_service_small.png.flat",
-        "source": "com.example.jpj_hrm_mobile.app-packaged_res-34:/drawable-xhdpi-v4/ic_bg_service_small.png"
+        "source": "com.example.jpj_hrm_mobile.app-packaged_res-35:/drawable-xhdpi-v4/ic_bg_service_small.png"
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/layout_mtrl_picker_text_input_date_range.xml.flat",
@@ -1865,7 +1865,7 @@
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-anydpi-v21_ic_barcode_flash_on.xml.flat",
-        "source": "com.example.jpj_hrm_mobile.app-packaged_res-35:/drawable-anydpi-v21/ic_barcode_flash_on.xml"
+        "source": "com.example.jpj_hrm_mobile.app-packaged_res-36:/drawable-anydpi-v21/ic_barcode_flash_on.xml"
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/layout_test_toolbar_custom_background.xml.flat",
@@ -2157,7 +2157,7 @@
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-ldpi-v4_ic_barcode_flash_on.png.flat",
-        "source": "com.example.jpj_hrm_mobile.app-packaged_res-35:/drawable-ldpi-v4/ic_barcode_flash_on.png"
+        "source": "com.example.jpj_hrm_mobile.app-packaged_res-36:/drawable-ldpi-v4/ic_barcode_flash_on.png"
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable_notification_bg_low.xml.flat",
@@ -2261,7 +2261,7 @@
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-anydpi-v21_ic_barcode_flash_off.xml.flat",
-        "source": "com.example.jpj_hrm_mobile.app-packaged_res-35:/drawable-anydpi-v21/ic_barcode_flash_off.xml"
+        "source": "com.example.jpj_hrm_mobile.app-packaged_res-36:/drawable-anydpi-v21/ic_barcode_flash_off.xml"
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/layout_design_navigation_item_subheader.xml.flat",
@@ -2353,7 +2353,7 @@
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-hdpi-v4_ic_barcode_flash_off.png.flat",
-        "source": "com.example.jpj_hrm_mobile.app-packaged_res-35:/drawable-hdpi-v4/ic_barcode_flash_off.png"
+        "source": "com.example.jpj_hrm_mobile.app-packaged_res-36:/drawable-hdpi-v4/ic_barcode_flash_off.png"
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/layout_design_layout_tab_text.xml.flat",
@@ -2373,7 +2373,7 @@
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/xml_flutter_image_picker_file_paths.xml.flat",
-        "source": "com.example.jpj_hrm_mobile.app-packaged_res-40:/xml/flutter_image_picker_file_paths.xml"
+        "source": "com.example.jpj_hrm_mobile.app-packaged_res-41:/xml/flutter_image_picker_file_paths.xml"
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/interpolator_mtrl_linear.xml.flat",
@@ -2453,7 +2453,7 @@
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-xxxhdpi-v4_ic_switch_camera.png.flat",
-        "source": "com.example.jpj_hrm_mobile.app-packaged_res-35:/drawable-xxxhdpi-v4/ic_switch_camera.png"
+        "source": "com.example.jpj_hrm_mobile.app-packaged_res-36:/drawable-xxxhdpi-v4/ic_switch_camera.png"
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable_ic_mtrl_checked_circle.xml.flat",
@@ -2505,7 +2505,7 @@
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-hdpi-v4_ic_bg_service_small.png.flat",
-        "source": "com.example.jpj_hrm_mobile.app-packaged_res-34:/drawable-hdpi-v4/ic_bg_service_small.png"
+        "source": "com.example.jpj_hrm_mobile.app-packaged_res-35:/drawable-hdpi-v4/ic_bg_service_small.png"
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-xxhdpi-v4_abc_textfield_search_activated_mtrl_alpha.9.png.flat",
@@ -2517,7 +2517,7 @@
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-xxhdpi-v4_ic_barcode_flash_off.png.flat",
-        "source": "com.example.jpj_hrm_mobile.app-packaged_res-35:/drawable-xxhdpi-v4/ic_barcode_flash_off.png"
+        "source": "com.example.jpj_hrm_mobile.app-packaged_res-36:/drawable-xxhdpi-v4/ic_barcode_flash_off.png"
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-mdpi-v4_abc_text_select_handle_middle_mtrl.png.flat",
@@ -2553,7 +2553,7 @@
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/drawable-mdpi-v4_ic_bg_service_small.png.flat",
-        "source": "com.example.jpj_hrm_mobile.app-packaged_res-34:/drawable-mdpi-v4/ic_bg_service_small.png"
+        "source": "com.example.jpj_hrm_mobile.app-packaged_res-35:/drawable-mdpi-v4/ic_bg_service_small.png"
     },
     {
         "merged": "com.example.jpj_hrm_mobile.app-merged_res-30:/anim_abc_shrink_fade_out_from_bottom.xml.flat",

@@ -19,7 +19,6 @@ import 'package:jpj_hrm_mobile/utils/index.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:month_picker_dialog/month_picker_dialog.dart';
-import 'package:dart_ipify/dart_ipify.dart';
 import 'package:safe_device/safe_device.dart';
 
 class AbsensiController extends GetxController {
@@ -90,8 +89,8 @@ class AbsensiController extends GetxController {
     await getDataProfile();
     await handleGetLogAttandance();
     if (!kIsWeb) {
-      isLoading!(true);
       await gpsController?.handleLocationPermission();
+      isLoading!(true);
       await handleGetCurrentLocation();
       await handleCheckConnection();
       safeDeviceMocLoc!(await SafeDevice.canMockLocation);
@@ -99,9 +98,6 @@ class AbsensiController extends GetxController {
       isLoading!(false);
     }
     hostnameWeb = Rx<dynamic>('');
-    if (kIsWeb) {
-      hostnameWeb!(await Ipify.ipv4());
-    }
     super.onInit();
   }
 
@@ -123,6 +119,7 @@ class AbsensiController extends GetxController {
     } else {
       getDataScheduleEmpPerDay();
     }
+    getDataProfile();
     handleGetLogAttandance();
   }
 
@@ -1419,39 +1416,39 @@ class AbsensiController extends GetxController {
                 gpsController!
                     .handleCheckGps(ctx, GlobalSize.blockSizeVertical);
               } else {
-                if (!checkHoursBeforeCheckOut) {
-                  isLoading!(false);
-                  AllNavigation.popNav(ctx, false, null);
-                  return AlertDialogMsg.showCupertinoDialogSimple(
-                    ctx,
-                    'Infomasi!',
-                    'Maaf, anda tidak bisa checkout karena belum 9 jam kerja',
-                    [
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          foregroundColor: GlobalColor.light,
-                          elevation: 2,
-                          backgroundColor: GlobalColor.grey,
-                          shadowColor: GlobalColor.light.withOpacity(0.8),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(
-                              hp! * 1,
-                            ),
-                          ),
-                          minimumSize: Size(
-                            wp! * 10,
-                            hp! * 4,
-                          ),
-                        ),
-                        onPressed: () {
-                          AllNavigation.popNav(ctx, false, null);
-                        },
-                        child: const Text('OK'),
-                      ),
-                    ],
-                    hp,
-                  );
-                }
+                // if (!checkHoursBeforeCheckOut) {
+                //   isLoading!(false);
+                //   AllNavigation.popNav(ctx, false, null);
+                //   return AlertDialogMsg.showCupertinoDialogSimple(
+                //     ctx,
+                //     'Infomasi!',
+                //     'Maaf, anda tidak bisa checkout karena belum 9 jam kerja',
+                //     [
+                //       ElevatedButton(
+                //         style: ElevatedButton.styleFrom(
+                //           foregroundColor: GlobalColor.light,
+                //           elevation: 2,
+                //           backgroundColor: GlobalColor.grey,
+                //           shadowColor: GlobalColor.light.withOpacity(0.8),
+                //           shape: RoundedRectangleBorder(
+                //             borderRadius: BorderRadius.circular(
+                //               hp! * 1,
+                //             ),
+                //           ),
+                //           minimumSize: Size(
+                //             wp! * 10,
+                //             hp! * 4,
+                //           ),
+                //         ),
+                //         onPressed: () {
+                //           AllNavigation.popNav(ctx, false, null);
+                //         },
+                //         child: const Text('OK'),
+                //       ),
+                //     ],
+                //     hp,
+                //   );
+                // }
                 hasilBarcode!(await handleScanBarcode());
                 if (hasilBarcode?.value != null) {
                   if (dataProfile!['department'] == 'SP Operational') {

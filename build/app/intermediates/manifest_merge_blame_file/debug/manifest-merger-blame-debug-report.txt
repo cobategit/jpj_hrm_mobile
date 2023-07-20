@@ -30,189 +30,207 @@
 20    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 20-->[:geolocator_android] C:\laragon\www\jpj_hrm_mobile\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-77
 20-->[:geolocator_android] C:\laragon\www\jpj_hrm_mobile\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:22-74
-21    <uses-permission android:name="android.permission.CAMERA" />
-21-->[:flutter_barcode_scanner] C:\laragon\www\jpj_hrm_mobile\build\flutter_barcode_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-65
-21-->[:flutter_barcode_scanner] C:\laragon\www\jpj_hrm_mobile\build\flutter_barcode_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:9:22-62
+21    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+21-->[:file_picker] C:\laragon\www\jpj_hrm_mobile\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-80
+21-->[:file_picker] C:\laragon\www\jpj_hrm_mobile\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:9:22-77
 22
-23    <uses-feature android:name="android.hardware.camera" />
-23-->[:flutter_barcode_scanner] C:\laragon\www\jpj_hrm_mobile\build\flutter_barcode_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:11:5-60
-23-->[:flutter_barcode_scanner] C:\laragon\www\jpj_hrm_mobile\build\flutter_barcode_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:11:19-57
-24
-25    <uses-permission android:name="android.permission.FLASHLIGHT" />
-25-->[:flutter_barcode_scanner] C:\laragon\www\jpj_hrm_mobile\build\flutter_barcode_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:13:5-69
-25-->[:flutter_barcode_scanner] C:\laragon\www\jpj_hrm_mobile\build\flutter_barcode_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:13:22-66
-26    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-26-->[:camera_android] C:\laragon\www\jpj_hrm_mobile\build\camera_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:5-71
-26-->[:camera_android] C:\laragon\www\jpj_hrm_mobile\build\camera_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:22-68
-27    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-27-->[:connectivity_plus] C:\laragon\www\jpj_hrm_mobile\build\connectivity_plus\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-79
-27-->[:connectivity_plus] C:\laragon\www\jpj_hrm_mobile\build\connectivity_plus\intermediates\merged_manifest\debug\AndroidManifest.xml:9:22-76
-28    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-28-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:5-81
-28-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:22-78
-29    <uses-permission android:name="android.permission.WAKE_LOCK" />
-29-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:5-68
-29-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:22-65
+23    <queries>
+23-->[:file_picker] C:\laragon\www\jpj_hrm_mobile\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:11:5-17:15
+24        <intent>
+24-->[:file_picker] C:\laragon\www\jpj_hrm_mobile\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:12:9-16:18
+25            <action android:name="android.intent.action.GET_CONTENT" />
+25-->[:file_picker] C:\laragon\www\jpj_hrm_mobile\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-72
+25-->[:file_picker] C:\laragon\www\jpj_hrm_mobile\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:13:21-69
+26
+27            <data android:mimeType="*/*" />
+27-->[:file_picker] C:\laragon\www\jpj_hrm_mobile\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-44
+27-->[:file_picker] C:\laragon\www\jpj_hrm_mobile\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:15:19-41
+28        </intent>
+29    </queries>
 30
-31    <application
-32        android:name="android.app.Application"
-33        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-33-->[androidx.core:core:1.8.0] C:\Users\alani\.gradle\caches\transforms-3\270e9501dde0430a83746f97bf9ab544\transformed\core-1.8.0\AndroidManifest.xml:24:18-86
-34        android:debuggable="true"
-35        android:icon="@mipmap/launcher_icon"
-36        android:label="JPJ-HRM"
-37        android:largeHeap="true"
-37-->[:flutter_barcode_scanner] C:\laragon\www\jpj_hrm_mobile\build\flutter_barcode_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:16:9-33
-38        android:theme="@style/Theme.AppCompat.NoActionBar"
-38-->[:flutter_barcode_scanner] C:\laragon\www\jpj_hrm_mobile\build\flutter_barcode_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:17:9-59
-39        android:usesCleartextTraffic="true" >
-40        <activity
-41            android:name="com.example.jpj_hrm_mobile.MainActivity"
-42            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-43            android:exported="true"
-44            android:hardwareAccelerated="true"
-45            android:launchMode="singleTop"
-46            android:theme="@style/LaunchTheme"
-47            android:windowSoftInputMode="adjustResize" >
-48
-49            <!--
-50                 Specifies an Android theme to apply to this Activity as soon as
-51                 the Android process has started. This theme is visible to the user
-52                 while the Flutter UI initializes. After that, this theme continues
-53                 to determine the Window background behind the Flutter UI.
-54            -->
-55            <meta-data
-56                android:name="io.flutter.embedding.android.NormalTheme"
-57                android:resource="@style/NormalTheme" />
+31    <uses-permission android:name="android.permission.CAMERA" />
+31-->[:flutter_barcode_scanner] C:\laragon\www\jpj_hrm_mobile\build\flutter_barcode_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-65
+31-->[:flutter_barcode_scanner] C:\laragon\www\jpj_hrm_mobile\build\flutter_barcode_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:9:22-62
+32
+33    <uses-feature android:name="android.hardware.camera" />
+33-->[:flutter_barcode_scanner] C:\laragon\www\jpj_hrm_mobile\build\flutter_barcode_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:11:5-60
+33-->[:flutter_barcode_scanner] C:\laragon\www\jpj_hrm_mobile\build\flutter_barcode_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:11:19-57
+34
+35    <uses-permission android:name="android.permission.FLASHLIGHT" />
+35-->[:flutter_barcode_scanner] C:\laragon\www\jpj_hrm_mobile\build\flutter_barcode_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:13:5-69
+35-->[:flutter_barcode_scanner] C:\laragon\www\jpj_hrm_mobile\build\flutter_barcode_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:13:22-66
+36    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+36-->[:camera_android] C:\laragon\www\jpj_hrm_mobile\build\camera_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:5-71
+36-->[:camera_android] C:\laragon\www\jpj_hrm_mobile\build\camera_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:22-68
+37    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+37-->[:connectivity_plus] C:\laragon\www\jpj_hrm_mobile\build\connectivity_plus\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-79
+37-->[:connectivity_plus] C:\laragon\www\jpj_hrm_mobile\build\connectivity_plus\intermediates\merged_manifest\debug\AndroidManifest.xml:9:22-76
+38    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+38-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:5-81
+38-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:22-78
+39    <uses-permission android:name="android.permission.WAKE_LOCK" />
+39-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:5-68
+39-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:22-65
+40
+41    <application
+42        android:name="android.app.Application"
+43        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+43-->[androidx.core:core:1.8.0] C:\Users\alani\.gradle\caches\transforms-3\270e9501dde0430a83746f97bf9ab544\transformed\core-1.8.0\AndroidManifest.xml:24:18-86
+44        android:debuggable="true"
+45        android:icon="@mipmap/launcher_icon"
+46        android:label="JPJ-HRM"
+47        android:largeHeap="true"
+47-->[:flutter_barcode_scanner] C:\laragon\www\jpj_hrm_mobile\build\flutter_barcode_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:16:9-33
+48        android:theme="@style/Theme.AppCompat.NoActionBar"
+48-->[:flutter_barcode_scanner] C:\laragon\www\jpj_hrm_mobile\build\flutter_barcode_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:17:9-59
+49        android:usesCleartextTraffic="true" >
+50        <activity
+51            android:name="com.example.jpj_hrm_mobile.MainActivity"
+52            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+53            android:exported="true"
+54            android:hardwareAccelerated="true"
+55            android:launchMode="singleTop"
+56            android:theme="@style/LaunchTheme"
+57            android:windowSoftInputMode="adjustResize" >
 58
-59            <intent-filter>
-60                <action android:name="android.intent.action.MAIN" />
-61
-62                <category android:name="android.intent.category.LAUNCHER" />
-63            </intent-filter>
-64        </activity>
-65        <!--
-66             Don't delete the meta-data below.
-67             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
-68        -->
-69        <meta-data
-70            android:name="flutterEmbedding"
-71            android:value="2" />
-72
-73        <service
-73-->[:geolocator_android] C:\laragon\www\jpj_hrm_mobile\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:9-16:56
-74            android:name="com.baseflow.geolocator.GeolocatorLocationService"
-74-->[:geolocator_android] C:\laragon\www\jpj_hrm_mobile\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-77
-75            android:enabled="true"
-75-->[:geolocator_android] C:\laragon\www\jpj_hrm_mobile\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-35
-76            android:exported="false"
-76-->[:geolocator_android] C:\laragon\www\jpj_hrm_mobile\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-37
-77            android:foregroundServiceType="location" />
-77-->[:geolocator_android] C:\laragon\www\jpj_hrm_mobile\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-53
-78
-79        <activity android:name="com.amolg.flutterbarcodescanner.BarcodeCaptureActivity" />
-79-->[:flutter_barcode_scanner] C:\laragon\www\jpj_hrm_mobile\build\flutter_barcode_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:18:9-91
-79-->[:flutter_barcode_scanner] C:\laragon\www\jpj_hrm_mobile\build\flutter_barcode_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:18:19-88
-80
-81        <provider
-81-->[:image_picker_android] C:\laragon\www\jpj_hrm_mobile\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-18:20
-82            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
-82-->[:image_picker_android] C:\laragon\www\jpj_hrm_mobile\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-82
-83            android:authorities="com.example.jpj_hrm_mobile.flutter.image_provider"
-83-->[:image_picker_android] C:\laragon\www\jpj_hrm_mobile\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-74
-84            android:exported="false"
-84-->[:image_picker_android] C:\laragon\www\jpj_hrm_mobile\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-37
-85            android:grantUriPermissions="true" >
-85-->[:image_picker_android] C:\laragon\www\jpj_hrm_mobile\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-47
-86            <meta-data
-86-->[:image_picker_android] C:\laragon\www\jpj_hrm_mobile\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-17:75
-87                android:name="android.support.FILE_PROVIDER_PATHS"
-87-->[:image_picker_android] C:\laragon\www\jpj_hrm_mobile\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:16:17-67
-88                android:resource="@xml/flutter_image_picker_file_paths" />
-88-->[:image_picker_android] C:\laragon\www\jpj_hrm_mobile\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:17:17-72
-89        </provider>
+59            <!--
+60                 Specifies an Android theme to apply to this Activity as soon as
+61                 the Android process has started. This theme is visible to the user
+62                 while the Flutter UI initializes. After that, this theme continues
+63                 to determine the Window background behind the Flutter UI.
+64            -->
+65            <meta-data
+66                android:name="io.flutter.embedding.android.NormalTheme"
+67                android:resource="@style/NormalTheme" />
+68
+69            <intent-filter>
+70                <action android:name="android.intent.action.MAIN" />
+71
+72                <category android:name="android.intent.category.LAUNCHER" />
+73            </intent-filter>
+74        </activity>
+75        <!--
+76             Don't delete the meta-data below.
+77             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+78        -->
+79        <meta-data
+80            android:name="flutterEmbedding"
+81            android:value="2" />
+82
+83        <service
+83-->[:geolocator_android] C:\laragon\www\jpj_hrm_mobile\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:9-16:56
+84            android:name="com.baseflow.geolocator.GeolocatorLocationService"
+84-->[:geolocator_android] C:\laragon\www\jpj_hrm_mobile\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-77
+85            android:enabled="true"
+85-->[:geolocator_android] C:\laragon\www\jpj_hrm_mobile\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-35
+86            android:exported="false"
+86-->[:geolocator_android] C:\laragon\www\jpj_hrm_mobile\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-37
+87            android:foregroundServiceType="location" />
+87-->[:geolocator_android] C:\laragon\www\jpj_hrm_mobile\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-53
+88
+89        <activity android:name="com.amolg.flutterbarcodescanner.BarcodeCaptureActivity" />
+89-->[:flutter_barcode_scanner] C:\laragon\www\jpj_hrm_mobile\build\flutter_barcode_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:18:9-91
+89-->[:flutter_barcode_scanner] C:\laragon\www\jpj_hrm_mobile\build\flutter_barcode_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:18:19-88
 90
-91        <service
-91-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:14:9-18:44
-92            android:name="id.flutter.flutter_background_service.BackgroundService"
-92-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-83
-93            android:enabled="true"
-93-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-35
-94            android:exported="true"
-94-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:17:13-36
-95            android:stopWithTask="false" />
-95-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:18:13-41
-96
-97        <receiver
-97-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:20:9-23:39
-98            android:name="id.flutter.flutter_background_service.WatchdogReceiver"
-98-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:21:13-82
-99            android:enabled="true"
-99-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:22:13-35
-100            android:exported="true" />
-100-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:23:13-36
-101        <receiver
-101-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:24:9-32:20
-102            android:name="id.flutter.flutter_background_service.BootReceiver"
-102-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:25:13-78
+91        <provider
+91-->[:image_picker_android] C:\laragon\www\jpj_hrm_mobile\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-18:20
+92            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+92-->[:image_picker_android] C:\laragon\www\jpj_hrm_mobile\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-82
+93            android:authorities="com.example.jpj_hrm_mobile.flutter.image_provider"
+93-->[:image_picker_android] C:\laragon\www\jpj_hrm_mobile\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-74
+94            android:exported="false"
+94-->[:image_picker_android] C:\laragon\www\jpj_hrm_mobile\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-37
+95            android:grantUriPermissions="true" >
+95-->[:image_picker_android] C:\laragon\www\jpj_hrm_mobile\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-47
+96            <meta-data
+96-->[:image_picker_android] C:\laragon\www\jpj_hrm_mobile\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-17:75
+97                android:name="android.support.FILE_PROVIDER_PATHS"
+97-->[:image_picker_android] C:\laragon\www\jpj_hrm_mobile\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:16:17-67
+98                android:resource="@xml/flutter_image_picker_file_paths" />
+98-->[:image_picker_android] C:\laragon\www\jpj_hrm_mobile\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:17:17-72
+99        </provider>
+100
+101        <service
+101-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:14:9-18:44
+102            android:name="id.flutter.flutter_background_service.BackgroundService"
+102-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-83
 103            android:enabled="true"
-103-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:26:13-35
-104            android:exported="true" >
-104-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:27:13-36
-105            <intent-filter>
-105-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:28:13-31:29
-106                <action android:name="android.intent.action.BOOT_COMPLETED" />
-106-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:29:17-79
-106-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:29:25-76
-107                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
-107-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:30:17-82
-107-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:30:25-79
-108            </intent-filter>
-109        </receiver>
-110
-111        <activity
-111-->[:trust_location] C:\laragon\www\jpj_hrm_mobile\build\trust_location\intermediates\merged_manifest\debug\AndroidManifest.xml:13:9-20:20
-112            android:name="com.wongpiwat.trust_location.TrustLocationPlugin"
-112-->[:trust_location] C:\laragon\www\jpj_hrm_mobile\build\trust_location\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-76
-113            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-113-->[:trust_location] C:\laragon\www\jpj_hrm_mobile\build\trust_location\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-144
-114            android:hardwareAccelerated="true"
-114-->[:trust_location] C:\laragon\www\jpj_hrm_mobile\build\trust_location\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-47
-115            android:launchMode="singleTop"
-115-->[:trust_location] C:\laragon\www\jpj_hrm_mobile\build\trust_location\intermediates\merged_manifest\debug\AndroidManifest.xml:17:13-43
-116            android:theme="@android:style/Theme.Black.NoTitleBar"
-116-->[:trust_location] C:\laragon\www\jpj_hrm_mobile\build\trust_location\intermediates\merged_manifest\debug\AndroidManifest.xml:18:13-66
-117            android:windowSoftInputMode="adjustResize" >
-117-->[:trust_location] C:\laragon\www\jpj_hrm_mobile\build\trust_location\intermediates\merged_manifest\debug\AndroidManifest.xml:19:13-55
-118        </activity>
-119        <activity
-119-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\alani\.gradle\caches\transforms-3\c2b8513ea56540c3f47b849a24523246\transformed\jetified-play-services-base-17.5.0\AndroidManifest.xml:23:9-26:75
-120            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-120-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\alani\.gradle\caches\transforms-3\c2b8513ea56540c3f47b849a24523246\transformed\jetified-play-services-base-17.5.0\AndroidManifest.xml:24:13-79
-121            android:exported="false"
-121-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\alani\.gradle\caches\transforms-3\c2b8513ea56540c3f47b849a24523246\transformed\jetified-play-services-base-17.5.0\AndroidManifest.xml:25:13-37
-122            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-122-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\alani\.gradle\caches\transforms-3\c2b8513ea56540c3f47b849a24523246\transformed\jetified-play-services-base-17.5.0\AndroidManifest.xml:26:13-72
-123
-124        <meta-data
-124-->[com.google.android.gms:play-services-basement:17.5.0] C:\Users\alani\.gradle\caches\transforms-3\319471fabcc69a2214b13fc4911b255c\transformed\jetified-play-services-basement-17.5.0\AndroidManifest.xml:23:9-25:69
-125            android:name="com.google.android.gms.version"
-125-->[com.google.android.gms:play-services-basement:17.5.0] C:\Users\alani\.gradle\caches\transforms-3\319471fabcc69a2214b13fc4911b255c\transformed\jetified-play-services-basement-17.5.0\AndroidManifest.xml:24:13-58
-126            android:value="@integer/google_play_services_version" />
-126-->[com.google.android.gms:play-services-basement:17.5.0] C:\Users\alani\.gradle\caches\transforms-3\319471fabcc69a2214b13fc4911b255c\transformed\jetified-play-services-basement-17.5.0\AndroidManifest.xml:25:13-66
-127
-128        <uses-library
-128-->[androidx.window:window:1.0.0-beta04] C:\Users\alani\.gradle\caches\transforms-3\dee59bb480020f42d53c2ea15e4501f7\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
-129            android:name="androidx.window.extensions"
-129-->[androidx.window:window:1.0.0-beta04] C:\Users\alani\.gradle\caches\transforms-3\dee59bb480020f42d53c2ea15e4501f7\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
-130            android:required="false" />
-130-->[androidx.window:window:1.0.0-beta04] C:\Users\alani\.gradle\caches\transforms-3\dee59bb480020f42d53c2ea15e4501f7\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
-131        <uses-library
-131-->[androidx.window:window:1.0.0-beta04] C:\Users\alani\.gradle\caches\transforms-3\dee59bb480020f42d53c2ea15e4501f7\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
-132            android:name="androidx.window.sidecar"
-132-->[androidx.window:window:1.0.0-beta04] C:\Users\alani\.gradle\caches\transforms-3\dee59bb480020f42d53c2ea15e4501f7\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
-133            android:required="false" />
-133-->[androidx.window:window:1.0.0-beta04] C:\Users\alani\.gradle\caches\transforms-3\dee59bb480020f42d53c2ea15e4501f7\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
-134    </application>
-135
-136</manifest>
+103-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-35
+104            android:exported="true"
+104-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:17:13-36
+105            android:stopWithTask="false" />
+105-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:18:13-41
+106
+107        <receiver
+107-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:20:9-23:39
+108            android:name="id.flutter.flutter_background_service.WatchdogReceiver"
+108-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:21:13-82
+109            android:enabled="true"
+109-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:22:13-35
+110            android:exported="true" />
+110-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:23:13-36
+111        <receiver
+111-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:24:9-32:20
+112            android:name="id.flutter.flutter_background_service.BootReceiver"
+112-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:25:13-78
+113            android:enabled="true"
+113-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:26:13-35
+114            android:exported="true" >
+114-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:27:13-36
+115            <intent-filter>
+115-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:28:13-31:29
+116                <action android:name="android.intent.action.BOOT_COMPLETED" />
+116-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:29:17-79
+116-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:29:25-76
+117                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+117-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:30:17-82
+117-->[:flutter_background_service_android] C:\laragon\www\jpj_hrm_mobile\build\flutter_background_service_android\intermediates\merged_manifest\debug\AndroidManifest.xml:30:25-79
+118            </intent-filter>
+119        </receiver>
+120
+121        <activity
+121-->[:trust_location] C:\laragon\www\jpj_hrm_mobile\build\trust_location\intermediates\merged_manifest\debug\AndroidManifest.xml:13:9-20:20
+122            android:name="com.wongpiwat.trust_location.TrustLocationPlugin"
+122-->[:trust_location] C:\laragon\www\jpj_hrm_mobile\build\trust_location\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-76
+123            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+123-->[:trust_location] C:\laragon\www\jpj_hrm_mobile\build\trust_location\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-144
+124            android:hardwareAccelerated="true"
+124-->[:trust_location] C:\laragon\www\jpj_hrm_mobile\build\trust_location\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-47
+125            android:launchMode="singleTop"
+125-->[:trust_location] C:\laragon\www\jpj_hrm_mobile\build\trust_location\intermediates\merged_manifest\debug\AndroidManifest.xml:17:13-43
+126            android:theme="@android:style/Theme.Black.NoTitleBar"
+126-->[:trust_location] C:\laragon\www\jpj_hrm_mobile\build\trust_location\intermediates\merged_manifest\debug\AndroidManifest.xml:18:13-66
+127            android:windowSoftInputMode="adjustResize" >
+127-->[:trust_location] C:\laragon\www\jpj_hrm_mobile\build\trust_location\intermediates\merged_manifest\debug\AndroidManifest.xml:19:13-55
+128        </activity>
+129        <activity
+129-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\alani\.gradle\caches\transforms-3\c2b8513ea56540c3f47b849a24523246\transformed\jetified-play-services-base-17.5.0\AndroidManifest.xml:23:9-26:75
+130            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+130-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\alani\.gradle\caches\transforms-3\c2b8513ea56540c3f47b849a24523246\transformed\jetified-play-services-base-17.5.0\AndroidManifest.xml:24:13-79
+131            android:exported="false"
+131-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\alani\.gradle\caches\transforms-3\c2b8513ea56540c3f47b849a24523246\transformed\jetified-play-services-base-17.5.0\AndroidManifest.xml:25:13-37
+132            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+132-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\alani\.gradle\caches\transforms-3\c2b8513ea56540c3f47b849a24523246\transformed\jetified-play-services-base-17.5.0\AndroidManifest.xml:26:13-72
+133
+134        <meta-data
+134-->[com.google.android.gms:play-services-basement:17.5.0] C:\Users\alani\.gradle\caches\transforms-3\319471fabcc69a2214b13fc4911b255c\transformed\jetified-play-services-basement-17.5.0\AndroidManifest.xml:23:9-25:69
+135            android:name="com.google.android.gms.version"
+135-->[com.google.android.gms:play-services-basement:17.5.0] C:\Users\alani\.gradle\caches\transforms-3\319471fabcc69a2214b13fc4911b255c\transformed\jetified-play-services-basement-17.5.0\AndroidManifest.xml:24:13-58
+136            android:value="@integer/google_play_services_version" />
+136-->[com.google.android.gms:play-services-basement:17.5.0] C:\Users\alani\.gradle\caches\transforms-3\319471fabcc69a2214b13fc4911b255c\transformed\jetified-play-services-basement-17.5.0\AndroidManifest.xml:25:13-66
+137
+138        <uses-library
+138-->[androidx.window:window:1.0.0-beta04] C:\Users\alani\.gradle\caches\transforms-3\dee59bb480020f42d53c2ea15e4501f7\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
+139            android:name="androidx.window.extensions"
+139-->[androidx.window:window:1.0.0-beta04] C:\Users\alani\.gradle\caches\transforms-3\dee59bb480020f42d53c2ea15e4501f7\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
+140            android:required="false" />
+140-->[androidx.window:window:1.0.0-beta04] C:\Users\alani\.gradle\caches\transforms-3\dee59bb480020f42d53c2ea15e4501f7\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
+141        <uses-library
+141-->[androidx.window:window:1.0.0-beta04] C:\Users\alani\.gradle\caches\transforms-3\dee59bb480020f42d53c2ea15e4501f7\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
+142            android:name="androidx.window.sidecar"
+142-->[androidx.window:window:1.0.0-beta04] C:\Users\alani\.gradle\caches\transforms-3\dee59bb480020f42d53c2ea15e4501f7\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
+143            android:required="false" />
+143-->[androidx.window:window:1.0.0-beta04] C:\Users\alani\.gradle\caches\transforms-3\dee59bb480020f42d53c2ea15e4501f7\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
+144    </application>
+145
+146</manifest>

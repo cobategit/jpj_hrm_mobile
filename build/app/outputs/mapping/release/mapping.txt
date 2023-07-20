@@ -3,8 +3,8 @@
 # min_api: 21
 # common_typos_disable
 # {"id":"com.android.tools.r8.mapping","version":"2.0"}
-# pg_map_id: b1fb146
-# pg_map_hash: SHA-256 b1fb1461498007ad4e145191250ba7b684e1e995726993c3bb58f31ccccd33db
+# pg_map_id: f23cd9f
+# pg_map_hash: SHA-256 f23cd9f7f77a9dbc156a0721430ee32550738ec803c889aa2bff5c192a420f82
 android.support.v4.app.INotificationSideChannel -> a.a:
     void notify(java.lang.String,int,java.lang.String,android.app.Notification) -> b0
 android.support.v4.app.INotificationSideChannel$Stub -> a.a$a:
@@ -24660,6 +24660,128 @@ com.google.android.material.transformation.FabTransformationSheetBehavior -> com
     void updateImportantForAccessibility(android.view.View,boolean) -> g0
 com.google.android.material.transformation.TransformationChildCard -> u2.a:
 com.google.android.material.transformation.TransformationChildLayout -> u2.b:
+com.mr.flutter.plugin.filepicker.FileInfo -> com.mr.flutter.plugin.filepicker.a:
+    java.lang.String path -> a
+    long size -> d
+    java.lang.String name -> b
+    android.net.Uri uri -> c
+    byte[] bytes -> e
+    java.util.HashMap toMap() -> a
+com.mr.flutter.plugin.filepicker.FileInfo$Builder -> com.mr.flutter.plugin.filepicker.a$a:
+    java.lang.String path -> a
+    long size -> d
+    java.lang.String name -> b
+    android.net.Uri uri -> c
+    byte[] bytes -> e
+    com.mr.flutter.plugin.filepicker.FileInfo build() -> a
+    com.mr.flutter.plugin.filepicker.FileInfo$Builder withData(byte[]) -> b
+    com.mr.flutter.plugin.filepicker.FileInfo$Builder withName(java.lang.String) -> c
+    com.mr.flutter.plugin.filepicker.FileInfo$Builder withPath(java.lang.String) -> d
+    com.mr.flutter.plugin.filepicker.FileInfo$Builder withSize(long) -> e
+    com.mr.flutter.plugin.filepicker.FileInfo$Builder withUri(android.net.Uri) -> f
+com.mr.flutter.plugin.filepicker.FilePickerDelegate -> com.mr.flutter.plugin.filepicker.b:
+    android.app.Activity activity -> e
+    int REQUEST_CODE -> m
+    boolean loadDataToMemory -> i
+    java.lang.String type -> j
+    java.lang.String[] allowedExtensions -> k
+    com.mr.flutter.plugin.filepicker.FilePickerDelegate$PermissionManager permissionManager -> f
+    io.flutter.plugin.common.MethodChannel$Result pendingResult -> g
+    boolean isMultipleSelection -> h
+    io.flutter.plugin.common.EventChannel$EventSink eventSink -> l
+    android.app.Activity access$000(com.mr.flutter.plugin.filepicker.FilePickerDelegate) -> a
+    boolean onActivityResult(int,int,android.content.Intent) -> b
+    boolean access$100(com.mr.flutter.plugin.filepicker.FilePickerDelegate) -> c
+    void access$200(com.mr.flutter.plugin.filepicker.FilePickerDelegate,java.lang.Object) -> d
+    java.lang.String access$300(com.mr.flutter.plugin.filepicker.FilePickerDelegate) -> e
+    void access$400(com.mr.flutter.plugin.filepicker.FilePickerDelegate,java.lang.String,java.lang.String) -> f
+    java.util.ArrayList access$500(com.mr.flutter.plugin.filepicker.FilePickerDelegate,android.os.Bundle) -> g
+    io.flutter.plugin.common.EventChannel$EventSink access$600(com.mr.flutter.plugin.filepicker.FilePickerDelegate) -> h
+    void clearPendingResult() -> i
+    void dispatchEventStatus(boolean) -> j
+    void finishWithAlreadyActiveError(io.flutter.plugin.common.MethodChannel$Result) -> k
+    void finishWithError(java.lang.String,java.lang.String) -> l
+    void finishWithSuccess(java.lang.Object) -> m
+    java.util.ArrayList getSelectedItems(android.os.Bundle) -> n
+    void setEventHandler(io.flutter.plugin.common.EventChannel$EventSink) -> o
+    boolean setPendingMethodCallAndResult(io.flutter.plugin.common.MethodChannel$Result) -> p
+    void startFileExplorer() -> q
+    void startFileExplorer(java.lang.String,boolean,boolean,java.lang.String[],io.flutter.plugin.common.MethodChannel$Result) -> r
+com.mr.flutter.plugin.filepicker.FilePickerDelegate$1 -> com.mr.flutter.plugin.filepicker.b$a:
+    android.app.Activity val$activity -> a
+    void askForPermission(java.lang.String,int) -> a
+    boolean isPermissionGranted(java.lang.String) -> b
+com.mr.flutter.plugin.filepicker.FilePickerDelegate$2 -> com.mr.flutter.plugin.filepicker.b$b:
+    android.content.Intent val$data -> e
+    com.mr.flutter.plugin.filepicker.FilePickerDelegate this$0 -> f
+com.mr.flutter.plugin.filepicker.FilePickerDelegate$3 -> com.mr.flutter.plugin.filepicker.b$c:
+    boolean val$status -> a
+    com.mr.flutter.plugin.filepicker.FilePickerDelegate this$0 -> b
+com.mr.flutter.plugin.filepicker.FilePickerDelegate$PermissionManager -> com.mr.flutter.plugin.filepicker.b$d:
+    void askForPermission(java.lang.String,int) -> a
+    boolean isPermissionGranted(java.lang.String) -> b
+com.mr.flutter.plugin.filepicker.FilePickerPlugin -> com.mr.flutter.plugin.filepicker.FilePickerPlugin:
+    io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding activityBinding -> e
+    boolean isMultipleSelection -> n
+    boolean withData -> o
+    io.flutter.plugin.common.MethodChannel channel -> l
+    android.app.Activity activity -> k
+    java.lang.String fileType -> m
+    io.flutter.embedding.engine.plugins.FlutterPlugin$FlutterPluginBinding pluginBinding -> h
+    androidx.lifecycle.Lifecycle lifecycle -> i
+    com.mr.flutter.plugin.filepicker.FilePickerDelegate delegate -> f
+    android.app.Application application -> g
+    com.mr.flutter.plugin.filepicker.FilePickerPlugin$LifeCycleObserver observer -> j
+    com.mr.flutter.plugin.filepicker.FilePickerDelegate access$100(com.mr.flutter.plugin.filepicker.FilePickerPlugin) -> a
+    java.lang.String resolveType(java.lang.String) -> b
+    void onDetachedFromActivity() -> c
+    void setup(io.flutter.plugin.common.BinaryMessenger,android.app.Application,android.app.Activity,io.flutter.plugin.common.PluginRegistry$Registrar,io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding) -> d
+    void onAttachedToActivity(io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding) -> e
+    void onReattachedToActivityForConfigChanges(io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding) -> f
+    void onDetachedFromActivityForConfigChanges() -> g
+    void tearDown() -> h
+com.mr.flutter.plugin.filepicker.FilePickerPlugin$1 -> com.mr.flutter.plugin.filepicker.FilePickerPlugin$a:
+    com.mr.flutter.plugin.filepicker.FilePickerPlugin this$0 -> e
+    void onListen(java.lang.Object,io.flutter.plugin.common.EventChannel$EventSink) -> a
+    void onCancel(java.lang.Object) -> d
+com.mr.flutter.plugin.filepicker.FilePickerPlugin$LifeCycleObserver -> com.mr.flutter.plugin.filepicker.FilePickerPlugin$LifeCycleObserver:
+    android.app.Activity thisActivity -> e
+    com.mr.flutter.plugin.filepicker.FilePickerPlugin this$0 -> f
+    void onResume(androidx.lifecycle.LifecycleOwner) -> a
+    void onDestroy(androidx.lifecycle.LifecycleOwner) -> b
+    void onCreate(androidx.lifecycle.LifecycleOwner) -> c
+    void onPause(androidx.lifecycle.LifecycleOwner) -> e
+    void onStart(androidx.lifecycle.LifecycleOwner) -> f
+    void onStop(androidx.lifecycle.LifecycleOwner) -> g
+com.mr.flutter.plugin.filepicker.FilePickerPlugin$MethodResultWrapper -> com.mr.flutter.plugin.filepicker.FilePickerPlugin$b:
+    io.flutter.plugin.common.MethodChannel$Result methodResult -> a
+    android.os.Handler handler -> b
+    void error(java.lang.String,java.lang.String,java.lang.Object) -> a
+    void success(java.lang.Object) -> b
+    void notImplemented() -> c
+    io.flutter.plugin.common.MethodChannel$Result access$000(com.mr.flutter.plugin.filepicker.FilePickerPlugin$MethodResultWrapper) -> d
+com.mr.flutter.plugin.filepicker.FilePickerPlugin$MethodResultWrapper$1 -> com.mr.flutter.plugin.filepicker.FilePickerPlugin$b$a:
+    java.lang.Object val$result -> e
+    com.mr.flutter.plugin.filepicker.FilePickerPlugin$MethodResultWrapper this$0 -> f
+com.mr.flutter.plugin.filepicker.FilePickerPlugin$MethodResultWrapper$2 -> com.mr.flutter.plugin.filepicker.FilePickerPlugin$b$b:
+    java.lang.String val$errorMessage -> f
+    java.lang.Object val$errorDetails -> g
+    com.mr.flutter.plugin.filepicker.FilePickerPlugin$MethodResultWrapper this$0 -> h
+    java.lang.String val$errorCode -> e
+com.mr.flutter.plugin.filepicker.FilePickerPlugin$MethodResultWrapper$3 -> com.mr.flutter.plugin.filepicker.FilePickerPlugin$b$c:
+    com.mr.flutter.plugin.filepicker.FilePickerPlugin$MethodResultWrapper this$0 -> e
+com.mr.flutter.plugin.filepicker.FileUtils -> com.mr.flutter.plugin.filepicker.c:
+    boolean clearCache(android.content.Context) -> a
+    java.lang.String getDirectoryPath(java.lang.Class,java.lang.Object) -> b
+    java.lang.String getDocumentPathFromTreeUri(android.net.Uri) -> c
+    java.lang.String getFileName(android.net.Uri,android.content.Context) -> d
+    java.lang.String getFullPathFromTreeUri(android.net.Uri,android.content.Context) -> e
+    java.lang.String[] getMimeTypes(java.util.ArrayList) -> f
+    java.lang.String getVolumeIdFromTreeUri(android.net.Uri) -> g
+    java.lang.String getVolumePath(java.lang.String,android.content.Context) -> h
+    boolean isDownloadsDocument(android.net.Uri) -> i
+    void loadData(java.io.File,com.mr.flutter.plugin.filepicker.FileInfo$Builder) -> j
+    com.mr.flutter.plugin.filepicker.FileInfo openFileStream(android.content.Context,android.net.Uri,boolean) -> k
 com.scottyab.rootbeer.Const -> v2.a:
     java.lang.String[] pathsThatShouldNotBeWritable -> e
     java.lang.String[] suPaths -> d
@@ -28200,9 +28322,9 @@ io.flutter.plugins.imagepicker.ImagePickerDelegate -> io.flutter.plugins.imagepi
     void launchMultiPickImageFromGalleryIntent() -> z
 io.flutter.plugins.imagepicker.ImagePickerDelegate$1 -> io.flutter.plugins.imagepicker.e$a:
     android.app.Activity val$activity -> a
-    boolean needRequestCameraPermission() -> a
-    void askForPermission(java.lang.String,int) -> b
-    boolean isPermissionGranted(java.lang.String) -> c
+    void askForPermission(java.lang.String,int) -> a
+    boolean isPermissionGranted(java.lang.String) -> b
+    boolean needRequestCameraPermission() -> c
 io.flutter.plugins.imagepicker.ImagePickerDelegate$2 -> io.flutter.plugins.imagepicker.e$b:
     android.app.Activity val$activity -> a
     android.net.Uri resolveFileProviderUriForFile(java.lang.String,java.io.File) -> a
@@ -28222,9 +28344,9 @@ io.flutter.plugins.imagepicker.ImagePickerDelegate$FileUriResolver -> io.flutter
 io.flutter.plugins.imagepicker.ImagePickerDelegate$OnPathReadyListener -> io.flutter.plugins.imagepicker.e$f:
     void onPathReady(java.lang.String) -> a
 io.flutter.plugins.imagepicker.ImagePickerDelegate$PermissionManager -> io.flutter.plugins.imagepicker.e$g:
-    boolean needRequestCameraPermission() -> a
-    void askForPermission(java.lang.String,int) -> b
-    boolean isPermissionGranted(java.lang.String) -> c
+    void askForPermission(java.lang.String,int) -> a
+    boolean isPermissionGranted(java.lang.String) -> b
+    boolean needRequestCameraPermission() -> c
 io.flutter.plugins.imagepicker.ImagePickerPlugin -> io.flutter.plugins.imagepicker.ImagePickerPlugin:
     io.flutter.embedding.engine.plugins.FlutterPlugin$FlutterPluginBinding pluginBinding -> e
     io.flutter.plugins.imagepicker.ImagePickerPlugin$ActivityState activityState -> f

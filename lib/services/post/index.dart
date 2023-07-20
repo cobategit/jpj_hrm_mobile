@@ -92,6 +92,48 @@ class PostData {
     }
   }
 
+  Future<Map<String, dynamic>> patchData(ApiModel? apiModel) async {
+    Map<String, dynamic> resJson;
+
+    dynamic url = Uri.parse('${apiModel!.url}${apiModel.path}');
+
+    Map<String, dynamic> header;
+    if (apiModel.isToken!) {
+      header = {
+        'Content-type': 'application/json',
+        'Accept': 'application/*',
+        'Authorization': 'Bearer ${apiModel.token}'
+      };
+    } else {
+      header = {
+        'Content-type': 'application/json',
+        'Accept': 'application/*',
+      };
+    }
+
+    try {
+      http.Response resData = await http
+          .patch(url, body: json.encode(apiModel.body), headers: {...header});
+
+      if (resData.statusCode == 200) {
+        resJson = json.decode(resData.body);
+      } else {
+        resJson = json.decode(resData.body);
+      }
+
+      if (kDebugMode) {
+        print('response patch => $resJson');
+      }
+      return resJson;
+    } catch (e) {
+      if (kDebugMode) {
+        print('error catch patch => $e');
+      }
+      resJson = {'error': e};
+      return resJson;
+    }
+  }
+
   Future<Map<String, dynamic>> postFormData(
       ApiModel? apiModel, String? method) async {
     Map<String, dynamic> resJson;

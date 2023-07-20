@@ -43,6 +43,19 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
+      name="C:\laragon\www\jpj_hrm_mobile\android@@:file_picker::release"
+      jars="C:\laragon\www\jpj_hrm_mobile\build\file_picker\.transforms\55632c5210e0ed7e762254cdfd822793\transformed\out\jars\classes.jar"
+      resolved="com.mr.flutter.plugin.filepicker:file_picker:unspecified"
+      folder="C:\laragon\www\jpj_hrm_mobile\build\file_picker\.transforms\55632c5210e0ed7e762254cdfd822793\transformed\out"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
       name="C:\laragon\www\jpj_hrm_mobile\android@@:path_provider_android::release"
       jars="C:\laragon\www\jpj_hrm_mobile\build\path_provider_android\.transforms\db1c88d8f133f82dc63997bec1b5baab\transformed\out\jars\classes.jar"
       resolved="io.flutter.plugins.pathprovider:path_provider_android:unspecified"

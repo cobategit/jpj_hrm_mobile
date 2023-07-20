@@ -32,7 +32,7 @@ class CustomDropdownMenu extends StatelessWidget {
       color: GlobalColor.light,
       height: GlobalSize.blockSizeVertical! * hp!,
       width: GlobalSize.blockSizeHorizontal! * wp!,
-      margin: margin!,
+      margin: margin,
       child: DropdownButtonFormField(
         value: value,
         items: items,
@@ -50,10 +50,12 @@ class CustomDropdownMenu extends StatelessWidget {
           filled: true,
           fillColor: GlobalColor.light,
           enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: GlobalColor.blue)),
+              borderSide: BorderSide(color: GlobalColor.blue),
+              borderRadius:
+                  BorderRadius.circular(GlobalSize.blockSizeVertical! * 2)),
           border: OutlineInputBorder(
               borderRadius:
-                  BorderRadius.circular(GlobalSize.blockSizeVertical! * 1),
+                  BorderRadius.circular(GlobalSize.blockSizeVertical! * 2),
               borderSide: const BorderSide(color: Colors.white)),
           hintText: hinText!,
           hintStyle: TextStyle(
