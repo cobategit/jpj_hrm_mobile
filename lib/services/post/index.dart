@@ -146,20 +146,36 @@ class PostData {
       request.headers['Content-type'] = 'multipart/form-data';
 
       apiModel.body?.forEach((key, value) {
-        if (key != 'picture') {
+        if (key != 'picture' || key != 'file_sakit') {
           request.fields[key] = value;
         }
       });
-      request.files.add(
-        http.MultipartFile(
-          'picture',
-          File(apiModel.body!['picture']).readAsBytes().asStream(),
-          File(apiModel.body!['picture']).lengthSync(),
-          filename: apiModel.body!['picture'].split("/").last,
-          contentType: MediaType(
-              "image", "${File(apiModel.body!['picture']).runtimeType}"),
-        ),
-      );
+
+      if (apiModel.body!['picture'] != null) {
+        request.files.add(
+          http.MultipartFile(
+            'picture',
+            File(apiModel.body!['picture']).readAsBytes().asStream(),
+            File(apiModel.body!['picture']).lengthSync(),
+            filename: apiModel.body!['picture'].split("/").last,
+            contentType: MediaType(
+                "image", "${File(apiModel.body!['picture']).runtimeType}"),
+          ),
+        );
+      }
+
+      if (apiModel.body!['file_sakit'] != null) {
+        request.files.add(
+          http.MultipartFile(
+            'file_sakit',
+            File(apiModel.body!['file_sakit']).readAsBytes().asStream(),
+            File(apiModel.body!['file_sakit']).lengthSync(),
+            filename: apiModel.body!['file_sakit'].split("/").last,
+            contentType: MediaType(
+                "image", "${File(apiModel.body!['file_sakit']).runtimeType}"),
+          ),
+        );
+      }
 
       final response = await request.send();
 

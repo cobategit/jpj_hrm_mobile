@@ -119,6 +119,9 @@ class AbsensiController extends GetxController {
     } else {
       getDataScheduleEmpPerDay();
     }
+    if (!kIsWeb) {
+      handleCheckConnection();
+    }
     getDataProfile();
     handleGetLogAttandance();
   }

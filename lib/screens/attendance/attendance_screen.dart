@@ -133,7 +133,7 @@ class AttendanceScreen extends StatelessWidget {
                                               Text(
                                                 '${absensiController.listLogAtt![index]['check_in'] ?? '00:00'} '
                                                 's/d'
-                                                '${absensiController.listLogAtt![index]['check_out'] ?? ' 00:00'} ',
+                                                ' ${absensiController.listLogAtt![index]['check_out'] ?? ' 00:00'} ',
                                                 textAlign: TextAlign.left,
                                                 style: TextStyle(
                                                   fontSize: GlobalSize

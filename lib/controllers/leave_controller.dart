@@ -15,6 +15,7 @@ import '../screens/index.dart';
 import '../utils/alertDialog/index.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:month_picker_dialog/month_picker_dialog.dart';
+import 'package:flutter_file_downloader/flutter_file_downloader.dart';
 
 class LeaveController extends GetxController {
   RxList<dynamic>? listTypeCuti;
@@ -42,6 +43,7 @@ class LeaveController extends GetxController {
   TextEditingController? timeToTugasKantor;
   TextEditingController? filterDateMangkirText;
   GlobalKey<RefreshIndicatorState>? refreshKey;
+  GlobalKey<FormState>? formKeyMangkir;
   RxInt? sumcutiTahunan;
   RxInt? sisacutiTahunan;
   RxInt? quotacutiTahunan;
@@ -59,9 +61,10 @@ class LeaveController extends GetxController {
   Rxn<File>? fileSakitMangkir;
   AbsensiController? _absensiController;
   RxMap<String, dynamic>? paramsHistoryMangkir;
+  RxInt? countPendingMangkir;
 
   @override
-  void onInit() {
+  void onInit() async {
     filterTglLeave = TextEditingController();
     backUpEmpTxt = {}.obs;
     dariTglTxt = TextEditingController();
@@ -71,6 +74,7 @@ class LeaveController extends GetxController {
     timeFromTugasKantor = TextEditingController();
     timeToTugasKantor = TextEditingController();
     filterDateMangkirText = TextEditingController();
+    formKeyMangkir = GlobalKey<FormState>();
     valTypeCuti = Rxn<String>();
     valBackupEmp = Rxn<String>();
     dariTglVal = Rxn<String>();
@@ -104,10 +108,15 @@ class LeaveController extends GetxController {
     quotacutiBesar = 0.obs;
     quotacutiKhusus = 0.obs;
     quotacutiLahir = 0.obs;
+    countPendingMangkir = 0.obs;
     selectedJenisMangkir = false.obs;
     tmpJenisMangkir = {'id': 0, 'name': '', 'active': false}.obs;
     _absensiController = Get.find<AbsensiController>();
     paramsHistoryMangkir = RxMap<String, dynamic>({});
+    getCountPendingMangkir();
+    getLeaveSummary();
+    getBackupEmp();
+    getLeaveHist();
     super.onInit();
   }
 
@@ -126,27 +135,30 @@ class LeaveController extends GetxController {
 
   @override
   void onReady() {
-    getLeaveSummary();
-    getBackupEmp();
-    getLeaveHist();
     dariTglTxt?.text = DateFormat('yyyy-MM-dd').format(DateTime.now());
     dariTglVal!(DateFormat('yyyy-MM-dd').format(DateTime.now()));
     super.onReady();
   }
 
   onChangedJenisMangkir(dynamic element, int i) {
+    final id = element['id'];
     final name = element['name'];
     final select = !element['selected'];
     listTypeCuti?[i]['selected'] = select;
     tmpJenisMangkir!['name'] = name;
     tmpJenisMangkir!['active'] = select;
+    tmpJenisMangkir!['id'] = id;
     valTypeLeaveSub = Rxn<String>();
     fileSakitMangkir = Rxn<File>();
     fileSakitMangkirTxt?.clear();
     timeFromTugasKantor?.clear();
     timeToTugasKantor?.clear();
-    if (name == 'Urusan Pribadi / Kantor') {
+    if (name == 'Urusan') {
       getLeaveTypeSub(element['id']);
+    }
+    if (element['selected'] == false) {
+      tmpJenisMangkir!['name'] = '';
+      tmpJenisMangkir!['id'] = 0;
     }
   }
 
@@ -161,6 +173,8 @@ class LeaveController extends GetxController {
   }
 
   handlePickTimeTugasKantor(BuildContext context, String? type) async {
+    TimeOfDay? initialTime;
+
     TimeOfDay? pickedTime =
         await showTimePicker(context: context, initialTime: TimeOfDay.now());
 
@@ -205,7 +219,8 @@ class LeaveController extends GetxController {
     }
   }
 
-  handleSelectDateForm(BuildContext ctx, type, wp, hp) async {
+  handleSelectDateForm(BuildContext ctx, type, wp, hp,
+      {String? jenis = ''}) async {
     DateTime selectDate = DateTime.now();
     late final DateTime firstDate;
     late final DateTime lastDate;
@@ -219,8 +234,13 @@ class LeaveController extends GetxController {
         lastDate = selectDate.add(const Duration(days: 30));
       }
     } else {
-      firstDate = DateTime.now();
-      lastDate = selectDate.add(const Duration(days: 30));
+      if (jenis == "mangkir") {
+        firstDate = DateTime.now().add(const Duration(days: -7));
+        lastDate = selectDate.add(const Duration(days: 7));
+      } else {
+        firstDate = DateTime.now();
+        lastDate = selectDate.add(const Duration(days: 30));
+      }
     }
 
     sampleBlockDate?.forEach((element) {
@@ -313,10 +333,57 @@ class LeaveController extends GetxController {
   }
 
   handleBackFormMangkir(context) {
+    tmpJenisMangkir?['id'] = 0;
     tmpJenisMangkir?['name'] = '';
     tmpJenisMangkir?['active'] = false;
     dariTglTxt?.clear();
+    keteranganTxt!.clear();
     AllNavigation.popNav(context, false, null);
+  }
+
+  handleDownloadPdf(context, fileSakit, name, hp) async {
+    FileDownloader.downloadFile(
+      url: fileSakit,
+      name: "sakit-$name",
+      onProgress: (fileName, progress) {
+        isLoading!(true);
+      },
+      onDownloadCompleted: (value) {
+        isLoading!(false);
+        WidgetsBinding.instance.addPostFrameCallback((_) async {
+          await AlertDialogMsg.showCupertinoDialogSimple(
+              context,
+              'Informasi',
+              'File berhasil didownload: $value',
+              [
+                ElevatedButton(
+                  onPressed: () async {
+                    AllNavigation.popNav(context, false, null);
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+              hp);
+        });
+      },
+      onDownloadError: (errorMessage) {
+        WidgetsBinding.instance.addPostFrameCallback((_) async {
+          await AlertDialogMsg.showCupertinoDialogSimple(
+              context,
+              'Informasi',
+              'File gagal didownload, $errorMessage',
+              [
+                ElevatedButton(
+                  onPressed: () async {
+                    AllNavigation.popNav(context, false, null);
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+              hp);
+        });
+      },
+    );
   }
 
   handleReqLeave(Map<String, dynamic> data, ctx, hp) async {
@@ -686,5 +753,149 @@ class LeaveController extends GetxController {
     });
   }
 
-  Future<void> addMangkir() async {}
+  Future<void> getCountPendingMangkir() async {
+    SharedPreferences session = await SharedPreferences.getInstance();
+    isLoading!(true);
+
+    final ApiModel apiModel = ApiModel(
+        url: Api.apiUrl,
+        path:
+            '${Path.countPendingMangkir}?id_user=${_absensiController?.dataProfile?['id']}',
+        isToken: true,
+        token: session.getString('token'));
+
+    final Map<String, dynamic> res = await GetData().getData(apiModel);
+    isLoading!(false);
+    countPendingMangkir!(res['pending']);
+  }
+
+  Future<void> addMangkir(ctx, wp, hp) async {
+    if (tmpJenisMangkir!['id'] == 0 || dariTglTxt!.text.isEmpty) {
+      return WidgetsBinding.instance.addPostFrameCallback((_) async {
+        await AlertDialogMsg.showCupertinoDialogSimple(
+            ctx,
+            'Peringatan!',
+            'Harap isi form yang kosong',
+            [
+              ElevatedButton(
+                onPressed: () async {
+                  AllNavigation.popNav(ctx, false, null);
+                },
+                child: const Text('OK'),
+              ),
+            ],
+            hp);
+      });
+    }
+
+    if ((tmpJenisMangkir!['id'] == 6 && valTypeLeaveSub!.value == null) ||
+        dariTglTxt!.text.isEmpty) {
+      return WidgetsBinding.instance.addPostFrameCallback((_) async {
+        await AlertDialogMsg.showCupertinoDialogSimple(
+            ctx,
+            'Peringatan!',
+            'Harap isi form yang kosong',
+            [
+              ElevatedButton(
+                onPressed: () async {
+                  AllNavigation.popNav(ctx, false, null);
+                },
+                child: const Text('OK'),
+              ),
+            ],
+            hp);
+      });
+    }
+
+    if ((tmpJenisMangkir!['id'] == 6 &&
+            valTypeLeaveSub!.value == "3" &&
+            (timeFromTugasKantor!.text.isEmpty ||
+                timeToTugasKantor!.text.isEmpty)) ||
+        dariTglTxt!.text.isEmpty) {
+      return WidgetsBinding.instance.addPostFrameCallback((_) async {
+        await AlertDialogMsg.showCupertinoDialogSimple(
+            ctx,
+            'Peringatan!',
+            'Harap isi form yang kosong',
+            [
+              ElevatedButton(
+                onPressed: () async {
+                  AllNavigation.popNav(ctx, false, null);
+                },
+                child: const Text('OK'),
+              ),
+            ],
+            hp);
+      });
+    }
+
+    SharedPreferences session = await SharedPreferences.getInstance();
+    final Map<String, dynamic> bodyData = {
+      "id_user": _absensiController!.dataProfile!['id'].toString(),
+      "nik": _absensiController!.dataProfile!['nik'].split("-")[1],
+      "id_dept": _absensiController!.dataProfile!['id_department'].toString(),
+      "id_leave_types": tmpJenisMangkir!['id'].toString(),
+      "reasons": keteranganTxt!.text,
+      "start_leave_date": dariTglTxt!.text
+    };
+
+    if (valTypeLeaveSub!.value != null) {
+      bodyData['id_leave_types_sub'] = valTypeLeaveSub!.value;
+    }
+
+    if (timeFromTugasKantor!.text.isNotEmpty &&
+        timeToTugasKantor!.text.isNotEmpty) {
+      bodyData['from_time_tugas_kantor'] = timeFromTugasKantor!.text;
+      bodyData['to_time_tugas_kantor'] = timeToTugasKantor!.text;
+    }
+
+    if (fileSakitMangkirTxt!.text.isNotEmpty) {
+      bodyData['file_sakit'] = fileSakitMangkir?.value?.path;
+    }
+
+    final ApiModel apiModel = ApiModel(
+        url: Api.apiUrl,
+        path: Path.addMangkir,
+        body: bodyData,
+        token: session.getString('token'),
+        isToken: true);
+
+    isLoading!(true);
+    final Map<String, dynamic> res =
+        await PostData().postFormData(apiModel, 'POST');
+    isLoading!(false);
+
+    if (res['success']) {
+      tmpJenisMangkir?['id'] = 0;
+      tmpJenisMangkir?['name'] = '';
+      tmpJenisMangkir?['active'] = false;
+      valTypeLeaveSub!.value = null;
+      fileSakitMangkirTxt!.clear();
+      keteranganTxt!.clear();
+      dariTglTxt?.clear();
+      fileSakitMangkirTxt!.clear();
+      fileSakitMangkir = Rxn<File>();
+      timeFromTugasKantor!.clear();
+      timeToTugasKantor!.clear();
+      getHistoryMangkir();
+      getCountPendingMangkir();
+      AllNavigation.popNav(ctx, false, null);
+    } else {
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        await AlertDialogMsg.showCupertinoDialogSimple(
+            ctx,
+            'Informasi!',
+            'Terjadi kesalahan add mangkir',
+            [
+              ElevatedButton(
+                onPressed: () async {
+                  AllNavigation.popNav(ctx, false, null);
+                },
+                child: const Text('OK'),
+              ),
+            ],
+            hp);
+      });
+    }
+  }
 }

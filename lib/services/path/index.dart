@@ -21,4 +21,6 @@ class Path {
   static String leavereq = '/leaves/requestMobile';
   static String logAttandance = '/log';
   static String updateStatusMangkir = '/leaves/status-mangkir';
+  static String countPendingMangkir = '/leaves/pending-mangkir';
+  static String addMangkir = '/leaves/add-mangkir';
 }

@@ -47,5 +47,6 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>CFBundleDevelopmentRegion</key>
 </dict>
 </plist>

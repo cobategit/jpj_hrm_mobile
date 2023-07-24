@@ -21,6 +21,7 @@ class HistoryMangkirScreen extends StatelessWidget {
       onWillPop: () {
         _leaveController.filterDateMangkirText?.clear();
         _leaveController.valTypeStatus!.value = null;
+        _leaveController.getCountPendingMangkir();
         AllNavigation.popNav(context, false, null);
         throw true;
       },
@@ -39,7 +40,7 @@ class HistoryMangkirScreen extends StatelessWidget {
         floatingActionButton: Padding(
           padding: EdgeInsets.only(bottom: GlobalSize.blockSizeVertical! * 8),
           child: FloatingActionButton(
-            backgroundColor: const Color.fromARGB(248, 8, 235, 65),
+            backgroundColor: const Color.fromARGB(248, 12, 85, 245),
             onPressed: () {
               _leaveController.getLeaveType(2);
               _leaveController.getBlockDateLeave();
@@ -92,7 +93,7 @@ class HistoryMangkirScreen extends StatelessWidget {
                                             "Rejected"
                                         ? const Color.fromARGB(248, 245, 2, 22)
                                         : const Color.fromARGB(
-                                            248, 215, 230, 9);
+                                            248, 248, 245, 37);
                                 return Container(
                                   margin: EdgeInsets.only(
                                       bottom:
@@ -124,43 +125,80 @@ class HistoryMangkirScreen extends StatelessWidget {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                mangkirDate,
-                                                textAlign: TextAlign.left,
-                                                style: TextStyle(
-                                                  fontSize: GlobalSize
-                                                          .blockSizeVertical! *
-                                                      2.6,
-                                                  fontWeight: FontWeight.w700,
-                                                  color: GlobalColor.dark,
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  mangkirDate,
+                                                  textAlign: TextAlign.left,
+                                                  style: TextStyle(
+                                                    fontSize: GlobalSize
+                                                            .blockSizeVertical! *
+                                                        2.6,
+                                                    fontWeight: FontWeight.w700,
+                                                    color: GlobalColor.dark,
+                                                  ),
                                                 ),
-                                              ),
-                                              SizedBox(
-                                                  height: GlobalSize
-                                                          .blockSizeVertical! *
-                                                      1),
-                                              Text(
-                                                _leaveController.listHistoryMangkir![
-                                                                index][
-                                                            'leave_types_sub'] !=
-                                                        null
-                                                    ? '${_leaveController.listHistoryMangkir?[index]['leave_types']} (${_leaveController.listHistoryMangkir?[index]['leave_types_sub']})'
-                                                    : _leaveController
-                                                            .listHistoryMangkir?[
-                                                        index]['leave_types'],
-                                                textAlign: TextAlign.left,
-                                                style: TextStyle(
-                                                  fontSize: GlobalSize
-                                                          .blockSizeVertical! *
-                                                      2.3,
-                                                  color: GlobalColor.dark,
+                                                SizedBox(
+                                                    height: GlobalSize
+                                                            .blockSizeVertical! *
+                                                        1),
+                                                Text(
+                                                  _leaveController
+                                                          .listHistoryMangkir![
+                                                      index]['no_leaves'],
+                                                  textAlign: TextAlign.left,
+                                                  style: TextStyle(
+                                                    fontSize: GlobalSize
+                                                            .blockSizeVertical! *
+                                                        2.3,
+                                                    color: GlobalColor.dark,
+                                                  ),
                                                 ),
-                                              ),
-                                            ],
+                                                SizedBox(
+                                                    height: GlobalSize
+                                                            .blockSizeVertical! *
+                                                        1),
+                                                Text(
+                                                  _leaveController.listHistoryMangkir![
+                                                                  index][
+                                                              'leave_types_sub'] !=
+                                                          null
+                                                      ? '${_leaveController.listHistoryMangkir?[index]['leave_types']} (${_leaveController.listHistoryMangkir?[index]['leave_types_sub']})'
+                                                      : _leaveController
+                                                              .listHistoryMangkir?[
+                                                          index]['leave_types'],
+                                                  textAlign: TextAlign.left,
+                                                  style: TextStyle(
+                                                    fontSize: GlobalSize
+                                                            .blockSizeVertical! *
+                                                        2.3,
+                                                    color: GlobalColor.dark,
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                    height: GlobalSize
+                                                            .blockSizeVertical! *
+                                                        1),
+                                                if (_leaveController
+                                                            .listHistoryMangkir![
+                                                        index]['leave_types_sub'] !=
+                                                    null) ...[
+                                                  Text(
+                                                    "${_leaveController.listHistoryMangkir?[index]['time_from_tugas_kantor']} s/d ${_leaveController.listHistoryMangkir?[index]['time_to_tugas_kantor']}",
+                                                    textAlign: TextAlign.left,
+                                                    style: TextStyle(
+                                                      fontSize: GlobalSize
+                                                              .blockSizeVertical! *
+                                                          2.3,
+                                                      color: GlobalColor.dark,
+                                                    ),
+                                                  ),
+                                                ]
+                                              ],
+                                            ),
                                           ),
                                           Column(
                                             crossAxisAlignment:
@@ -195,70 +233,108 @@ class HistoryMangkirScreen extends StatelessWidget {
                                                   height: GlobalSize
                                                           .blockSizeVertical! *
                                                       1),
-                                              if (_leaveController
+                                              Row(
+                                                children: [
+                                                  if (_leaveController
                                                               .listHistoryMangkir![
-                                                          index]['status'] ==
-                                                      "Pending" &&
-                                                  _absensiController
-                                                              .dataProfile![
-                                                          'role'] ==
-                                                      "Manager") ...[
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
+                                                          index]['file_sakit'] !=
+                                                      null) ...[
                                                     InkWell(
                                                         onTap: () {
-                                                          _leaveController.updateStatusMangkir(
+                                                          _leaveController.handleDownloadPdf(
                                                               context,
-                                                              GlobalSize
-                                                                  .blockSizeHorizontal!,
-                                                              GlobalSize
-                                                                  .blockSizeVertical!,
                                                               _leaveController
-                                                                      .listHistoryMangkir![
-                                                                  index],
-                                                              "Approved");
+                                                                          .listHistoryMangkir![
+                                                                      index][
+                                                                  'file_sakit'],
+                                                              _leaveController
+                                                                          .listHistoryMangkir![
+                                                                      index][
+                                                                  'name_request'],
+                                                              GlobalSize
+                                                                  .blockSizeVertical);
                                                         },
                                                         child: Icon(
-                                                          Icons.add_task_sharp,
+                                                          Icons.file_open,
                                                           color:
-                                                              Colors.green[700],
+                                                              Colors.grey[700],
                                                           size: GlobalSize
                                                                   .blockSizeHorizontal! *
                                                               6.0,
                                                         )),
-                                                    SizedBox(
-                                                      width: GlobalSize
-                                                              .blockSizeHorizontal! *
-                                                          5,
-                                                    ),
-                                                    InkWell(
-                                                        onTap: () {
-                                                          _leaveController.updateStatusMangkir(
-                                                              context,
-                                                              GlobalSize
-                                                                  .blockSizeHorizontal!,
-                                                              GlobalSize
-                                                                  .blockSizeVertical!,
-                                                              _leaveController
-                                                                      .listHistoryMangkir![
-                                                                  index],
-                                                              "Rejected");
-                                                        },
-                                                        child: Icon(
-                                                          Icons
-                                                              .backspace_outlined,
-                                                          color:
-                                                              Colors.red[700],
-                                                          size: GlobalSize
-                                                                  .blockSizeHorizontal! *
-                                                              6.0,
-                                                        ))
                                                   ],
-                                                )
-                                              ]
+                                                  SizedBox(
+                                                    width: GlobalSize
+                                                            .blockSizeHorizontal! *
+                                                        5,
+                                                  ),
+                                                  if (_leaveController.listHistoryMangkir![
+                                                                  index]
+                                                              ['status'] ==
+                                                          "Pending" &&
+                                                      _absensiController
+                                                                  .dataProfile![
+                                                              'role'] ==
+                                                          "Manager") ...[
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        InkWell(
+                                                            onTap: () {
+                                                              _leaveController.updateStatusMangkir(
+                                                                  context,
+                                                                  GlobalSize
+                                                                      .blockSizeHorizontal!,
+                                                                  GlobalSize
+                                                                      .blockSizeVertical!,
+                                                                  _leaveController
+                                                                          .listHistoryMangkir![
+                                                                      index],
+                                                                  "Approved");
+                                                            },
+                                                            child: Icon(
+                                                              Icons
+                                                                  .assignment_turned_in_rounded,
+                                                              color: Colors
+                                                                  .green[700],
+                                                              size: GlobalSize
+                                                                      .blockSizeHorizontal! *
+                                                                  6.0,
+                                                            )),
+                                                        SizedBox(
+                                                          width: GlobalSize
+                                                                  .blockSizeHorizontal! *
+                                                              5,
+                                                        ),
+                                                        InkWell(
+                                                            onTap: () {
+                                                              _leaveController.updateStatusMangkir(
+                                                                  context,
+                                                                  GlobalSize
+                                                                      .blockSizeHorizontal!,
+                                                                  GlobalSize
+                                                                      .blockSizeVertical!,
+                                                                  _leaveController
+                                                                          .listHistoryMangkir![
+                                                                      index],
+                                                                  "Rejected");
+                                                            },
+                                                            child: Icon(
+                                                              Icons
+                                                                  .backspace_rounded,
+                                                              color: Colors
+                                                                  .red[700],
+                                                              size: GlobalSize
+                                                                      .blockSizeHorizontal! *
+                                                                  6.0,
+                                                            ))
+                                                      ],
+                                                    )
+                                                  ]
+                                                ],
+                                              ),
                                             ],
                                           )
                                         ],
@@ -275,18 +351,16 @@ class HistoryMangkirScreen extends StatelessWidget {
                       child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomTextInput(
                               textController:
                                   _leaveController.filterDateMangkirText,
                               wp: GlobalSize.blockSizeHorizontal! * 26,
-                              hp: GlobalSize.blockSizeVertical! * 6,
+                              hp: GlobalSize.blockSizeVertical! * 5.5,
                               margin: EdgeInsets.only(
-                                  top: GlobalSize.blockSizeVertical! * 1,
+                                  top: GlobalSize.blockSizeVertical! * 0.5,
                                   right: GlobalSize.blockSizeHorizontal! * 4),
-                              hintText: "Filter Tanggal",
+                              hintText: "Bulan-Tahun",
                               readOnly: true,
                               contentPadding: EdgeInsets.symmetric(
                                 horizontal: GlobalSize.blockSizeHorizontal! * 2,
@@ -313,10 +387,10 @@ class HistoryMangkirScreen extends StatelessWidget {
                                                     1.8)),
                                   );
                                 }).toList(),
-                                hp: 6,
+                                hp: 5.5,
                                 wp: 26,
                                 margin: EdgeInsets.only(
-                                    top: GlobalSize.blockSizeVertical! * 1,
+                                    top: GlobalSize.blockSizeVertical! * 0.3,
                                     right: GlobalSize.blockSizeHorizontal! * 4),
                                 onChanged: (value) {
                                   _leaveController

@@ -20,6 +20,12 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "badges",
+      "rootUri": "file:///C:/Users/alani/AppData/Local/Pub/Cache/hosted/pub.dev/badges-3.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "boolean_selector",
       "rootUri": "file:///C:/Users/alani/AppData/Local/Pub/Cache/hosted/pub.dev/boolean_selector-2.1.1",
       "packageUri": "lib/",
@@ -212,6 +218,18 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "flutter_file_dialog",
+      "rootUri": "file:///C:/Users/alani/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_file_dialog-3.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_file_downloader",
+      "rootUri": "file:///C:/Users/alani/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_file_downloader-1.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_launcher_icons",
       "rootUri": "file:///C:/Users/alani/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_launcher_icons-0.12.0",
       "packageUri": "lib/",
@@ -226,6 +244,12 @@
     {
       "name": "flutter_localizations",
       "rootUri": "file:///C:/flutter/packages/flutter_localizations",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
+      "name": "flutter_pdfview",
+      "rootUri": "file:///C:/Users/alani/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_pdfview-1.3.1",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
@@ -429,9 +453,9 @@
     },
     {
       "name": "path_provider",
-      "rootUri": "file:///C:/Users/alani/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider-2.0.13",
+      "rootUri": "file:///C:/Users/alani/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider-2.0.15",
       "packageUri": "lib/",
-      "languageVersion": "2.14"
+      "languageVersion": "2.17"
     },
     {
       "name": "path_provider_android",
@@ -716,7 +740,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-07-14T03:47:06.193582Z",
+  "generated": "2023-07-23T10:50:26.772309Z",
   "generator": "pub",
   "generatorVersion": "2.19.3"
 }
