@@ -53,10 +53,10 @@ class FormMangkirScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Jenis Keterangan:',
+                              'Jenis:',
                               style: TextStyle(
                                   fontSize:
-                                      GlobalSize.blockSizeVertical! * 2.5),
+                                      GlobalSize.blockSizeVertical! * 2.2),
                             ),
                             Obx(() {
                               return Column(
@@ -88,7 +88,7 @@ class FormMangkirScreen extends StatelessWidget {
                                               style: TextStyle(
                                                   fontSize: GlobalSize
                                                           .blockSizeVertical! *
-                                                      2.5),
+                                                      2.2),
                                             ),
                                           ],
                                         )))
@@ -105,7 +105,7 @@ class FormMangkirScreen extends StatelessWidget {
                                   style: TextStyle(
                                       color: GlobalColor.red,
                                       fontSize:
-                                          GlobalSize.blockSizeVertical! * 2.5),
+                                          GlobalSize.blockSizeVertical! * 2.2),
                                 );
                               } else {
                                 return Container();
@@ -177,7 +177,7 @@ class FormMangkirScreen extends StatelessWidget {
                             }),
                             Obx(() {
                               if (leaveController.tmpJenisMangkir?['name'] ==
-                                      'Urusan' &&
+                                      'Lainnya' &&
                                   leaveController.tmpJenisMangkir?['active']) {
                                 return CustomDropdownMenu(
                                   value: leaveController.valTypeLeaveSub!.value,
@@ -207,7 +207,7 @@ class FormMangkirScreen extends StatelessWidget {
                             }),
                             Obx(() {
                               if (leaveController.tmpJenisMangkir?['name'] ==
-                                      'Urusan' &&
+                                      'Lainnya' &&
                                   leaveController.tmpJenisMangkir?['active'] &&
                                   leaveController.valTypeLeaveSub!.value ==
                                       "3") {
@@ -281,7 +281,7 @@ class FormMangkirScreen extends StatelessWidget {
                               'Tanggal:',
                               style: TextStyle(
                                   fontSize:
-                                      GlobalSize.blockSizeVertical! * 2.5),
+                                      GlobalSize.blockSizeVertical! * 2.2),
                             ),
                             CustomTextInput(
                               margin: EdgeInsets.only(
@@ -314,7 +314,7 @@ class FormMangkirScreen extends StatelessWidget {
                               'Keterangan:',
                               style: TextStyle(
                                   fontSize:
-                                      GlobalSize.blockSizeVertical! * 2.5),
+                                      GlobalSize.blockSizeVertical! * 2.2),
                             ),
                             CustomTextInput(
                               margin: EdgeInsets.only(

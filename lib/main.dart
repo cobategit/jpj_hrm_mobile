@@ -91,7 +91,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // AuthController authController = Get.put(AuthController());
+    AuthController authController = Get.find<AuthController>();
 
     // if (authController.checkConnection!.value) {
     //   FlutterBackgroundService().invoke("setAsBackground");

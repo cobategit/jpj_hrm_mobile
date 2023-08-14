@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.jpj_hrm_mobile.app-mergeDebugResources-29:/values-hr/values-hr.xml",
+            "outputFile": "com.example.jpj_hrm_mobile.app-mergeDebugResources-28:/values-hr/values-hr.xml",
             "map": [
                 {
                     "source": "C:\\Users\\alani\\.gradle\\caches\\transforms-3\\319471fabcc69a2214b13fc4911b255c\\transformed\\jetified-play-services-basement-17.5.0\\res\\values-hr\\values.xml",

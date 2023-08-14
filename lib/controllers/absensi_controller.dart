@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,6 +21,8 @@ import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:month_picker_dialog/month_picker_dialog.dart';
 import 'package:safe_device/safe_device.dart';
+import 'package:syncfusion_flutter_calendar/calendar.dart';
+// import 'dart:html' as html;
 
 class AbsensiController extends GetxController {
   TextEditingController? filterTglLeave;
@@ -52,6 +55,11 @@ class AbsensiController extends GetxController {
   Rx<bool>? safeDeviceDevMod;
   final Connectivity networkConnectivity = Connectivity();
   late StreamSubscription<ConnectivityResult> networkConnectivitySubscription;
+  TextEditingController? dariTglTxt;
+  TextEditingController? sampaiTglTxt;
+  RxMap<String, dynamic>? checkPresentBefore;
+  RxList<dynamic>? holidayDisable;
+  AuthController? _authController;
 
   @override
   void onInit() async {
@@ -86,10 +94,22 @@ class AbsensiController extends GetxController {
     checkNetwork = Rx<bool>(false);
     safeDeviceMocLoc = Rx<bool>(false);
     safeDeviceDevMod = Rx<bool>(false);
+    hostnameWeb = Rx<dynamic>('');
+    dariTglTxt = TextEditingController();
+    sampaiTglTxt = TextEditingController();
+    checkPresentBefore = RxMap<String, dynamic>({});
+    holidayDisable = RxList([{}]);
+    _authController = Get.find<AuthController>();
     await getDataProfile();
     await handleGetLogAttandance();
+    await getCheckPresentBefore();
+    await gpsController?.handleLocationPermission();
+    super.onInit();
+  }
+
+  @override
+  void onReady() async {
     if (!kIsWeb) {
-      await gpsController?.handleLocationPermission();
       isLoading!(true);
       await handleGetCurrentLocation();
       await handleCheckConnection();
@@ -97,8 +117,7 @@ class AbsensiController extends GetxController {
       safeDeviceDevMod!(await SafeDevice.isDevelopmentModeEnable);
       isLoading!(false);
     }
-    hostnameWeb = Rx<dynamic>('');
-    super.onInit();
+    super.onReady();
   }
 
   @override
@@ -120,18 +139,25 @@ class AbsensiController extends GetxController {
       getDataScheduleEmpPerDay();
     }
     if (!kIsWeb) {
-      handleCheckConnection();
+      await gpsController?.handleLocationPermission();
+      isLoading!(true);
+      await handleGetCurrentLocation();
+      await handleCheckConnection();
+      safeDeviceMocLoc!(await SafeDevice.canMockLocation);
+      safeDeviceDevMod!(await SafeDevice.isDevelopmentModeEnable);
+      isLoading!(false);
     }
     getDataProfile();
     handleGetLogAttandance();
+    getCheckPresentBefore();
   }
 
   handleCheckConnection() async {
     try {
-      final rs = await InternetAddress.lookup('www.google.com');
-      if (rs.isNotEmpty && rs[0].rawAddress.isNotEmpty) {
-        checkNetwork!(true);
-      }
+      // final rs = await InternetAddress.lookup('www.google.com');
+      // if (rs.isNotEmpty && rs[0].rawAddress.isNotEmpty) {
+      //   checkNetwork!(true);
+      // }
 
       networkConnectivitySubscription =
           networkConnectivity.onConnectivityChanged.listen((event) {
@@ -253,7 +279,10 @@ class AbsensiController extends GetxController {
 
   Future<XFile?> handleCamera() async {
     final pickedFile = await ImagePicker().pickImage(
-        source: ImageSource.camera, maxHeight: 1920.0, maxWidth: 1080.0);
+        source: ImageSource.camera,
+        maxHeight: 1920.0,
+        maxWidth: 1080.0,
+        preferredCameraDevice: CameraDevice.front);
 
     if (pickedFile != null) {
       return XFile(pickedFile.path);
@@ -273,6 +302,75 @@ class AbsensiController extends GetxController {
       final placemarks =
           await placemarkFromCoordinates(position.latitude, position.longitude);
       location!(placemarks[0].locality);
+    });
+  }
+
+  handleClearHistoryPresent() async {
+    dariTglTxt?.clear();
+    sampaiTglTxt?.clear();
+    handleGetLogAttandance();
+  }
+
+  handleSelectDateForm(BuildContext ctx, type, wp, hp) async {
+    DateTime selectDate = DateTime.now();
+    late final DateTime firstDate;
+    late final DateTime lastDate;
+
+    if (type == 'sampai') {
+      if (dariTglTxt!.text.isEmpty) {
+        firstDate = DateTime(DateTime.now().year - 1, 5);
+        lastDate = DateTime(5000);
+      } else {
+        firstDate = DateTime.parse(dariTglTxt!.text);
+        lastDate = firstDate.add(const Duration(days: 30));
+      }
+    } else {
+      firstDate = DateTime(DateTime.now().year - 1, 5);
+      lastDate = selectDate.add(const Duration(days: 30));
+    }
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await showCupertinoDialog(
+        context: ctx,
+        builder: (BuildContext context) => AlertDialog(
+            content: SizedBox(
+              width: wp * 100,
+              height: hp * 50,
+              child: SfCalendar(
+                view: CalendarView.month,
+                allowDragAndDrop: true,
+                onTap: (val) {
+                  if (type == 'dari') {
+                    dariTglTxt?.text =
+                        DateFormat('yyyy-MM-dd').format(val.date!);
+                  } else {
+                    sampaiTglTxt?.text =
+                        DateFormat('yyyy-MM-dd').format(val.date!);
+                  }
+                },
+                minDate: firstDate,
+                maxDate: lastDate,
+                blackoutDatesTextStyle: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: hp * 2.1,
+                    color: Colors.pinkAccent,
+                    decoration: TextDecoration.lineThrough),
+                showDatePickerButton: true,
+              ),
+            ),
+            actions: [
+              ElevatedButton(
+                onPressed: () async {
+                  if (sampaiTglTxt!.text.isNotEmpty) {
+                    handleGetLogAttandance(
+                        start: dariTglTxt!.text, end: sampaiTglTxt!.text);
+                  }
+                  AllNavigation.popNav(context, false, null);
+                },
+                child: const Text('OK'),
+              ),
+            ]),
+      );
     });
   }
 
@@ -348,6 +446,76 @@ class AbsensiController extends GetxController {
         workingHrs!('$hours hrs $minute min');
       }
     }
+  }
+
+  Future<void> getHolidayDisable() async {
+    final String endDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
+    final String startDate = DateFormat('yyyy-MM-dd')
+        .format(DateTime.now().add(const Duration(days: -30)));
+
+    final ApiModel apiModel = ApiModel(
+      url: Api.apiUrl,
+      path: '${Path.holidayDisable}?start_date=$startDate&end_date=$endDate',
+      isToken: false,
+    );
+
+    final Map<String, dynamic> res = await GetData().getData(apiModel);
+    holidayDisable!(res['data']);
+  }
+
+  Future<void> getCheckPresentBefore() async {
+    await getHolidayDisable();
+    SharedPreferences session = await SharedPreferences.getInstance();
+    int durationDays = -1;
+    bool checkAcitvity = false;
+    DateTime date = DateTime.now();
+    final dateSet = holidayDisable
+        ?.map((element) =>
+            DateFormat('yyyy-MM-dd').format(DateTime.parse(element['dates'])))
+        .toSet();
+
+    for (int i = durationDays; i >= -holidayDisable!.length; i--) {
+      final dateBefore =
+          DateFormat('yyyy-MM-dd').format(date.add(Duration(days: i)));
+      if (!dateSet!.contains(dateBefore)) {
+        durationDays = i;
+        break;
+      }
+    }
+
+    final DateTime lastDateBefore = date.add(Duration(days: durationDays));
+    isLoading!(true);
+    final ApiModel apiModelNodeJs = ApiModel(
+        url: Api.apiUrl,
+        path:
+            '${Path.checkActivityPresent}?date=${DateFormat('yyyy-MM-dd').format(lastDateBefore)}&nik=${dataProfile?['nik']}',
+        isToken: true,
+        token: session.getString('token'));
+
+    final Map<String, dynamic> resCheckActivity =
+        await GetData().getData(apiModelNodeJs);
+
+    if (resCheckActivity['data']['mangkir'].length > 0 ||
+        resCheckActivity['data']['cuti'].length > 0 ||
+        resCheckActivity['data']['dinas'].length > 0) {
+      checkAcitvity = true;
+    }
+
+    final ApiModel apiModel = ApiModel(
+        url: Api.apiUrl,
+        path:
+            '${Path.schedulePerDay}/${DateFormat('yyyy-MM-dd').format(lastDateBefore)}',
+        isToken: true,
+        token: session.getString('token'));
+
+    final Map<String, dynamic> res = await GetData().getData(apiModel);
+    isLoading!(false);
+    checkPresentBefore!({
+      "check_in": res['data']['check_in'],
+      "check_out": res['data']['check_out'],
+      "schedule": res['data']['schedule'],
+      "check_activity": checkAcitvity
+    });
   }
 
   getDataScheduleEmpPerDaySqflite() async {
@@ -702,6 +870,27 @@ class AbsensiController extends GetxController {
   }
 
   handleCheckInOffice(ctx, wp, hp) async {
+    if (checkPresentBefore!['schedule'] == true &&
+        checkPresentBefore!['check_activity'] == false &&
+        (checkPresentBefore!['check_in'] == false ||
+            checkPresentBefore!['check_out'] == null)) {
+      return WidgetsBinding.instance.addPostFrameCallback((_) async {
+        await AlertDialogMsg.showCupertinoDialogSimple(
+            ctx,
+            'Peringatan!',
+            'Harap Isi Form Mangkir (Tidak In/Out)',
+            [
+              ElevatedButton(
+                onPressed: () async {
+                  AllNavigation.popNav(ctx, false, null);
+                },
+                child: const Text('OK'),
+              ),
+            ],
+            hp);
+      });
+    }
+
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await showDialog<String>(
         context: ctx,
@@ -1069,6 +1258,27 @@ class AbsensiController extends GetxController {
   }
 
   handleWebCheckinOffice(ctx, wp, hp) async {
+    if (checkPresentBefore!['schedule'] == true &&
+        checkPresentBefore!['check_activity'] == false &&
+        (checkPresentBefore!['check_in'] == false ||
+            checkPresentBefore!['check_out'] == null)) {
+      return WidgetsBinding.instance.addPostFrameCallback((_) async {
+        await AlertDialogMsg.showCupertinoDialogSimple(
+            ctx,
+            'Peringatan!',
+            'Harap Isi Form Mangkir (Tidak In/Out)',
+            [
+              ElevatedButton(
+                onPressed: () async {
+                  AllNavigation.popNav(ctx, false, null);
+                },
+                child: const Text('OK'),
+              ),
+            ],
+            hp);
+      });
+    }
+
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await showDialog<String>(
         context: ctx,
@@ -1103,49 +1313,50 @@ class AbsensiController extends GetxController {
                     // WFH
                     GestureDetector(
                       onTap: () async {
-                        AllNavigation.popNav(ctx, false, null);
-                        SharedPreferences session =
-                            await SharedPreferences.getInstance();
-                        final Map<String, dynamic> bodyData = {
-                          'date':
-                              DateFormat('yyyy-MM-dd').format(DateTime.now()),
-                          'id_dept': dataProfile!['id_department'].toString(),
-                          'check_in':
-                              DateFormat('HH:mm:ss').format(DateTime.now()),
-                          'type': 'true',
-                          'is_wfh': 'true'
-                        };
-                        final ApiModel apiModel = ApiModel(
-                            url: Api.apiUrl,
-                            path: Path.checkinoffice,
-                            body: bodyData,
-                            token: session.getString('token'),
-                            isToken: true);
+                        null;
+                        // AllNavigation.popNav(ctx, false, null);
+                        // SharedPreferences session =
+                        //     await SharedPreferences.getInstance();
+                        // final Map<String, dynamic> bodyData = {
+                        //   'date':
+                        //       DateFormat('yyyy-MM-dd').format(DateTime.now()),
+                        //   'id_dept': dataProfile!['id_department'].toString(),
+                        //   'check_in':
+                        //       DateFormat('HH:mm:ss').format(DateTime.now()),
+                        //   'type': 'true',
+                        //   'is_wfh': 'true'
+                        // };
+                        // final ApiModel apiModel = ApiModel(
+                        //     url: Api.apiUrl,
+                        //     path: Path.checkinoffice,
+                        //     body: bodyData,
+                        //     token: session.getString('token'),
+                        //     isToken: true);
 
-                        final Map<String, dynamic> res =
-                            await PostData().postFormData(apiModel, 'POST');
-                        isLoading!(false);
+                        // final Map<String, dynamic> res =
+                        //     await PostData().postFormData(apiModel, 'POST');
+                        // isLoading!(false);
 
-                        if (res['success']) {
-                          getDataScheduleEmpPerDay();
-                        } else {
-                          WidgetsBinding.instance
-                              .addPostFrameCallback((_) async {
-                            await AlertDialogMsg.showCupertinoDialogSimple(
-                                ctx,
-                                'Informasi!',
-                                '${res['message']}',
-                                [
-                                  ElevatedButton(
-                                    onPressed: () async {
-                                      AllNavigation.popNav(ctx, false, null);
-                                    },
-                                    child: const Text('OK'),
-                                  ),
-                                ],
-                                hp);
-                          });
-                        }
+                        // if (res['success']) {
+                        //   getDataScheduleEmpPerDay();
+                        // } else {
+                        //   WidgetsBinding.instance
+                        //       .addPostFrameCallback((_) async {
+                        //     await AlertDialogMsg.showCupertinoDialogSimple(
+                        //         ctx,
+                        //         'Informasi!',
+                        //         '${res['message']}',
+                        //         [
+                        //           ElevatedButton(
+                        //             onPressed: () async {
+                        //               AllNavigation.popNav(ctx, false, null);
+                        //             },
+                        //             child: const Text('OK'),
+                        //           ),
+                        //         ],
+                        //         hp);
+                        //   });
+                        // }
                       },
                       child: Container(
                         width: wp * 30,
@@ -1181,6 +1392,47 @@ class AbsensiController extends GetxController {
                     GestureDetector(
                       onTap: () async {
                         AllNavigation.popNav(ctx, false, null);
+
+                        if (kIsWeb && dataProfile!['flag_android']) {
+                          return WidgetsBinding.instance
+                              .addPostFrameCallback((_) async {
+                            await AlertDialogMsg.showCupertinoDialogSimple(
+                                ctx,
+                                'Peringatan!',
+                                'Hanya untuk pengguna Apple!!!',
+                                [
+                                  ElevatedButton(
+                                    onPressed: () async {
+                                      AllNavigation.popNav(ctx, false, null);
+                                    },
+                                    child: const Text('OK'),
+                                  ),
+                                ],
+                                hp);
+                          });
+                        }
+
+                        if (authController?.ipLocalClient?.value == null) {
+                          return WidgetsBinding.instance
+                              .addPostFrameCallback((_) async {
+                            await AlertDialogMsg.showCupertinoDialogSimple(
+                                ctx,
+                                'Informasi!',
+                                'Ip anda tidak terdeteksi, silakan lakukan reload',
+                                [
+                                  ElevatedButton(
+                                    onPressed: () async {
+                                      authController!
+                                          .handleRedirectGetIpLocal();
+                                      AllNavigation.popNav(ctx, false, null);
+                                    },
+                                    child: const Text('OK'),
+                                  ),
+                                ],
+                                hp);
+                          });
+                        }
+
                         SharedPreferences session =
                             await SharedPreferences.getInstance();
                         final Map<String, dynamic> bodyData = {
@@ -1191,6 +1443,7 @@ class AbsensiController extends GetxController {
                               DateFormat('HH:mm:ss').format(DateTime.now()),
                           'type': false,
                           'is_wfh': false,
+                          'ipabsenin': authController!.ipLocalClient!.value
                         };
 
                         final ApiModel apiModel = ApiModel(
@@ -1203,9 +1456,9 @@ class AbsensiController extends GetxController {
                         final Map<String, dynamic> res =
                             await PostData().postData(apiModel);
                         isLoading!(false);
-                        // if (kDebugMode) {
-                        //   print('res $res');
-                        // }
+                        if (kDebugMode) {
+                          print('res $res');
+                        }
 
                         if (res['success']) {
                           getDataScheduleEmpPerDay();
@@ -1411,7 +1664,7 @@ class AbsensiController extends GetxController {
               ),
             ),
             onPressed: () async {
-              final checkHoursBeforeCheckOut = await handleBeforeCheckout();
+              // final checkHoursBeforeCheckOut = await handleBeforeCheckout();
               final serviceGps = await gpsController!
                   .handleCheckServiceGps(ctx, GlobalSize.blockSizeVertical);
               isLoading!(true);
@@ -1518,46 +1771,70 @@ class AbsensiController extends GetxController {
               ),
             ),
             onPressed: () async {
-              final checkHoursBeforeCheckOut = await handleBeforeCheckout();
-              isLoading!(true);
-              if (!checkHoursBeforeCheckOut) {
-                isLoading!(false);
-                AllNavigation.popNav(ctx, false, null);
-                return AlertDialogMsg.showCupertinoDialogSimple(
-                  ctx,
-                  'Infomasi!',
-                  'Maaf, anda tidak bisa checkout karena belum 9 jam kerja',
-                  [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        foregroundColor: GlobalColor.light,
-                        elevation: 2,
-                        backgroundColor: GlobalColor.grey,
-                        shadowColor: GlobalColor.light.withOpacity(0.8),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                            hp! * 1,
-                          ),
+              if (authController?.ipLocalClient?.value == null) {
+                return WidgetsBinding.instance.addPostFrameCallback((_) async {
+                  await AlertDialogMsg.showCupertinoDialogSimple(
+                      ctx,
+                      'Peringatan!',
+                      'Ip anda tidak terdeteksi, silakan lakukan reload',
+                      [
+                        ElevatedButton(
+                          onPressed: () async {
+                            // await authController!.handleRedirectGetIpLocal();
+                            // if (html.window.location.href.split("=")[1] != '') {
+                            //   _authController?.ipLocalClient = Rx<String>(
+                            //       html.window.location.href.split("=")[1]);
+                            // }
+                            AllNavigation.popNav(ctx, false, null);
+                          },
+                          child: const Text('OK'),
                         ),
-                        minimumSize: Size(
-                          wp! * 10,
-                          hp! * 4,
-                        ),
-                      ),
-                      onPressed: () {
-                        AllNavigation.popNav(ctx, false, null);
-                      },
-                      child: const Text('OK'),
-                    ),
-                  ],
-                  hp,
-                );
+                      ],
+                      hp);
+                });
               }
 
+              // final checkHoursBeforeCheckOut = await handleBeforeCheckout();
+              // if (!checkHoursBeforeCheckOut) {
+              //   isLoading!(false);
+              //   AllNavigation.popNav(ctx, false, null);
+              //   return AlertDialogMsg.showCupertinoDialogSimple(
+              //     ctx,
+              //     'Infomasi!',
+              //     'Maaf, anda tidak bisa checkout karena belum 9 jam kerja',
+              //     [
+              //       ElevatedButton(
+              //         style: ElevatedButton.styleFrom(
+              //           foregroundColor: GlobalColor.light,
+              //           elevation: 2,
+              //           backgroundColor: GlobalColor.grey,
+              //           shadowColor: GlobalColor.light.withOpacity(0.8),
+              //           shape: RoundedRectangleBorder(
+              //             borderRadius: BorderRadius.circular(
+              //               hp! * 1,
+              //             ),
+              //           ),
+              //           minimumSize: Size(
+              //             wp! * 10,
+              //             hp! * 4,
+              //           ),
+              //         ),
+              //         onPressed: () {
+              //           AllNavigation.popNav(ctx, false, null);
+              //         },
+              //         child: const Text('OK'),
+              //       ),
+              //     ],
+              //     hp,
+              //   );
+              // }
+
+              isLoading!(true);
               SharedPreferences session = await SharedPreferences.getInstance();
               final Map<String, dynamic> bodyData = {
                 'date': DateFormat('yyyy-MM-dd').format(DateTime.now()),
                 'check_out': DateFormat('HH:mm:ss').format(DateTime.now()),
+                'ipabsenout': authController!.ipLocalClient!.value
               };
 
               final ApiModel apiModel = ApiModel(
@@ -1616,14 +1893,16 @@ class AbsensiController extends GetxController {
     });
   }
 
-  handleGetLogAttandance() async {
+  handleGetLogAttandance({String? start = '', String? end = ''}) async {
     SharedPreferences session = await SharedPreferences.getInstance();
     DateTime dateNow = DateTime.now();
     late String startDate;
     late String endDate;
-    startDate =
-        DateFormat('yyyy-MM-dd').format(dateNow.add(const Duration(days: -30)));
-    endDate = DateFormat('yyyy-MM-dd').format(dateNow);
+    startDate = start == ''
+        ? DateFormat('yyyy-MM-dd')
+            .format(dateNow.add(const Duration(days: -30)))
+        : start!;
+    endDate = end == '' ? DateFormat('yyyy-MM-dd').format(dateNow) : end!;
     isLoading!(true);
 
     final ApiModel apiModel = ApiModel(

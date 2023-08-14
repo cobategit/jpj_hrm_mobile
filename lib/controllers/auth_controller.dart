@@ -13,6 +13,7 @@ import 'package:jpj_hrm_mobile/services/index.dart';
 import 'package:jpj_hrm_mobile/utils/index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+// import 'dart:html' as html;
 
 class AuthController extends GetxController {
   TextEditingController? emailText;
@@ -30,6 +31,7 @@ class AuthController extends GetxController {
   RxString? deviceData;
   RxBool? checkConnection;
   RxMap? readDataDeviceAndro;
+  Rx<String>? ipLocalClient;
   DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
   late StreamSubscription<ConnectivityResult> networkConnectivitySubscription;
   final Connectivity networkConnectivity = Connectivity();
@@ -51,12 +53,22 @@ class AuthController extends GetxController {
     hideNewPass = true.obs;
     autoValidate = false.obs;
     checkConnection = false.obs;
+    // if (html.window.location.href.split("=")[1] != '') {
+    //   ipLocalClient = Rx<String>(html.window.location.href.split("=")[1]);
+    // }
     // dbController = Get.put(DbController());
+    super.onInit();
+  }
+
+  @override
+  void onReady() async {
     if (!kIsWeb) {
       await handleGetDevice();
       await handleCheckConnection();
+    } else {
+      checkConnection!(true);
     }
-    super.onInit();
+    super.onReady();
   }
 
   @override
@@ -107,10 +119,10 @@ class AuthController extends GetxController {
 
   handleCheckConnection() async {
     try {
-      final rs = await InternetAddress.lookup('www.google.com');
-      if (rs.isNotEmpty && rs[0].rawAddress.isNotEmpty) {
-        checkConnection!(true);
-      }
+      // final rs = await InternetAddress.lookup('www.google.com');
+      // if (rs.isNotEmpty && rs[0].rawAddress.isNotEmpty) {
+      //   checkConnection!(true);
+      // }
       networkConnectivitySubscription =
           networkConnectivity.onConnectivityChanged.listen((event) {
         if (event == ConnectivityResult.mobile ||
@@ -122,6 +134,24 @@ class AuthController extends GetxController {
       });
     } on SocketException catch (_) {
       checkConnection!(false);
+    }
+  }
+
+  handleRedirectGetIpLocal() async {
+    // const urlGetIpLocal = "http://10.15.14.74:8025/index.php";
+    const urlGetIpLocal = "http://10.15.14.243:8010/index.php";
+
+    // final Uri _url = Uri.parse(urlGetIpLocal);
+
+    // if (!await launchUrl(
+    //   urlGetIpLocal,
+    //   mode: LaunchMode.externalApplication,
+    // )) {
+    //   throw Exception('Could not launch $url');
+    // }
+
+    if (kIsWeb) {
+      // html.window.open(urlGetIpLocal, '_self');
     }
   }
 

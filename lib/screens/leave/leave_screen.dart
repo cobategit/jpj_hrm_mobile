@@ -54,7 +54,7 @@ class LeaveScreen extends StatelessWidget {
                                 _absensiController.dataProfile!['id'];
                           }
 
-                          _leaveController.getHistoryMangkir();
+                          _leaveController.getHistoryMangkir("mangkir");
                           AllNavigation.pushNav(
                               context, HistoryMangkirScreen(), (_) {});
                         },
@@ -109,13 +109,32 @@ class LeaveScreen extends StatelessWidget {
                         ),
                       )),
                   Obx(() => InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          _leaveController.paramsHistoryCuti!({
+                            'role': _absensiController.dataProfile!['role'],
+                          });
+                          if (_absensiController.dataProfile!['role'] ==
+                              'Manager') {
+                            _leaveController.paramsHistoryCuti!['id'] =
+                                _absensiController
+                                    .dataProfile!['id_parent_department'];
+                          }
+                          if (_absensiController.dataProfile!['role'] ==
+                              'Employee') {
+                            _leaveController.paramsHistoryCuti!['id'] =
+                                _absensiController.dataProfile!['id'];
+                          }
+
+                          _leaveController.getHistoryCuti();
+                          AllNavigation.pushNav(
+                              context, HistoryCutiScreen(), (_) {});
+                        },
                         child: badges.Badge(
-                          badgeContent: Text(
-                              _absensiController.dataProfile!['role'] ==
-                                      'Manager'
-                                  ? "10"
-                                  : ""),
+                          badgeContent: Text(_absensiController
+                                      .dataProfile!['role'] ==
+                                  'Manager'
+                              ? "${_leaveController.countPendingCuti!.value}"
+                              : ""),
                           badgeStyle: badges.BadgeStyle(
                               badgeColor:
                                   _absensiController.dataProfile!['role'] ==

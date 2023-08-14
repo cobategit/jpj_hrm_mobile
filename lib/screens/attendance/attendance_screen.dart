@@ -36,76 +36,65 @@ class AttendanceScreen extends StatelessWidget {
               absensiController.handleRefresh();
               return Future.delayed(const Duration(seconds: 0));
             },
-            child: Container(
-              padding: EdgeInsets.only(
-                top: GlobalSize.blockSizeVertical! * 2,
-                left: GlobalSize.blockSizeHorizontal! * 7,
-                right: GlobalSize.blockSizeHorizontal! * 7,
-              ),
-              width: GlobalSize.blockSizeHorizontal! * 100,
-              decoration: BoxDecoration(
-                color: GlobalColor.light,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(GlobalSize.blockSizeVertical! * 4.5),
-                  topRight:
-                      Radius.circular(GlobalSize.blockSizeVertical! * 4.5),
-                ),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: ScrollConfiguration(
-                      behavior: MyBehavior(),
-                      child: Obx(
-                        () {
-                          if (absensiController.listLogAtt!.isNotEmpty) {
-                            return ListView.builder(
-                              padding: EdgeInsets.zero,
-                              physics: const AlwaysScrollableScrollPhysics(),
-                              itemCount: absensiController.listLogAtt!.length,
-                              itemBuilder: (context, index) {
-                                Color? colorBehavior = absensiController
-                                            .listLogAtt![index]['behavior'] ==
-                                        "Late"
-                                    ? const Color.fromARGB(248, 245, 2, 22)
-                                    : absensiController.listLogAtt![index]
-                                                ['behavior'] ==
-                                            "On Time"
-                                        ? const Color.fromARGB(248, 215, 230, 9)
-                                        : const Color.fromARGB(249, 2, 245, 63);
-                                return Container(
-                                  margin: EdgeInsets.only(
-                                      bottom:
-                                          GlobalSize.blockSizeVertical! * 1.5),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15.0),
-                                    boxShadow: const [
-                                      BoxShadow(
-                                        color:
-                                            Color.fromRGBO(20, 19, 19, 0.043),
-                                        spreadRadius: 0,
-                                        blurRadius: 5,
-                                        offset: Offset(0, 5),
-                                      ),
-                                    ],
-                                  ),
-                                  child: Card(
-                                    elevation: 2,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(15.0)),
-                                    child: Container(
-                                      padding: EdgeInsets.all(
-                                          GlobalSize.blockSizeHorizontal! *
-                                              4.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Column(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  flex: 8,
+                  child: ScrollConfiguration(
+                    behavior: MyBehavior(),
+                    child: Obx(
+                      () {
+                        if (absensiController.listLogAtt!.isNotEmpty) {
+                          return ListView.builder(
+                            padding: EdgeInsets.only(
+                                left: GlobalSize.blockSizeHorizontal! * 7,
+                                right: GlobalSize.blockSizeHorizontal! * 7,
+                                top: GlobalSize.blockSizeVertical! * 2),
+                            physics: const AlwaysScrollableScrollPhysics(),
+                            itemCount: absensiController.listLogAtt!.length,
+                            itemBuilder: (context, index) {
+                              Color? colorBehavior = absensiController
+                                          .listLogAtt![index]['behavior'] ==
+                                      "Late"
+                                  ? const Color.fromARGB(248, 245, 2, 22)
+                                  : absensiController.listLogAtt![index]
+                                              ['behavior'] ==
+                                          "On Time"
+                                      ? const Color.fromARGB(248, 215, 230, 9)
+                                      : const Color.fromARGB(249, 2, 245, 63);
+                              return Container(
+                                margin: EdgeInsets.only(
+                                    bottom:
+                                        GlobalSize.blockSizeVertical! * 1.5),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                  boxShadow: const [
+                                    BoxShadow(
+                                      color: Color.fromRGBO(20, 19, 19, 0.043),
+                                      spreadRadius: 0,
+                                      blurRadius: 5,
+                                      offset: Offset(0, 5),
+                                    ),
+                                  ],
+                                ),
+                                child: Card(
+                                  elevation: 2,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(15.0)),
+                                  child: Container(
+                                    padding: EdgeInsets.all(
+                                        GlobalSize.blockSizeHorizontal! * 4.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Expanded(
+                                          child: Column(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             crossAxisAlignment:
@@ -144,7 +133,9 @@ class AttendanceScreen extends StatelessWidget {
                                               ),
                                             ],
                                           ),
-                                          Column(
+                                        ),
+                                        Expanded(
+                                          child: Column(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             crossAxisAlignment:
@@ -202,23 +193,93 @@ class AttendanceScreen extends StatelessWidget {
                                                           .blockSizeVertical! *
                                                       1),
                                             ],
-                                          )
-                                        ],
-                                      ),
+                                          ),
+                                        )
+                                      ],
                                     ),
                                   ),
-                                );
-                              },
-                            );
-                          } else {
-                            return ListView();
-                          }
-                        },
-                      ),
+                                ),
+                              );
+                            },
+                          );
+                        } else {
+                          return ListView();
+                        }
+                      },
                     ),
                   ),
-                ],
-              ),
+                ),
+                Expanded(
+                  flex: 0,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      left: GlobalSize.blockSizeHorizontal! * 7,
+                      right: GlobalSize.blockSizeHorizontal! * 7,
+                      bottom: GlobalSize.blockSizeVertical! * 1,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        CustomTextInput(
+                          margin: EdgeInsets.only(
+                            top: GlobalSize.blockSizeVertical! * 1,
+                          ),
+                          wp: GlobalSize.blockSizeHorizontal! * 26,
+                          hp: GlobalSize.blockSizeVertical! * 5.5,
+                          hintText: "Dari",
+                          textController: absensiController.dariTglTxt,
+                          readOnly: true,
+                          contentPadding: EdgeInsets.symmetric(
+                            horizontal: GlobalSize.blockSizeHorizontal! * 2,
+                          ),
+                          onTap: () {
+                            absensiController.handleSelectDateForm(
+                                context,
+                                'dari',
+                                GlobalSize.blockSizeHorizontal!,
+                                GlobalSize.blockSizeVertical!);
+                          },
+                        ),
+                        CustomTextInput(
+                          margin: EdgeInsets.only(
+                            top: GlobalSize.blockSizeVertical! * 1,
+                          ),
+                          wp: GlobalSize.blockSizeHorizontal! * 26,
+                          hp: GlobalSize.blockSizeVertical! * 5.5,
+                          hintText: "Sampai",
+                          textController: absensiController.sampaiTglTxt,
+                          readOnly: true,
+                          contentPadding: EdgeInsets.symmetric(
+                            horizontal: GlobalSize.blockSizeHorizontal! * 2,
+                          ),
+                          onTap: () {
+                            absensiController.handleSelectDateForm(
+                                context,
+                                'sampai',
+                                GlobalSize.blockSizeHorizontal!,
+                                GlobalSize.blockSizeVertical!);
+                          },
+                        ),
+                        GlobalButtonElevated(
+                          onPressed: () {
+                            absensiController.handleClearHistoryPresent();
+                          },
+                          tittle: 'CLEAR',
+                          fontSize: GlobalSize.blockSizeVertical! * 1.8,
+                          color: GlobalColor.light,
+                          colorPrim: GlobalColor.red,
+                          colorOnPrim: Colors.white.withOpacity(0.9),
+                          colorShadowPrim: Colors.white,
+                          borderRadius: GlobalSize.blockSizeVertical! * 1,
+                          sizeH: GlobalSize.safeBlockVertical! * 5,
+                          sizeW: GlobalSize.safeBlockHorizontal! * 8,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           Obx(() {

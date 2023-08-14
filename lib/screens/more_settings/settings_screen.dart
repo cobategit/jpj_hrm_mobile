@@ -178,7 +178,7 @@ class SettingsScreen extends StatelessWidget {
                                 right: GlobalSize.blockSizeHorizontal! * 5,
                               ),
                               child: Text(
-                                '1.0.0',
+                                '2.1.0',
                                 style: TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: GlobalSize.blockSizeVertical! * 2,

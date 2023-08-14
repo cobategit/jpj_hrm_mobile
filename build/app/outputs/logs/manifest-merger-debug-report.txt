@@ -55,7 +55,6 @@ INJECTED from C:\laragon\www\jpj_hrm_mobile\android\app\src\main\AndroidManifest
 INJECTED from C:\laragon\www\jpj_hrm_mobile\android\app\src\main\AndroidManifest.xml:1:1-44:12
 INJECTED from C:\laragon\www\jpj_hrm_mobile\android\app\src\main\AndroidManifest.xml:1:1-44:12
 MERGED from C:\laragon\www\jpj_hrm_mobile\android\app\src\main\AndroidManifest.xml:1:1-44:12
-MERGED from [:flutter_pdfview] C:\laragon\www\jpj_hrm_mobile\build\flutter_pdfview\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:geolocator_android] C:\laragon\www\jpj_hrm_mobile\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-19:12
 MERGED from [:file_picker] C:\laragon\www\jpj_hrm_mobile\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-19:12
 MERGED from [:flutter_barcode_scanner] C:\laragon\www\jpj_hrm_mobile\build\flutter_barcode_scanner\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-21:12
@@ -101,7 +100,6 @@ MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.5.1] C:\Users\alani\.gradl
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.1] C:\Users\alani\.gradle\caches\transforms-3\15750e62ad940a5485db403f60888c47\transformed\jetified-lifecycle-viewmodel-savedstate-2.5.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\alani\.gradle\caches\transforms-3\006d93cd422dbc43e89591147c2de572\transformed\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:17:1-23:12
 MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\alani\.gradle\caches\transforms-3\dee59bb480020f42d53c2ea15e4501f7\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:17:1-33:12
-MERGED from [com.github.mhiew:android-pdf-viewer:3.2.0-beta.3] C:\Users\alani\.gradle\caches\transforms-3\970da2cf76de0b06779b19200113152d\transformed\jetified-android-pdf-viewer-3.2.0-beta.3\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.media:media:1.0.0] C:\Users\alani\.gradle\caches\transforms-3\f057e7418cf3ed9a7aa575bdc69ad668\transformed\media-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\alani\.gradle\caches\transforms-3\fe6b5add7ec73032a23eba92468f91f4\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.transition:transition:1.2.0] C:\Users\alani\.gradle\caches\transforms-3\94e8469fc26c39023dc99dc98d6883c7\transformed\transition-1.2.0\AndroidManifest.xml:17:1-24:12
@@ -132,7 +130,6 @@ MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\alani\.gradle
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.5.1] C:\Users\alani\.gradle\caches\transforms-3\9b3223e6c313a1ec1987e0c2e1a4f471\transformed\lifecycle-livedata-core-2.5.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\alani\.gradle\caches\transforms-3\56ea02d67edbb15aea212f39ccb5db78\transformed\core-runtime-2.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.scottyab:rootbeer-lib:0.1.0] C:\Users\alani\.gradle\caches\transforms-3\de11c3fa811e18ee799213c47dedaea5\transformed\jetified-rootbeer-lib-0.1.0\AndroidManifest.xml:2:1-13:12
-MERGED from [com.github.mhiew:pdfium-android:1.9.2] C:\Users\alani\.gradle\caches\transforms-3\02c2e360c17cb3d54eea148d2e438363\transformed\jetified-pdfium-android-1.9.2\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\alani\.gradle\caches\transforms-3\8965c941cf4bee4d72541b965c7c9d39\transformed\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:17:1-24:12
 INJECTED from C:\laragon\www\jpj_hrm_mobile\android\app\src\debug\AndroidManifest.xml:1:1-8:12
 INJECTED from C:\laragon\www\jpj_hrm_mobile\android\app\src\debug\AndroidManifest.xml:1:1-8:12
@@ -201,8 +198,6 @@ uses-sdk
 INJECTED from C:\laragon\www\jpj_hrm_mobile\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\laragon\www\jpj_hrm_mobile\android\app\src\main\AndroidManifest.xml
 INJECTED from C:\laragon\www\jpj_hrm_mobile\android\app\src\main\AndroidManifest.xml
-MERGED from [:flutter_pdfview] C:\laragon\www\jpj_hrm_mobile\build\flutter_pdfview\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
-MERGED from [:flutter_pdfview] C:\laragon\www\jpj_hrm_mobile\build\flutter_pdfview\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:geolocator_android] C:\laragon\www\jpj_hrm_mobile\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:geolocator_android] C:\laragon\www\jpj_hrm_mobile\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:file_picker] C:\laragon\www\jpj_hrm_mobile\build\file_picker\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
@@ -293,8 +288,6 @@ MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\alani\.gradle\ca
 MERGED from [androidx.window:window-java:1.0.0-beta04] C:\Users\alani\.gradle\caches\transforms-3\006d93cd422dbc43e89591147c2de572\transformed\jetified-window-java-1.0.0-beta04\AndroidManifest.xml:19:5-21:41
 MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\alani\.gradle\caches\transforms-3\dee59bb480020f42d53c2ea15e4501f7\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\alani\.gradle\caches\transforms-3\dee59bb480020f42d53c2ea15e4501f7\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:20:5-22:41
-MERGED from [com.github.mhiew:android-pdf-viewer:3.2.0-beta.3] C:\Users\alani\.gradle\caches\transforms-3\970da2cf76de0b06779b19200113152d\transformed\jetified-android-pdf-viewer-3.2.0-beta.3\AndroidManifest.xml:5:5-7:41
-MERGED from [com.github.mhiew:android-pdf-viewer:3.2.0-beta.3] C:\Users\alani\.gradle\caches\transforms-3\970da2cf76de0b06779b19200113152d\transformed\jetified-android-pdf-viewer-3.2.0-beta.3\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.media:media:1.0.0] C:\Users\alani\.gradle\caches\transforms-3\f057e7418cf3ed9a7aa575bdc69ad668\transformed\media-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.media:media:1.0.0] C:\Users\alani\.gradle\caches\transforms-3\f057e7418cf3ed9a7aa575bdc69ad668\transformed\media-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\alani\.gradle\caches\transforms-3\fe6b5add7ec73032a23eba92468f91f4\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
@@ -355,8 +348,6 @@ MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\alani\.gradle\cache
 MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\alani\.gradle\caches\transforms-3\56ea02d67edbb15aea212f39ccb5db78\transformed\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [com.scottyab:rootbeer-lib:0.1.0] C:\Users\alani\.gradle\caches\transforms-3\de11c3fa811e18ee799213c47dedaea5\transformed\jetified-rootbeer-lib-0.1.0\AndroidManifest.xml:7:5-9:41
 MERGED from [com.scottyab:rootbeer-lib:0.1.0] C:\Users\alani\.gradle\caches\transforms-3\de11c3fa811e18ee799213c47dedaea5\transformed\jetified-rootbeer-lib-0.1.0\AndroidManifest.xml:7:5-9:41
-MERGED from [com.github.mhiew:pdfium-android:1.9.2] C:\Users\alani\.gradle\caches\transforms-3\02c2e360c17cb3d54eea148d2e438363\transformed\jetified-pdfium-android-1.9.2\AndroidManifest.xml:5:5-7:41
-MERGED from [com.github.mhiew:pdfium-android:1.9.2] C:\Users\alani\.gradle\caches\transforms-3\02c2e360c17cb3d54eea148d2e438363\transformed\jetified-pdfium-android-1.9.2\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\alani\.gradle\caches\transforms-3\8965c941cf4bee4d72541b965c7c9d39\transformed\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\alani\.gradle\caches\transforms-3\8965c941cf4bee4d72541b965c7c9d39\transformed\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:20:5-22:41
 INJECTED from C:\laragon\www\jpj_hrm_mobile\android\app\src\debug\AndroidManifest.xml

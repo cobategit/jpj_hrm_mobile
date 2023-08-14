@@ -29,7 +29,7 @@ class GpsController extends GetxController {
     servGpsEnable = false.obs;
     if (!kIsWeb) {
       TrustLocation.start(3);
-      handleGetLoc();
+      // handleGetLoc();
     }
     super.onInit();
   }

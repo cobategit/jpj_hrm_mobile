@@ -18,9 +18,9 @@ class CheckInOutScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: GlobalColor.grey.withOpacity(0.02),
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(GlobalSize.blockSizeVertical! * 6),
+        preferredSize: Size.fromHeight(GlobalSize.blockSizeVertical! * 5.5),
         child: Obx(() => CustomAppBar(
-              textJudul: 'CHECK IN/OUT',
+              textJudul: 'IN/OUT',
               textUsername:
                   '${absensiController.dataProfile!['name']?.split(' ')[0]}',
               checkNetwork: absensiController.checkNetwork!.value,
@@ -106,33 +106,11 @@ class CheckInOutScreen extends StatelessWidget {
                                 }
                               }
                             } else {
-                              if (absensiController.hostnameWeb?.value ==
-                                  '210.210.175.1') {
-                                absensiController.handleWebCheckinOffice(
-                                  context,
-                                  GlobalSize.safeBlockHorizontal,
-                                  GlobalSize.safeBlockVertical,
-                                );
-                              } else {
-                                WidgetsBinding.instance
-                                    .addPostFrameCallback((_) async {
-                                  await AlertDialogMsg
-                                      .showCupertinoDialogSimple(
-                                          context,
-                                          'Informasi!',
-                                          'Maaf anda tidak bisa absen',
-                                          [
-                                            ElevatedButton(
-                                              onPressed: () async {
-                                                AllNavigation.popNav(
-                                                    context, false, null);
-                                              },
-                                              child: const Text('OK'),
-                                            ),
-                                          ],
-                                          GlobalSize.safeBlockHorizontal);
-                                });
-                              }
+                              absensiController.handleWebCheckinOffice(
+                                context,
+                                GlobalSize.safeBlockHorizontal,
+                                GlobalSize.safeBlockVertical,
+                              );
                             }
                           },
                           child: Container(
@@ -157,7 +135,7 @@ class CheckInOutScreen extends StatelessWidget {
                                   height: GlobalSize.blockSizeVertical! * 1,
                                 ),
                                 Text(
-                                  'CHECK IN',
+                                  'IN',
                                   style: TextStyle(
                                     fontSize:
                                         GlobalSize.blockSizeVertical! * 2.4,
@@ -189,32 +167,10 @@ class CheckInOutScreen extends StatelessWidget {
                                   GlobalSize.safeBlockVertical!,
                                   GlobalSize.safeBlockHorizontal!);
                             } else {
-                              if (absensiController.hostnameWeb?.value ==
-                                  '210.210.175.1') {
-                                absensiController.handleWebCheckoutOffice(
-                                    context,
-                                    GlobalSize.safeBlockVertical!,
-                                    GlobalSize.safeBlockHorizontal!);
-                              } else {
-                                WidgetsBinding.instance
-                                    .addPostFrameCallback((_) async {
-                                  await AlertDialogMsg
-                                      .showCupertinoDialogSimple(
-                                          context,
-                                          'Informasi!',
-                                          'Maaf anda tidak bisa absen',
-                                          [
-                                            ElevatedButton(
-                                              onPressed: () async {
-                                                AllNavigation.popNav(
-                                                    context, false, null);
-                                              },
-                                              child: const Text('OK'),
-                                            ),
-                                          ],
-                                          GlobalSize.safeBlockHorizontal);
-                                });
-                              }
+                              absensiController.handleWebCheckoutOffice(
+                                  context,
+                                  GlobalSize.safeBlockVertical!,
+                                  GlobalSize.safeBlockHorizontal!);
                             }
                           },
                           child: Container(
@@ -239,7 +195,7 @@ class CheckInOutScreen extends StatelessWidget {
                                   height: GlobalSize.blockSizeVertical! * 1,
                                 ),
                                 Text(
-                                  'CHECK OUT',
+                                  'OUT',
                                   style: TextStyle(
                                     fontSize:
                                         GlobalSize.blockSizeVertical! * 2.4,
@@ -311,19 +267,27 @@ class CheckInOutScreen extends StatelessWidget {
                       } else {
                         return Container(
                           margin: EdgeInsets.only(
-                            top: GlobalSize.safeBlockVertical! * 5,
+                            top: GlobalSize.safeBlockVertical! * 3,
                           ),
                           width: GlobalSize.safeBlockHorizontal! * 50,
                           height: GlobalSize.safeBlockVertical! * 30,
                           decoration: BoxDecoration(
-                            color: GlobalColor.grey.withOpacity(0.8),
+                            color: GlobalColor.dark,
                             shape: BoxShape.circle,
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
+                              Icon(
+                                Icons.bedtime,
+                                size: GlobalSize.safeBlockVertical! * 13,
+                                color: GlobalColor.light,
+                              ),
+                              SizedBox(
+                                height: GlobalSize.blockSizeVertical! * 1,
+                              ),
                               Text(
-                                'Selamat Beristirahat :D',
+                                'ISTIRAHAT',
                                 style: TextStyle(
                                   fontSize: GlobalSize.blockSizeVertical! * 2.4,
                                   color: GlobalColor.light,
@@ -367,7 +331,7 @@ class CheckInOutScreen extends StatelessWidget {
                               absensiController.dataProfile!['department'] ==
                                   'SP Operational')) {
                         return Text(
-                          'Keterangan Absen: ${absensiController.dataAbsen?['behavior']}',
+                          'Keterangan: ${absensiController.dataAbsen?['behavior']}',
                           style: TextStyle(
                             fontSize: GlobalSize.blockSizeVertical! * 2.2,
                             color: GlobalColor.blue,

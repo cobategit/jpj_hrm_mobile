@@ -48,5 +48,7 @@
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
+	<key>NSCameraUsageDescription</key>
+	<string>Can I use the camera please?</string>
 </dict>
 </plist>

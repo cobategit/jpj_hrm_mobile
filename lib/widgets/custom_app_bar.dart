@@ -35,11 +35,11 @@ class CustomAppBar extends StatelessWidget {
             margin: EdgeInsets.only(left: GlobalSize.blockSizeHorizontal! * 1),
             height: 25,
             width: 25,
-            decoration: BoxDecoration(
-                color: checkNetwork ? Colors.green : Colors.red,
-                borderRadius: BorderRadius.circular(100)
-                //more than 50% of width makes circle
-                ),
+            // decoration: BoxDecoration(
+            //     color: checkNetwork ? Colors.green : Colors.red,
+            //     borderRadius: BorderRadius.circular(100)
+            //     //more than 50% of width makes circle
+            //     ),
           ),
           Text(textJudul!,
               style: TextStyle(

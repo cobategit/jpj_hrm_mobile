@@ -6993,12 +6993,6 @@
     <declare-styleable name="ScrimInsetsFrameLayout">
     <attr format="color|reference" name="insetForeground"/>
   </declare-styleable>
-    <declare-styleable name="ScrollBar">
-        <attr format="color|reference" name="sb_handlerColor"/>
-        <attr format="color|reference" name="sb_indicatorColor"/>
-        <attr format="color|reference" name="sb_indicatorTextColor"/>
-        <attr format="boolean|reference" name="sb_horizontal"/>
-    </declare-styleable>
     <declare-styleable name="ScrollingViewBehavior_Layout">
     
     <attr format="dimension" name="behavior_overlapTop"/>

@@ -99,9 +99,9 @@ device_info_plus_platform_interface
 file:///C:/Users/alani/AppData/Local/Pub/Cache/hosted/pub.dev/device_info_plus_platform_interface-7.0.0/
 file:///C:/Users/alani/AppData/Local/Pub/Cache/hosted/pub.dev/device_info_plus_platform_interface-7.0.0/lib/
 dropdown_search
-2.12
-file:///C:/Users/alani/AppData/Local/Pub/Cache/hosted/pub.dev/dropdown_search-2.0.1/
-file:///C:/Users/alani/AppData/Local/Pub/Cache/hosted/pub.dev/dropdown_search-2.0.1/lib/
+2.17
+file:///C:/Users/alani/AppData/Local/Pub/Cache/hosted/pub.dev/dropdown_search-5.0.6/
+file:///C:/Users/alani/AppData/Local/Pub/Cache/hosted/pub.dev/dropdown_search-5.0.6/lib/
 fake_async
 2.12
 file:///C:/Users/alani/AppData/Local/Pub/Cache/hosted/pub.dev/fake_async-1.3.1/
@@ -154,10 +154,6 @@ flutter_lints
 2.12
 file:///C:/Users/alani/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-1.0.4/
 file:///C:/Users/alani/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-1.0.4/lib/
-flutter_pdfview
-2.17
-file:///C:/Users/alani/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_pdfview-1.3.1/
-file:///C:/Users/alani/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_pdfview-1.3.1/lib/
 flutter_plugin_android_lifecycle
 2.18
 file:///C:/Users/alani/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.15/

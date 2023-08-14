@@ -14,13 +14,20 @@ class Path {
   static String typeleaves = '/leaves/type';
   static String leavetypesub = '/leaves/sub-type';
   static String leavesummary = '/leaves/summary';
-  static String historyMangkir = '/leaves/history-mangkir';
+  static String historyMangkir = '/leaves/history-leaves';
   static String backupem = '/leaves/getShiftTo';
   static String blockdateleave = '/leaves/block-date';
   static String leavehistory = '/leaves/allMobile';
   static String leavereq = '/leaves/requestMobile';
   static String logAttandance = '/log';
-  static String updateStatusMangkir = '/leaves/status-mangkir';
+  static String updateStatusMangkirCuti = '/leaves/status-mangkir-cuti';
   static String countPendingMangkir = '/leaves/pending-mangkir';
+  static String countPendingCuti = '/leaves/pending-cuti';
   static String addMangkir = '/leaves/add-mangkir';
+  static String addCuti = '/leaves/add-cuti';
+  static String updateFileCuti = '/leaves/upload-file-cuti';
+  static String warningSakit = '/leaves/warning-sakit';
+  static String warningCutiKhusus = '/leaves/warning-cuti-khusus';
+  static String holidayDisable = '/holiday-disable';
+  static String checkActivityPresent = '/attendances/check-activity';
 }
