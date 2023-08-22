@@ -29,7 +29,7 @@ class GetData {
       return resMap;
     } catch (e) {
       if (kDebugMode || kReleaseMode) {
-        print('error catch get => $e');
+        print('error catch get ${apiModel.path} => $e');
       }
       resMap = {'message': e};
       return resMap;

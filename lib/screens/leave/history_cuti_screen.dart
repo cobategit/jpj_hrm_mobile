@@ -95,8 +95,14 @@ class HistoryCutiScreen extends StatelessWidget {
                                                 ['status'] ==
                                             "Rejected"
                                         ? const Color.fromARGB(248, 245, 2, 22)
-                                        : const Color.fromARGB(
-                                            248, 248, 245, 37);
+                                        : _leaveController
+                                                        .listHistoryCuti?[index]
+                                                    ['status'] ==
+                                                "Finished"
+                                            ? const Color.fromARGB(
+                                                248, 238, 0, 226)
+                                            : const Color.fromARGB(
+                                                248, 248, 245, 37);
                                 return Column(
                                   children: [
                                     Text(
@@ -382,6 +388,72 @@ class HistoryCutiScreen extends StatelessWidget {
                                                                               .listHistoryCuti![
                                                                           index],
                                                                       "Approved");
+                                                                },
+                                                                child: Icon(
+                                                                  Icons
+                                                                      .assignment_turned_in_rounded,
+                                                                  color: Colors
+                                                                          .green[
+                                                                      700],
+                                                                  size: GlobalSize
+                                                                          .blockSizeHorizontal! *
+                                                                      6.0,
+                                                                )),
+                                                            SizedBox(
+                                                              width: GlobalSize
+                                                                      .blockSizeHorizontal! *
+                                                                  4,
+                                                            ),
+                                                            InkWell(
+                                                                onTap: () {
+                                                                  _leaveController.updateStatusCuti(
+                                                                      context,
+                                                                      GlobalSize
+                                                                          .blockSizeHorizontal!,
+                                                                      GlobalSize
+                                                                          .blockSizeVertical!,
+                                                                      _leaveController
+                                                                              .listHistoryCuti![
+                                                                          index],
+                                                                      "Rejected");
+                                                                },
+                                                                child: Icon(
+                                                                  Icons
+                                                                      .backspace_rounded,
+                                                                  color: Colors
+                                                                      .red[700],
+                                                                  size: GlobalSize
+                                                                          .blockSizeHorizontal! *
+                                                                      6.0,
+                                                                ))
+                                                          ],
+                                                        )
+                                                      ],
+                                                      if (_leaveController.listHistoryCuti![
+                                                                      index]
+                                                                  ['status'] ==
+                                                              "Approved" &&
+                                                          _absensiController
+                                                                      .dataProfile![
+                                                                  'role'] ==
+                                                              "Hrd") ...[
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            InkWell(
+                                                                onTap: () {
+                                                                  _leaveController.updateStatusCuti(
+                                                                      context,
+                                                                      GlobalSize
+                                                                          .blockSizeHorizontal!,
+                                                                      GlobalSize
+                                                                          .blockSizeVertical!,
+                                                                      _leaveController
+                                                                              .listHistoryCuti![
+                                                                          index],
+                                                                      "Finished");
                                                                 },
                                                                 child: Icon(
                                                                   Icons

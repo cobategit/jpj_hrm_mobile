@@ -72,6 +72,8 @@ class LeaveController extends GetxController {
   RxMap<String, dynamic>? warningCutiKhusus;
   RxInt? countPendingMangkir;
   RxInt? countPendingCuti;
+  RxInt? countApprovedMangkir;
+  RxInt? countApprovedCuti;
   RxInt? jmlhCuti;
   RxInt? hakCutiJalan;
   RxInt? cutiNya;
@@ -115,6 +117,7 @@ class LeaveController extends GetxController {
       {"id": 0, "status": "Pending"},
       {"id": 1, "status": "Approved"},
       {"id": 2, "status": "Rejected"},
+      {"id": 3, "status": "Finished"}
     ].obs;
     isLoading = false.obs;
     sumcutiTahunan = 0.obs;
@@ -128,6 +131,8 @@ class LeaveController extends GetxController {
     quotacutiLahir = 0.obs;
     countPendingMangkir = 0.obs;
     countPendingCuti = 0.obs;
+    countApprovedMangkir = 0.obs;
+    countApprovedCuti = 0.obs;
     jmlhCuti = 0.obs;
     hakCutiJalan = 0.obs;
     cutiNya = 0.obs;
@@ -143,6 +148,7 @@ class LeaveController extends GetxController {
     // fileSakitMangkirWeb = Rxn<PlatformFile>(null);
     getCountPendingMangkir();
     getCountPendingCuti();
+    getCountLeavesByStatus();
     getLeaveSummary();
     getBackupEmp();
     getLeaveHist();
@@ -409,6 +415,10 @@ class LeaveController extends GetxController {
                         valTypeLeaveSub!.value,
                         1);
                   }
+
+                  if (tmpJenisMangkir!['name'] == 'Tahunan') {
+                    await getWarningCutiTahunan(1, 3);
+                  }
                 },
                 child: const Text('OK'),
               ),
@@ -653,6 +663,7 @@ class LeaveController extends GetxController {
                     fileSakitMangkirWebBytes = Rxn(null);
                     getHistoryCuti();
                     getCountPendingCuti();
+                    getCountLeavesByStatus();
                   } else {
                     WidgetsBinding.instance.addPostFrameCallback((_) async {
                       await AlertDialogMsg.showCupertinoDialogSimple(
@@ -992,6 +1003,42 @@ class LeaveController extends GetxController {
     }
   }
 
+  Future<void> getWarningCutiTahunan(int? idLeaveTypes, int? status) async {
+    SharedPreferences session = await SharedPreferences.getInstance();
+    isLoading!(true);
+
+    final ApiModel apiModel = ApiModel(
+        url: Api.apiUrl,
+        path:
+            '${Path.warningCutiTahunan}?id_leave_types=$idLeaveTypes&status=$status',
+        isToken: true,
+        token: session.getString('token'));
+
+    final Map<String, dynamic> res = await GetData().getData(apiModel);
+    isLoading!(false);
+    if (res['cuti_tahunan'] != null) {
+      warningCutiKhusus?['total_cuti'] = res['total_cuti'];
+      warningCutiKhusus?['maksimal_cuti'] = res['cuti_tahunan']['days'];
+      cutiNya!(res['cuti_tahunan']['days']);
+      hakCutiJalan!(res['cuti_tahunan']['days'] - res['total_cuti']);
+      sisaCutiPer!(hakCutiJalan!.value - jmlhCuti!.value);
+    }
+  }
+
+  Future<bool?> checkDapetCuti() async {
+    late DateTime date = DateTime.now();
+    late DateTime convDateJoined =
+        DateTime.parse(_absensiController?.dataProfile!['join_date_convert']);
+
+    final diffDay = date.difference(convDateJoined).inDays;
+
+    if (diffDay >= 365) {
+      return true;
+    }
+
+    return false;
+  }
+
   Future<void> updateStatusMangkir(ctx, wp, hp, data, status) async {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await AlertDialogMsg.showCupertinoDialogSimple(
@@ -1260,6 +1307,31 @@ class LeaveController extends GetxController {
     countPendingCuti!(res['pending']);
   }
 
+  Future<void> getCountLeavesByStatus() async {
+    SharedPreferences session = await SharedPreferences.getInstance();
+    isLoading!(true);
+
+    final ApiModel apiModelCuti = ApiModel(
+        url: Api.apiUrl,
+        path: '${Path.countLeavesByStatus}?type=cuti&status=1',
+        isToken: true,
+        token: session.getString('token'));
+
+    final ApiModel apiModelMangkir = ApiModel(
+        url: Api.apiUrl,
+        path: '${Path.countLeavesByStatus}?type=mangkir&status=1',
+        isToken: true,
+        token: session.getString('token'));
+
+    final Map<String, dynamic> resMangkir =
+        await GetData().getData(apiModelMangkir);
+    final Map<String, dynamic> resCuti = await GetData().getData(apiModelCuti);
+    isLoading!(false);
+
+    countApprovedMangkir!(resMangkir['data']);
+    countApprovedCuti!(resCuti['data']);
+  }
+
   _dialogFormMangkirCuti(context, wp, hp) {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await AlertDialogMsg.showCupertinoDialogSimple(
@@ -1352,8 +1424,10 @@ class LeaveController extends GetxController {
       dariTglTxt?.clear();
       timeFromTugasKantor!.clear();
       timeToTugasKantor!.clear();
+      warningCutiKhusus?.clear();
       getHistoryMangkir("mangkir");
       getCountPendingMangkir();
+      getCountLeavesByStatus();
       AllNavigation.popNav(ctx, false, null);
     } else {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
@@ -1409,6 +1483,48 @@ class LeaveController extends GetxController {
         });
       }
     }
+
+    final dapetCuti = await checkDapetCuti();
+    if (!dapetCuti! && tmpJenisMangkir!['name'] == 'Tahunan') {
+      return WidgetsBinding.instance.addPostFrameCallback((_) async {
+        await AlertDialogMsg.showCupertinoDialogSimple(
+            ctx,
+            'Peringatan!',
+            'Anda belum mendapatkan hak cuti',
+            [
+              ElevatedButton(
+                onPressed: () async {
+                  AllNavigation.popNav(ctx, false, null);
+                },
+                child: const Text('OK'),
+              ),
+            ],
+            hp);
+      });
+    }
+
+    // apabila data cuti udah valid, fungsi ini baru bisa di gunakan
+    // if (warningCutiKhusus!.isNotEmpty) {
+    //   if (tmpJenisMangkir!['name'] == "Tahunan" &&
+    //       (jmlhCuti!.value + warningCutiKhusus!['total_cuti']) >
+    //           warningCutiKhusus!['maksimal_cuti']) {
+    //     return WidgetsBinding.instance.addPostFrameCallback((_) async {
+    //       await AlertDialogMsg.showCupertinoDialogSimple(
+    //           ctx,
+    //           'Peringatan!',
+    //           'Cuti melebihi dari kententuan',
+    //           [
+    //             ElevatedButton(
+    //               onPressed: () async {
+    //                 AllNavigation.popNav(ctx, false, null);
+    //               },
+    //               child: const Text('OK'),
+    //             ),
+    //           ],
+    //           hp);
+    //     });
+    //   }
+    // }
 
     SharedPreferences session = await SharedPreferences.getInstance();
     final Map<String, dynamic> bodyData = {
@@ -1472,10 +1588,12 @@ class LeaveController extends GetxController {
       fileSakitMangkirWebBytes = Rxn(null);
       getHistoryCuti();
       getCountPendingCuti();
+      getCountLeavesByStatus();
       jmlhCuti = 0.obs;
       cutiNya = 0.obs;
       hakCutiJalan = 0.obs;
       sisaCutiPer = 0.obs;
+      warningCutiKhusus?.clear();
       AllNavigation.popNav(ctx, false, null);
     } else {
       WidgetsBinding.instance.addPostFrameCallback((_) async {

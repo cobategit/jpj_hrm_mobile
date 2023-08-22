@@ -28,6 +28,8 @@ class Path {
   static String updateFileCuti = '/leaves/upload-file-cuti';
   static String warningSakit = '/leaves/warning-sakit';
   static String warningCutiKhusus = '/leaves/warning-cuti-khusus';
+  static String warningCutiTahunan = '/leaves/warning-cuti-tahunan';
   static String holidayDisable = '/holiday-disable';
   static String checkActivityPresent = '/attendances/check-activity';
+  static String countLeavesByStatus = '/leaves/count-leaves-status';
 }

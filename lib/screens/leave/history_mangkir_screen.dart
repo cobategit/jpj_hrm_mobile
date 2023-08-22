@@ -94,8 +94,13 @@ class HistoryMangkirScreen extends StatelessWidget {
                                                 ['status'] ==
                                             "Rejected"
                                         ? const Color.fromARGB(248, 245, 2, 22)
-                                        : const Color.fromARGB(
-                                            248, 248, 245, 37);
+                                        : _leaveController.listHistoryMangkir?[
+                                                    index]['status'] ==
+                                                "Finished"
+                                            ? const Color.fromARGB(
+                                                248, 238, 0, 226)
+                                            : const Color.fromARGB(
+                                                248, 248, 245, 37);
                                 return Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
@@ -325,6 +330,72 @@ class HistoryMangkirScreen extends StatelessWidget {
                                                                               .listHistoryMangkir![
                                                                           index],
                                                                       "Approved");
+                                                                },
+                                                                child: Icon(
+                                                                  Icons
+                                                                      .assignment_turned_in_rounded,
+                                                                  color: Colors
+                                                                          .green[
+                                                                      700],
+                                                                  size: GlobalSize
+                                                                          .blockSizeHorizontal! *
+                                                                      6.0,
+                                                                )),
+                                                            SizedBox(
+                                                              width: GlobalSize
+                                                                      .blockSizeHorizontal! *
+                                                                  5,
+                                                            ),
+                                                            InkWell(
+                                                                onTap: () {
+                                                                  _leaveController.updateStatusMangkir(
+                                                                      context,
+                                                                      GlobalSize
+                                                                          .blockSizeHorizontal!,
+                                                                      GlobalSize
+                                                                          .blockSizeVertical!,
+                                                                      _leaveController
+                                                                              .listHistoryMangkir![
+                                                                          index],
+                                                                      "Rejected");
+                                                                },
+                                                                child: Icon(
+                                                                  Icons
+                                                                      .backspace_rounded,
+                                                                  color: Colors
+                                                                      .red[700],
+                                                                  size: GlobalSize
+                                                                          .blockSizeHorizontal! *
+                                                                      6.0,
+                                                                ))
+                                                          ],
+                                                        )
+                                                      ],
+                                                      if (_leaveController.listHistoryMangkir![
+                                                                      index]
+                                                                  ['status'] ==
+                                                              "Approved" &&
+                                                          _absensiController
+                                                                      .dataProfile![
+                                                                  'role'] ==
+                                                              "Hrd") ...[
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            InkWell(
+                                                                onTap: () {
+                                                                  _leaveController.updateStatusMangkir(
+                                                                      context,
+                                                                      GlobalSize
+                                                                          .blockSizeHorizontal!,
+                                                                      GlobalSize
+                                                                          .blockSizeVertical!,
+                                                                      _leaveController
+                                                                              .listHistoryMangkir![
+                                                                          index],
+                                                                      "Finished");
                                                                 },
                                                                 child: Icon(
                                                                   Icons

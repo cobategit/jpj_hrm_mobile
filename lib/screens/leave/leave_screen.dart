@@ -63,13 +63,17 @@ class LeaveScreen extends StatelessWidget {
                                       .dataProfile!['role'] ==
                                   'Manager'
                               ? "${_leaveController.countPendingMangkir!.value}"
-                              : ""),
+                              : _absensiController.dataProfile!['role'] == 'Hrd'
+                                  ? "${_leaveController.countApprovedMangkir!.value}"
+                                  : ""),
                           badgeStyle: badges.BadgeStyle(
-                              badgeColor:
-                                  _absensiController.dataProfile!['role'] ==
-                                          'Manager'
-                                      ? const Color.fromARGB(248, 8, 235, 65)
-                                      : Colors.transparent),
+                              badgeColor: _absensiController
+                                              .dataProfile!['role'] ==
+                                          'Manager' ||
+                                      _absensiController.dataProfile!['role'] ==
+                                          'Hrd'
+                                  ? const Color.fromARGB(248, 8, 235, 65)
+                                  : Colors.transparent),
                           position:
                               badges.BadgePosition.topEnd(top: 30, end: 10),
                           child: Container(
@@ -134,13 +138,17 @@ class LeaveScreen extends StatelessWidget {
                                       .dataProfile!['role'] ==
                                   'Manager'
                               ? "${_leaveController.countPendingCuti!.value}"
-                              : ""),
+                              : _absensiController.dataProfile!['role'] == 'Hrd'
+                                  ? "${_leaveController.countApprovedCuti!.value}"
+                                  : ""),
                           badgeStyle: badges.BadgeStyle(
-                              badgeColor:
-                                  _absensiController.dataProfile!['role'] ==
-                                          'Manager'
-                                      ? const Color.fromARGB(248, 8, 235, 65)
-                                      : Colors.transparent),
+                              badgeColor: _absensiController
+                                              .dataProfile!['role'] ==
+                                          'Manager' ||
+                                      _absensiController.dataProfile!['role'] ==
+                                          'Hrd'
+                                  ? const Color.fromARGB(248, 8, 235, 65)
+                                  : Colors.transparent),
                           position:
                               badges.BadgePosition.topEnd(top: 30, end: 10),
                           child: Container(
