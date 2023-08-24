@@ -1159,8 +1159,8 @@ class AbsensiController extends GetxController {
                               final Map<String, dynamic> bodyData = {
                                 'date': DateFormat('yyyy-MM-dd')
                                     .format(DateTime.now()),
-                                'id_dept':
-                                    dataProfile!['id_department'].toString(),
+                                'id_dept': dataProfile!['id_parent_department']
+                                    .toString(),
                                 'check_in': DateFormat('HH:mm:ss')
                                     .format(DateTime.now()),
                                 'longitude': long?.value,
@@ -1438,7 +1438,8 @@ class AbsensiController extends GetxController {
                         final Map<String, dynamic> bodyData = {
                           'date':
                               DateFormat('yyyy-MM-dd').format(DateTime.now()),
-                          'id_dept': dataProfile!['id_department'].toString(),
+                          'id_dept':
+                              dataProfile!['id_parent_department'].toString(),
                           'check_in':
                               DateFormat('HH:mm:ss').format(DateTime.now()),
                           'type': false,
@@ -1907,7 +1908,8 @@ class AbsensiController extends GetxController {
 
     final ApiModel apiModel = ApiModel(
         url: Api.apiUrl,
-        path: '${Path.logAttandance}?start=$startDate&end=$endDate',
+        path:
+            '${Path.logAttandance}?start=$startDate&end=$endDate&id_dept=${dataProfile!['id_parent_department']}',
         isToken: true,
         token: session.getString('token'));
 

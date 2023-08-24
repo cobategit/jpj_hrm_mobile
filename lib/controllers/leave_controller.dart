@@ -1503,28 +1503,27 @@ class LeaveController extends GetxController {
       });
     }
 
-    // apabila data cuti udah valid, fungsi ini baru bisa di gunakan
-    // if (warningCutiKhusus!.isNotEmpty) {
-    //   if (tmpJenisMangkir!['name'] == "Tahunan" &&
-    //       (jmlhCuti!.value + warningCutiKhusus!['total_cuti']) >
-    //           warningCutiKhusus!['maksimal_cuti']) {
-    //     return WidgetsBinding.instance.addPostFrameCallback((_) async {
-    //       await AlertDialogMsg.showCupertinoDialogSimple(
-    //           ctx,
-    //           'Peringatan!',
-    //           'Cuti melebihi dari kententuan',
-    //           [
-    //             ElevatedButton(
-    //               onPressed: () async {
-    //                 AllNavigation.popNav(ctx, false, null);
-    //               },
-    //               child: const Text('OK'),
-    //             ),
-    //           ],
-    //           hp);
-    //     });
-    //   }
-    // }
+    if (warningCutiKhusus!.isNotEmpty) {
+      if (tmpJenisMangkir!['name'] == "Tahunan" &&
+          (jmlhCuti!.value + warningCutiKhusus!['total_cuti']) >
+              warningCutiKhusus!['maksimal_cuti']) {
+        return WidgetsBinding.instance.addPostFrameCallback((_) async {
+          await AlertDialogMsg.showCupertinoDialogSimple(
+              ctx,
+              'Peringatan!',
+              'Cuti melebihi dari kententuan',
+              [
+                ElevatedButton(
+                  onPressed: () async {
+                    AllNavigation.popNav(ctx, false, null);
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+              hp);
+        });
+      }
+    }
 
     SharedPreferences session = await SharedPreferences.getInstance();
     final Map<String, dynamic> bodyData = {
